@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PLCSoldier.Models
+{
+    public class BottomTabItem : ITabItem
+    {
+        public string Header { get; set; }
+        public string? Content { get; set; }
+        public bool isVisible { get; set; } // Required for groups of tabs that are closed with a single cross
+    }
+}
