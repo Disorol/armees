@@ -7,12 +7,12 @@
         x:Class="PLCSoldier.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="PLCSoldier">
+        RequestedThemeVariant="Light"
+        Title="ПЛК Армеец">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+  
+  
 </Window>

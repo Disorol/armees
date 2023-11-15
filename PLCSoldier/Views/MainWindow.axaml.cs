@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using PLCSoldier.ViewModels;
 
 namespace PLCSoldier.Views
 {
@@ -7,6 +8,8 @@ namespace PLCSoldier.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainWindowViewModel();
         }
     }
 }
