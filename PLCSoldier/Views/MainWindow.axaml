@@ -13,6 +13,146 @@
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-  
-  
+
+  <Grid Name="MainGrid">
+    <Grid.RowDefinitions>
+      <!-- Menu-template -->
+      <RowDefinition Height="20" MinHeight="20"/>
+      <!-- Tools-template -->
+      <RowDefinition Height="45"/>
+      <!-- Splitter-template -->
+      <RowDefinition Height="1" MaxHeight="1"/>
+      <!-- Main-space-template -->
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- Menu -->
+    <Grid Grid.Row="0"></Grid>
+
+    <!-- Tools -->
+    <Grid Grid.Row="1"></Grid>
+
+    <!-- Splitter -->
+    <!-- Thanks to the margins, the capture area increases, 
+         and the visible area decreases to the border -->
+    <GridSplitter Grid.Row="2"
+                  Margin="0, -5"
+                  BorderThickness="0, 5"
+                  BorderBrush="Transparent"
+                  Background="Black"
+                  ResizeDirection="Rows"
+                  ResizeBehavior="PreviousAndNext"
+                  HorizontalAlignment="Stretch" IsEnabled="False"/>
+
+    <!-- Main-space -->
+    <Grid Grid.Row="3" Name="LR_Grid">
+      <Grid.ColumnDefinitions>
+        <!-- Left-space-template -->
+        <ColumnDefinition Width="300"/>
+        <!-- Splitter-template -->
+        <ColumnDefinition Width="1" MaxWidth="1"/>
+        <!-- Right-space-template -->
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <!-- Left-space -->
+      <Grid Grid.Column="0" Name="LULB_Grid">
+        <Grid.RowDefinitions>
+          <!-- Left-upper-space-template -->
+          <RowDefinition Height="*"/>
+          <!-- Splitter-template -->
+          <RowDefinition Height="1" MaxHeight="1" />
+          <!-- Left-bottom-space-template -->
+          <RowDefinition Height="220"/>
+        </Grid.RowDefinitions>
+
+        <!-- Left-upper-space -->
+        <Grid Grid.Row="0"></Grid>
+
+        <!-- Splitter -->
+        <GridSplitter Grid.Row="1"
+                      Name="LULB_Splitter"
+                      Margin="0, -5"
+                      BorderThickness="0, 5"
+                      BorderBrush="Transparent"
+                      Background="Black"
+                      ResizeDirection="Rows"
+                      ResizeBehavior="PreviousAndNext"
+                      HorizontalAlignment="Stretch"/>
+
+        <!-- Left-bottom-space-template -->
+        <Grid Grid.Row="2"></Grid>
+      </Grid>
+
+      <!-- Splitter -->
+      <!-- Thanks to the margins, the capture area increases, 
+           and the visible area decreases to the border -->
+      <GridSplitter Grid.Column="1"
+                    Name="LR_Splitter"
+                    Margin="-5, 0"
+                    BorderThickness="5, 0"
+                    BorderBrush="Transparent"
+                    Background="Black"
+                    ResizeDirection="Columns"
+                    ResizeBehavior="PreviousAndNext"
+                    HorizontalAlignment="Stretch"/>
+
+      <!-- Right-space -->
+      <Grid Grid.Column="2">
+        <Grid.RowDefinitions>
+          <!-- Central-and-right-space-template -->
+          <RowDefinition Height="*"/>
+          <!-- Splitter-template -->
+          <RowDefinition Height="1" MaxHeight="1"/>
+          <!-- Bottom-space-template -->
+          <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+
+        <!-- Central-and-far-right-space-template -->
+        <Grid Grid.Row="0">
+          <Grid.ColumnDefinitions>
+            <!-- Central-space-template -->
+            <ColumnDefinition Width="*"/>
+            <!-- Splitter-template -->
+            <ColumnDefinition Width="1" MaxWidth="1" />
+            <!-- Far-right-space-template -->
+            <ColumnDefinition Width="150"/>
+          </Grid.ColumnDefinitions>
+
+          <!-- Central-space -->
+          <Grid Grid.Column="0"></Grid>
+
+          <!-- Splitter -->
+          <GridSplitter Grid.Column="1"
+                        Name="CRR_Splitter"
+                        Margin="-5, 0"
+                        BorderThickness="5, 0"
+                        BorderBrush="Transparent"
+                        Background="Black"
+                        ResizeDirection="Columns"
+                        ResizeBehavior="PreviousAndNext"
+                        HorizontalAlignment="Stretch"/>
+
+          <!-- Far-right-space -->
+          <Grid Grid.Column="2"></Grid>
+        </Grid>
+
+        <!-- Splitter -->
+        <!-- Thanks to the margins, the capture area increases, 
+             and the visible area decreases to the border -->
+        <GridSplitter Grid.Row="1"
+                      Name="CRB_Splitter"
+                      Margin="0, -5"
+                      BorderThickness="0, 5"
+                      BorderBrush="Transparent"
+                      Background="Black"
+                      ResizeDirection="Rows"
+                      ResizeBehavior="PreviousAndNext"
+                      HorizontalAlignment="Stretch"/>
+        
+        <!-- Bottom-space -->
+        <Grid Grid.Row="2"></Grid>
+      </Grid>
+    </Grid>
+  </Grid>
 </Window>
