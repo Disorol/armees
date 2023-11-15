@@ -10,6 +10,8 @@ namespace PLCSoldier.Views
             InitializeComponent();
 
             DataContext = new MainWindowViewModel();
+
+            //LeftUpperSpace.ItemsSource = LeftUpperContent;
         }
     }
 }

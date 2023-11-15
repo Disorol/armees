@@ -3,6 +3,7 @@
         xmlns:vm="using:PLCSoldier.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xxx="using:PLCSoldier.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PLCSoldier.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -15,6 +16,7 @@
     </Design.DataContext>
 
   <Grid Name="MainGrid">
+    <Button Command="{Binding ExecuteDeleteTabItem}" />
     <Grid.RowDefinitions>
       <!-- Menu-template -->
       <RowDefinition Height="20" MinHeight="20"/>
@@ -67,7 +69,76 @@
         </Grid.RowDefinitions>
 
         <!-- Left-upper-space -->
-        <Grid Grid.Row="0"></Grid>
+        <Grid Grid.Row="0">
+          <DockPanel>
+            <TabControl Name="LeftUpperSpace">
+              <TabControl.Styles>
+                <Style Selector="TabItem">
+                  <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                      <DataTemplate x:DataType="xxx:LeftUpperTabItem">
+                        <DockPanel>
+                          <Button DockPanel.Dock="Right" Command="{Binding $parent[vm:MainWindowViewModel].ExecuteDeleteTabItem }">
+                            <Button.Styles>
+                              <Style>
+                                <Style.Resources>
+                                  <SolidColorBrush x:Key="ThemeBorderMidBrush">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ThemeControlHighBrush">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBorderBrush">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBackground">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBackgroundPointerOver">#e4e4e4</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBackgroundPressed">#cfcfcf</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonForeground">#767676</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonForegroundPointerOver">#616161</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonForegroundPressed">#616161</SolidColorBrush>
+                                </Style.Resources>
+                                <Setter Property="Width" Value="17"/>
+                                <Setter Property="Height" Value="17"/>
+                                <Setter Property="CornerRadius" Value="17"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="5 0 0 0" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                              </Style>
+                            </Button.Styles>
+                            <Path
+                              Fill="{Binding $parent.Foreground}"
+                              Stretch="Fill"
+                              Margin="5"
+                              Data="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z">
+                            </Path>
+                          </Button>
+                          <TextBlock DockPanel.Dock="Left"
+                                     Text="{Binding Header}"
+                                     FontSize="15"
+                                     FontFamily="Arial"
+                                     VerticalAlignment="Center" />
+                        </DockPanel>
+                      </DataTemplate>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                      <DataTemplate x:DataType="xxx:LeftUpperTabItem">
+                        <TreeView ItemsSource="{Binding TreeViewContent}">
+                          <TreeView.ItemTemplate>
+                            <TreeDataTemplate ItemsSource="{Binding Subnodes}">
+                              <DockPanel>
+                                <Image Width="10" Height="10" Source="{Binding Icon}" />
+                                <TextBlock Text=" " />
+                                <TextBlock Text="{Binding NodeTitle}"/>
+                              </DockPanel>
+                            </TreeDataTemplate>
+                          </TreeView.ItemTemplate>
+                        </TreeView>
+                      </DataTemplate>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter Property="MinHeight" Value="30" />
+                </Style>
+              </TabControl.Styles>
+            </TabControl>
+          </DockPanel>
+        </Grid>
 
         <!-- Splitter -->
         <GridSplitter Grid.Row="1"
@@ -98,7 +169,7 @@
                     HorizontalAlignment="Stretch"/>
 
       <!-- Right-space -->
-      <Grid Grid.Column="2">
+      <Grid Grid.Column="2" Name="CRB_Grid">
         <Grid.RowDefinitions>
           <!-- Central-and-right-space-template -->
           <RowDefinition Height="*"/>
@@ -109,7 +180,7 @@
         </Grid.RowDefinitions>
 
         <!-- Central-and-far-right-space-template -->
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Name="CRR_Grid">
           <Grid.ColumnDefinitions>
             <!-- Central-space-template -->
             <ColumnDefinition Width="*"/>
