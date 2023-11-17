@@ -71,7 +71,7 @@
         <!-- Left-upper-space -->
         <Grid Grid.Row="0">
           <DockPanel>
-            <TabControl Name="LeftUpperSpace">
+            <TabControl Name="LeftUpperSpace" ItemsSource="{Binding LeftUpperContent}">
               <TabControl.Styles>
                 <Style Selector="TabItem">
                   <Setter Property="HeaderTemplate">
