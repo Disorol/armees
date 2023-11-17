@@ -17,7 +17,7 @@ namespace PLCSoldier.ViewModels
         // List of content for left upper space TabItems
         Dictionary<string, LeftUpperTabItem> leftUpperItems = new Dictionary<string, LeftUpperTabItem>()
         {
-            {"Logical organizer", new LeftUpperTabItem(){Header = "Логический органайзер", TreeViewContent = null } },
+            {"Logical organizer", new LeftUpperTabItem(){Header = "Логический органайзер", TreeViewContent = null} },
         };
 
         // A list containing left upper space Tabitems
@@ -25,7 +25,7 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
-            ExecuteDeleteTabItem = ReactiveCommand.Create(DeleteTabItem);
+            DeleteTabItem = ReactiveCommand.Create(ExecuteDeleteTabItem);
 
             LeftUpperContent = new ObservableCollection<LeftUpperTabItem>();
 
@@ -34,13 +34,13 @@ namespace PLCSoldier.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ReactiveCommand<Unit, Unit> ExecuteDeleteTabItem {  get; set; }
+        public ReactiveCommand<Unit, Unit> DeleteTabItem { get; set; }
 
-        public void DeleteTabItem()
+        public void ExecuteDeleteTabItem()
         {
             if (true)
             {
-
+                LeftUpperContent.Remove(leftUpperItems["Logical organizer"]);
             }
         }
     }

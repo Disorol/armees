@@ -11,12 +11,8 @@
         RequestedThemeVariant="Light"
         Title="ПЛК Армеец">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
   <Grid Name="MainGrid">
-    <Button Command="{Binding ExecuteDeleteTabItem}" />
+    <Button Command="{Binding ExecuteDeleteTabItem}"/>
     <Grid.RowDefinitions>
       <!-- Menu-template -->
       <RowDefinition Height="20" MinHeight="20"/>
@@ -78,7 +74,7 @@
                     <Setter.Value>
                       <DataTemplate x:DataType="xxx:LeftUpperTabItem">
                         <DockPanel>
-                          <Button DockPanel.Dock="Right" Command="{Binding $parent[vm:MainWindowViewModel].ExecuteDeleteTabItem }">
+                          <Button DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}">
                             <Button.Styles>
                               <Style>
                                 <Style.Resources>
@@ -220,7 +216,7 @@
                       ResizeDirection="Rows"
                       ResizeBehavior="PreviousAndNext"
                       HorizontalAlignment="Stretch"/>
-        
+
         <!-- Bottom-space -->
         <Grid Grid.Row="2"></Grid>
       </Grid>
