@@ -8,6 +8,7 @@ namespace PLCSoldier.Models
 {
     public interface ITabItem
     {
+        public string IdentificationName { get; set; }
         public string Header { get; set; }
     }
 }

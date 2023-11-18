@@ -11,6 +11,7 @@ namespace PLCSoldier.Models
 {
     public class LeftUpperTabItem : ITabItem
     {
+        public string IdentificationName { get; set; }
         public string Header { get; set; }
         public ObservableCollection<Node>? TreeViewContent { get; set; }
     }

@@ -8,6 +8,7 @@ namespace PLCSoldier.Models
 {
     public class BottomTabItem : ITabItem
     {
+        public string IdentificationName { get; set; }
         public string Header { get; set; }
         public string? Content { get; set; }
         public bool isVisible { get; set; } // Required for groups of tabs that are closed with a single cross

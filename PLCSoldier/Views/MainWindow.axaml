@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xxx="using:PLCSoldier.Models"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PLCSoldier.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -12,7 +13,6 @@
         Title="ПЛК Армеец">
 
   <Grid Name="MainGrid">
-    <Button Command="{Binding ExecuteDeleteTabItem}"/>
     <Grid.RowDefinitions>
       <!-- Menu-template -->
       <RowDefinition Height="20" MinHeight="20"/>
@@ -67,14 +67,14 @@
         <!-- Left-upper-space -->
         <Grid Grid.Row="0">
           <DockPanel>
-            <TabControl Name="LeftUpperSpace" ItemsSource="{Binding LeftUpperContent}">
+            <TabControl Name="LeftUpperSpace" ItemsSource="{Binding  LeftUpperContent}">
               <TabControl.Styles>
                 <Style Selector="TabItem">
                   <Setter Property="HeaderTemplate">
                     <Setter.Value>
                       <DataTemplate x:DataType="xxx:LeftUpperTabItem">
                         <DockPanel>
-                          <Button DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}">
+                          <Button DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}" CommandParameter="{Binding IdentificationName}">
                             <Button.Styles>
                               <Style>
                                 <Style.Resources>
