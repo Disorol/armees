@@ -24,4 +24,11 @@
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <AvaloniaResource Include="Assets\images\icons\**" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Views\LogicalOrganizerContentView.axaml.cs">
+      <DependentUpon>LogicalOrganizerContentView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

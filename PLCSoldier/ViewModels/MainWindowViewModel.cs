@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using DynamicData;
+﻿using DynamicData;
 using PLCSoldier.Models;
 using ReactiveUI;
 using System;
@@ -15,19 +14,19 @@ namespace PLCSoldier.ViewModels
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
         // List of content for left upper space TabItems
-        Dictionary<string, LeftUpperTabItem> leftUpperItems = new Dictionary<string, LeftUpperTabItem>()
+        Dictionary<string, ITabItem> leftUpperItems = new Dictionary<string, ITabItem>()
         {
-            {"Logical organizer", new LeftUpperTabItem(){IdentificationName = "Logical organizer", Header = "Логический органайзер", TreeViewContent = null} },
+            {"Logical organizer", new LogicalOrganizerViewModel(){IdentificationName = "Logical organizer", Header = "Логический органайзер", Content = new LogicalOrganizerContentViewModel(){ dfsdf = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } }, isCloseButtonVisible = true} },
         };
 
         // A list containing left upper space Tabitems
-        public ObservableCollection<LeftUpperTabItem> LeftUpperContent { get; set; }
+        public ObservableCollection<ITabItem> LeftUpperContent { get; set; }
 
         public MainWindowViewModel() 
         {
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
 
-            LeftUpperContent = new ObservableCollection<LeftUpperTabItem>();
+            LeftUpperContent = new ObservableCollection<ITabItem>();
 
             LeftUpperContent.Add(leftUpperItems["Logical organizer"]);
         }
@@ -38,7 +37,7 @@ namespace PLCSoldier.ViewModels
 
         public void ExecuteDeleteTabItem(string obj)
         {
-            if (leftUpperItems.TryGetValue(obj, out LeftUpperTabItem d))
+            if (leftUpperItems.TryGetValue(obj, out ITabItem d))
             {
                 LeftUpperContent.Remove(leftUpperItems["Logical organizer"]);
             }

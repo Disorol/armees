@@ -36,7 +36,7 @@ namespace PLCSoldier.Models
 
             NodeTitle = System.IO.Path.GetFileName(path);
 
-            Icon = new Bitmap(AssetLoader.Open(new Uri("avares://plc-soldier-avalonia/assets/images/icons/dock.png")));
+            Icon = new Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/images/icons/dock.png")));
 
             Subnodes = new ObservableCollection<Node>();
 

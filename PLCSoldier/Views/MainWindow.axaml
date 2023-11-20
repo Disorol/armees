@@ -67,12 +67,12 @@
         <!-- Left-upper-space -->
         <Grid Grid.Row="0">
           <DockPanel>
-            <TabControl Name="LeftUpperSpace" ItemsSource="{Binding  LeftUpperContent}">
+            <TabControl Name="LeftUpperSpace" ItemsSource="{Binding LeftUpperContent}">
               <TabControl.Styles>
                 <Style Selector="TabItem">
                   <Setter Property="HeaderTemplate">
                     <Setter.Value>
-                      <DataTemplate x:DataType="xxx:LeftUpperTabItem">
+                      <DataTemplate >
                         <DockPanel>
                           <Button DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}" CommandParameter="{Binding IdentificationName}">
                             <Button.Styles>
@@ -114,8 +114,13 @@
                   </Setter>
                   <Setter Property="ContentTemplate">
                     <Setter.Value>
-                      <DataTemplate x:DataType="xxx:LeftUpperTabItem">
-                        <TreeView ItemsSource="{Binding TreeViewContent}">
+                      <DataTemplate>
+                        <ContentControl Content="{Binding Content, Mode=OneWay}" />
+                      </DataTemplate>
+                    </Setter.Value>
+                    <!--<Setter.Value>
+                      <DataTemplate x:DataType="{x:Type xxx:LeftUpperTabItem}">
+                        <TreeView ItemsSource="{Binding Content}">
                           <TreeView.ItemTemplate>
                             <TreeDataTemplate ItemsSource="{Binding Subnodes}">
                               <DockPanel>
@@ -127,7 +132,7 @@
                           </TreeView.ItemTemplate>
                         </TreeView>
                       </DataTemplate>
-                    </Setter.Value>
+                    </Setter.Value>-->
                   </Setter>
                   <Setter Property="MinHeight" Value="30" />
                 </Style>

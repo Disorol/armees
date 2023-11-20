@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.Models
 {
-    public class LeftUpperTabItem : ITabItem
+    public class LogicalOrganizerViewModel : ITabItem
     {
         public string IdentificationName { get; set; }
         public string Header { get; set; }
-        public ObservableCollection<Node>? TreeViewContent { get; set; }
+        public bool isCloseButtonVisible { get; set; }
+        public object? Content { get; set; }
     }
 }

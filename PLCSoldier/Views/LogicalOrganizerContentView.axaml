@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xxx="using:PLCSoldier.Models"
+             xmlns:vm="using:PLCSoldier.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PLCSoldier.Views.LogicalOrganizerContentView"
+            x:DataType="vm:LogicalOrganizerContentViewModel">
+    <TreeView ItemsSource="{Binding dfsdf}">
+      <TreeView.ItemTemplate>
+        <TreeDataTemplate ItemsSource="{Binding Subnodes}">
+          <DockPanel>
+            <Image Width="10" Height="10" Source="{Binding Icon}" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding NodeTitle}"/>
+          </DockPanel>
+        </TreeDataTemplate>
+      </TreeView.ItemTemplate>
+    </TreeView>
+</UserControl>

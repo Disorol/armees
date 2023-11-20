@@ -10,5 +10,7 @@ namespace PLCSoldier.Models
     {
         public string IdentificationName { get; set; }
         public string Header { get; set; }
+        public bool isCloseButtonVisible { get; set; }
+        public object? Content { get; set; }
     }
 }
