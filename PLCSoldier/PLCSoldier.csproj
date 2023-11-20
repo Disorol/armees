@@ -27,6 +27,16 @@
 
 
   <ItemGroup>
+    <Compile Update="Views\ErrorsView.axaml.cs">
+      <DependentUpon>ErrorsView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Views\ErrosView.axaml.cs">
+      <DependentUpon>ErrosView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LogicalOrganizerView.axaml.cs">
       <DependentUpon>LogicalOrganizerView.axaml</DependentUpon>
     </Compile>

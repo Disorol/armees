@@ -23,7 +23,7 @@ namespace PLCSoldier.ViewModels
         // List of content for bottom space TabItems
         Dictionary<string, ITabItem> bottomItems = new Dictionary<string, ITabItem>()
         {
-            {"Errors", new BottomViewModel(){IdentificationName = "Errors", Header = "Ошибки", isCloseButtonVisible = false }},
+            {"Errors", new BottomViewModel(){IdentificationName = "Errors", Header = "Ошибки", isCloseButtonVisible = false, Content = new ErrorsViewModel() { SomeText = "Some text" } }},
             {"Search results", new BottomViewModel(){IdentificationName = "Search results", Header = "Поиск результатов", isCloseButtonVisible = false }},
             {"Watch", new BottomViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true }},
         };
@@ -31,13 +31,18 @@ namespace PLCSoldier.ViewModels
         // A list containing left upper space Tabitems
         public ObservableCollection<ITabItem> LeftUpperContent { get; set; }
 
+        // A list containing left upper space Tabitems
+        public ObservableCollection<ITabItem> BottomContent { get; set; }
+
         public MainWindowViewModel() 
         {
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
 
             LeftUpperContent = new ObservableCollection<ITabItem>();
+            BottomContent = new ObservableCollection<ITabItem>();
 
             LeftUpperContent.Add(leftUpperItems["Logical organizer"]);
+            BottomContent.Add(bottomItems["Errors"]);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
