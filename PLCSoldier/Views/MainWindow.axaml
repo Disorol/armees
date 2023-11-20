@@ -208,7 +208,66 @@
                       HorizontalAlignment="Stretch"/>
 
         <!-- Bottom-space -->
-        <Grid Grid.Row="2"></Grid>
+        <Grid Grid.Row="2">
+          <DockPanel>
+            <TabControl Name="BottomSpace" ItemsSource="{Binding BottomContent}">
+              <TabControl.Styles>
+                <Style Selector="TabItem">
+                  <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                      <DataTemplate >
+                        <DockPanel>
+                          <Button IsVisible="{Binding isCloseButtonVisible}" DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}" CommandParameter="{Binding IdentificationName}">
+                            <Button.Styles>
+                              <Style>
+                                <Style.Resources>
+                                  <SolidColorBrush x:Key="ThemeBorderMidBrush">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ThemeControlHighBrush">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBorderBrush">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBackground">Transparent</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBackgroundPointerOver">#e4e4e4</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonBackgroundPressed">#cfcfcf</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonForeground">#767676</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonForegroundPointerOver">#616161</SolidColorBrush>
+                                  <SolidColorBrush x:Key="ButtonForegroundPressed">#616161</SolidColorBrush>
+                                </Style.Resources>
+                                <Setter Property="Width" Value="17"/>
+                                <Setter Property="Height" Value="17"/>
+                                <Setter Property="CornerRadius" Value="17"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="5 0 0 0" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                              </Style>
+                            </Button.Styles>
+                            <Path
+                              Fill="{Binding $parent.Foreground}"
+                              Stretch="Fill"
+                              Margin="5"
+                              Data="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z">
+                            </Path>
+                          </Button>
+                          <TextBlock DockPanel.Dock="Left"
+                                     Text="{Binding Header}"
+                                     FontSize="15"
+                                     FontFamily="Arial"
+                                     VerticalAlignment="Center" />
+                        </DockPanel>
+                      </DataTemplate>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                      <DataTemplate>
+                        <ContentControl Content="{Binding Content, Mode=OneWay}" />
+                      </DataTemplate>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter Property="MinHeight" Value="30" />
+                </Style>
+              </TabControl.Styles>
+            </TabControl>
+          </DockPanel>
+        </Grid>
       </Grid>
     </Grid>
   </Grid>
