@@ -74,7 +74,7 @@
                     <Setter.Value>
                       <DataTemplate >
                         <DockPanel>
-                          <Button DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}" CommandParameter="{Binding IdentificationName}">
+                          <Button IsVisible="{Binding isCloseButtonVisible}" DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}" CommandParameter="{Binding IdentificationName}">
                             <Button.Styles>
                               <Style>
                                 <Style.Resources>

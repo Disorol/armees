@@ -20,6 +20,14 @@ namespace PLCSoldier.ViewModels
             {"Logical organizer", new LeftUpperViewModel(){IdentificationName = "Logical organizer", Header = "Логический органайзер", isCloseButtonVisible = true, Content = new LogicalOrganizerViewModel(){ LogicalOrganizer = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } } } },
         };
 
+        // List of content for bottom space TabItems
+        Dictionary<string, ITabItem> bottomItems = new Dictionary<string, ITabItem>()
+        {
+            {"Errors", new BottomViewModel(){IdentificationName = "Errors", Header = "Ошибки", isCloseButtonVisible = false }},
+            {"Search results", new BottomViewModel(){IdentificationName = "Search results", Header = "Поиск результатов", isCloseButtonVisible = false }},
+            {"Watch", new BottomViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true }},
+        };
+
         // A list containing left upper space Tabitems
         public ObservableCollection<ITabItem> LeftUpperContent { get; set; }
 
