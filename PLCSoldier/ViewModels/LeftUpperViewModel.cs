@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using PLCSoldier.Interfaces;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.ViewModels
 {
     public class LeftUpperViewModel : ITabItem
     {

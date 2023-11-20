@@ -6,7 +6,7 @@
              xmlns:vm="using:PLCSoldier.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PLCSoldier.Views.LogicalOrganizerView"
-            x:DataType="vm:LogicalOrganizerViewModel">
+             x:DataType="vm:MainWindowViewModel">
     <TreeView ItemsSource="{Binding LogicalOrganizer}">
       <TreeView.ItemTemplate>
         <TreeDataTemplate ItemsSource="{Binding Subnodes}">
