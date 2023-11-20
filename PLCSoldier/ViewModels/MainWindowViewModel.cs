@@ -16,7 +16,7 @@ namespace PLCSoldier.ViewModels
         // List of content for left upper space TabItems
         Dictionary<string, ITabItem> leftUpperItems = new Dictionary<string, ITabItem>()
         {
-            {"Logical organizer", new LogicalOrganizerViewModel(){IdentificationName = "Logical organizer", Header = "Логический органайзер", Content = new LogicalOrganizerContentViewModel(){ dfsdf = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } }, isCloseButtonVisible = true} },
+            {"Logical organizer", new LeftUpperViewModel(){IdentificationName = "Logical organizer", Header = "Логический органайзер", isCloseButtonVisible = true, Content = new LogicalOrganizerViewModel(){ LogicalOrganizer = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } } } },
         };
 
         // A list containing left upper space Tabitems

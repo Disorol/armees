@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace PLCSoldier.Views;
 
-public partial class LogicalOrganizerContentView : UserControl
+public partial class LogicalOrganizerView : UserControl
 {
-    public LogicalOrganizerContentView()
+    public LogicalOrganizerView()
     {
         InitializeComponent();
     }

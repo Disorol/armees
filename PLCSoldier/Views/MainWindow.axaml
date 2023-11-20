@@ -118,21 +118,6 @@
                         <ContentControl Content="{Binding Content, Mode=OneWay}" />
                       </DataTemplate>
                     </Setter.Value>
-                    <!--<Setter.Value>
-                      <DataTemplate x:DataType="{x:Type xxx:LeftUpperTabItem}">
-                        <TreeView ItemsSource="{Binding Content}">
-                          <TreeView.ItemTemplate>
-                            <TreeDataTemplate ItemsSource="{Binding Subnodes}">
-                              <DockPanel>
-                                <Image Width="10" Height="10" Source="{Binding Icon}" />
-                                <TextBlock Text=" " />
-                                <TextBlock Text="{Binding NodeTitle}"/>
-                              </DockPanel>
-                            </TreeDataTemplate>
-                          </TreeView.ItemTemplate>
-                        </TreeView>
-                      </DataTemplate>
-                    </Setter.Value>-->
                   </Setter>
                   <Setter Property="MinHeight" Value="30" />
                 </Style>

@@ -27,8 +27,8 @@
 
 
   <ItemGroup>
-    <Compile Update="Views\LogicalOrganizerContentView.axaml.cs">
-      <DependentUpon>LogicalOrganizerContentView.axaml</DependentUpon>
+    <Compile Update="Views\LogicalOrganizerView.axaml.cs">
+      <DependentUpon>LogicalOrganizerView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

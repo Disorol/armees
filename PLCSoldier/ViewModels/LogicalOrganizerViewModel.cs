@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels
 {
-    public class LogicalOrganizerContentViewModel : ViewModelBase
+    public class LogicalOrganizerViewModel : ViewModelBase
     {
-        public ObservableCollection<Node> dfsdf { get; set; }
+        public ObservableCollection<Node> LogicalOrganizer { get; set; }
     }
 }

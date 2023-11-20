@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.Models
 {
-    public class LogicalOrganizerViewModel : ITabItem
+    public class LeftUpperViewModel : ITabItem
     {
         public string IdentificationName { get; set; }
         public string Header { get; set; }
