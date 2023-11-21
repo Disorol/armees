@@ -27,6 +27,15 @@
 
 
   <ItemGroup>
+    <Compile Update="Views\HardwareOrganizerView.axaml.cs">
+      <DependentUpon>HardwareOrganizerView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PropertyView.axaml.cs">
+      <DependentUpon>PropertyView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\WorkspaceView.axaml.cs">
+      <DependentUpon>WorkspaceView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WatchView.axaml.cs">
       <DependentUpon>WatchView.axaml</DependentUpon>
     </Compile>

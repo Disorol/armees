@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels
 {
-    public class HardwareOrganizerViewModel : ViewModelBase
+    public class WorkspaceViewModel : ViewModelBase
     {
         public string SomeText { get; set; }
     }

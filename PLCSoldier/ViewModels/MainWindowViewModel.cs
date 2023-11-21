@@ -28,11 +28,38 @@ namespace PLCSoldier.ViewModels
             {"Watch", new TabItemViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true, Content = new WatchViewModel() { SomeText = "Some text" } }},
         };
 
+        // List of content for left bottom space TabItems
+        Dictionary<string, TabItemViewModel> leftBottomItems = new Dictionary<string, TabItemViewModel>()
+        {
+            {"Hardware Organizer", new TabItemViewModel(){IdentificationName = "Hardware Organizer", Header = "Аппаратный органайзер", isCloseButtonVisible = true, Content = new HardwareOrganizerViewModel() { SomeText = "Some text" } }},
+        };
+
+        // List of content for far right space TabItems
+        Dictionary<string, TabItemViewModel> farRightItems = new Dictionary<string, TabItemViewModel>()
+        {
+            {"Property", new TabItemViewModel(){IdentificationName = "Property", Header = "Свойства", isCloseButtonVisible = true, Content = new PropertyViewModel() { SomeText = "Some text" } }},
+        };
+
+        // List of content for central space TabItems
+        Dictionary<string, TabItemViewModel> centralItems = new Dictionary<string, TabItemViewModel>()
+        {
+            {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = "Рабочая область", isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = "Some text" } }},
+        };
+
         // A list containing left upper space Tabitems
         public ObservableCollection<TabItemViewModel> LeftUpperContent { get; set; }
 
-        // A list containing left upper space Tabitems
+        // A list containing bottom space Tabitems
         public ObservableCollection<TabItemViewModel> BottomContent { get; set; }
+
+        // A list containing left bottom space Tabitems
+        public ObservableCollection<TabItemViewModel> LeftBottomContent { get; set; }
+
+        // A list containing far right space Tabitems
+        public ObservableCollection<TabItemViewModel> FarRightContent { get; set; }
+
+        // A list containing central space Tabitems
+        public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
 
         public MainWindowViewModel() 
         {
@@ -40,11 +67,17 @@ namespace PLCSoldier.ViewModels
 
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
             BottomContent = new ObservableCollection<TabItemViewModel>();
+            LeftBottomContent = new ObservableCollection<TabItemViewModel>();
+            FarRightContent = new ObservableCollection<TabItemViewModel>();
+            CentralContent = new ObservableCollection<TabItemViewModel>();
 
             LeftUpperContent.Add(leftUpperItems["Logical organizer"]);
             BottomContent.Add(bottomItems["Errors"]);
             BottomContent.Add(bottomItems["Search results"]);
             BottomContent.Add(bottomItems["Watch"]);
+            LeftBottomContent.Add(leftBottomItems["Hardware Organizer"]);
+            FarRightContent.Add(farRightItems["Property"]);
+            CentralContent.Add(centralItems["Workspace"]);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
