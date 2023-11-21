@@ -50,7 +50,7 @@
         <!-- Splitter-template -->
         <ColumnDefinition Width="1" MaxWidth="1"/>
         <!-- Right-space-template -->
-        <ColumnDefinition Width="{Binding SpacesDimensions.RightSpaceWidth}"/>
+        <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
 
       <!-- Left-space -->
@@ -61,7 +61,7 @@
           <!-- Splitter-template -->
           <RowDefinition Height="1" MaxHeight="1" />
           <!-- Left-bottom-space-template -->
-          <RowDefinition Height="220"/>
+          <RowDefinition Height="{Binding SpacesDimensions.LeftBottomSpaceHeight}"/>
         </Grid.RowDefinitions>
 
         <!-- Left-upper-space -->
@@ -221,7 +221,7 @@
           <!-- Splitter-template -->
           <RowDefinition Height="1" MaxHeight="1"/>
           <!-- Bottom-space-template -->
-          <RowDefinition Height="150" />
+          <RowDefinition Height="{Binding SpacesDimensions.BottomSpaceHeight}" />
         </Grid.RowDefinitions>
 
         <!-- Central-and-far-right-space-template -->
@@ -232,7 +232,7 @@
             <!-- Splitter-template -->
             <ColumnDefinition Width="1" MaxWidth="1" />
             <!-- Far-right-space-template -->
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="{Binding SpacesDimensions.FarRightSpaceWidth}"/>
           </Grid.ColumnDefinitions>
 
           <!-- Central-space -->

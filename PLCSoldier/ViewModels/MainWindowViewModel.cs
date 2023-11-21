@@ -66,6 +66,8 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
+            SpacesDimensions = new SpacesDimensions();
+
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
 
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
@@ -81,12 +83,6 @@ namespace PLCSoldier.ViewModels
             LeftBottomContent.Add(leftBottomItems["Hardware Organizer"]);
             FarRightContent.Add(farRightItems["Property"]);
             CentralContent.Add(centralItems["Workspace"]);
-
-            SpacesDimensions = new SpacesDimensions()
-            {
-                LeftSpaceWidth = new GridLength(300, GridUnitType.Pixel),
-                RightSpaceWidth = new GridLength(1, GridUnitType.Star),
-            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
