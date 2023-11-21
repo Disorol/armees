@@ -9,6 +9,11 @@ namespace PLCSoldier.Models
 {
     public class SpacesDimensions
     {
+        /*  
+            Only the size values of FarRightSpace, BottomSpace, LeftBottomSpace and LeftSpace are stored,
+            because the size values of neighboring spaces are set by a star.
+        */
+
         public GridLength LeftSpaceWidth { get; set; }
         public GridLength LeftBottomSpaceHeight { get; set; }
         public GridLength BottomSpaceHeight { get; set; }
