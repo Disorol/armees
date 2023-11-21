@@ -24,8 +24,8 @@ namespace PLCSoldier.ViewModels
         Dictionary<string, ITabItem> bottomItems = new Dictionary<string, ITabItem>()
         {
             {"Errors", new BottomViewModel(){IdentificationName = "Errors", Header = "Ошибки", isCloseButtonVisible = false, Content = new ErrorsViewModel() { SomeText = "Some text" } }},
-            {"Search results", new BottomViewModel(){IdentificationName = "Search results", Header = "Поиск результатов", isCloseButtonVisible = false }},
-            {"Watch", new BottomViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true }},
+            {"Search results", new BottomViewModel(){IdentificationName = "Search results", Header = "Поиск результатов", isCloseButtonVisible = false, Content = new SearchResultsViewModel() { SomeText = "Some text" } }},
+            {"Watch", new BottomViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true, Content = new WatchViewModel() { SomeText = "Some text" } }},
         };
 
         // A list containing left upper space Tabitems
@@ -43,6 +43,8 @@ namespace PLCSoldier.ViewModels
 
             LeftUpperContent.Add(leftUpperItems["Logical organizer"]);
             BottomContent.Add(bottomItems["Errors"]);
+            BottomContent.Add(bottomItems["Search results"]);
+            BottomContent.Add(bottomItems["Watch"]);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

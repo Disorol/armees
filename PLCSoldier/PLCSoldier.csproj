@@ -27,6 +27,12 @@
 
 
   <ItemGroup>
+    <Compile Update="Views\WatchView.axaml.cs">
+      <DependentUpon>WatchView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SearchResultsView.axaml.cs">
+      <DependentUpon>SearchResultsView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ErrorsView.axaml.cs">
       <DependentUpon>ErrorsView.axaml</DependentUpon>
     </Compile>
@@ -40,5 +46,10 @@
     <Compile Update="Views\LogicalOrganizerView.axaml.cs">
       <DependentUpon>LogicalOrganizerView.axaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ViewModels\TabItemViewModels\" />
   </ItemGroup>
 </Project>

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using PLCSoldier.Interfaces;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.ViewModels
 {
-    public class FarRightTabItem : ITabItem
+    public class LeftBottomViewModel : ITabItem
     {
         public string IdentificationName { get; set; }
         public string Header { get; set; }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels
 {
-    public class SearchResultsViewModel
+    public class SearchResultsViewModel : ViewModelBase
     {
-        public string Text { get; set; }
+        public string SomeText { get; set; }
     }
 }

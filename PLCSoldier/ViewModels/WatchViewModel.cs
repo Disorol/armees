@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels
 {
-    public class WatchViewModel
+    public class WatchViewModel : ViewModelBase
     {
-        public string Text { get; set; }
+        public string SomeText { get; set; }
     }
 }
