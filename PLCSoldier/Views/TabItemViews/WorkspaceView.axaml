@@ -5,17 +5,7 @@
              xmlns:xxx="using:PLCSoldier.Models"
              xmlns:vm="using:PLCSoldier.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PLCSoldier.Views.LogicalOrganizerView"
+             x:Class="PLCSoldier.Views.TabItemViews.WorkspaceView"
              x:DataType="vm:MainWindowViewModel">
-    <TreeView ItemsSource="{Binding LogicalOrganizer}">
-      <TreeView.ItemTemplate>
-        <TreeDataTemplate ItemsSource="{Binding Subnodes}">
-          <DockPanel>
-            <Image Width="10" Height="10" Source="{Binding Icon}" />
-            <TextBlock Text=" " />
-            <TextBlock Text="{Binding NodeTitle}"/>
-          </DockPanel>
-        </TreeDataTemplate>
-      </TreeView.ItemTemplate>
-    </TreeView>
+    <TextBlock Text="{Binding SomeText}" />
 </UserControl>

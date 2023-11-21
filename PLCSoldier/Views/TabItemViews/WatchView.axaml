@@ -5,7 +5,7 @@
              xmlns:xxx="using:PLCSoldier.Models"
              xmlns:vm="using:PLCSoldier.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PLCSoldier.Views.ErrorsView"
+             x:Class="PLCSoldier.Views.TabItemViews.WatchView"
              x:DataType="vm:MainWindowViewModel">
     <TextBlock Text="{Binding SomeText}" />
 </UserControl>

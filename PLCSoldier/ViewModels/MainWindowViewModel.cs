@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using DynamicData;
 using PLCSoldier.Models;
+using PLCSoldier.ViewModels.TabItemViewModels;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -84,9 +85,9 @@ namespace PLCSoldier.ViewModels
 
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
 
-        public void ExecuteDeleteTabItem(string obj)
+        public void ExecuteDeleteTabItem(string key)
         {
-            if (leftUpperItems.TryGetValue(obj, out TabItemViewModel d))
+            if (leftUpperItems.TryGetValue(key, out TabItemViewModel d))
             {
                 LeftUpperContent.Remove(leftUpperItems["Logical organizer"]);
             }

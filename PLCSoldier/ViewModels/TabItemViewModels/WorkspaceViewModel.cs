@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLCSoldier.ViewModels
+namespace PLCSoldier.ViewModels.TabItemViewModels
 {
-    public class WatchViewModel : ViewModelBase
+    public class WorkspaceViewModel : ViewModelBase
     {
         public string SomeText { get; set; }
     }

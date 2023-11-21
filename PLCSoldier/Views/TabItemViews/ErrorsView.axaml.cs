@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace PLCSoldier.Views;
+namespace PLCSoldier.Views.TabItemViews;
 
-public partial class WatchView : UserControl
+public partial class ErrorsView : UserControl
 {
-    public WatchView()
+    public ErrorsView()
     {
         InitializeComponent();
     }
