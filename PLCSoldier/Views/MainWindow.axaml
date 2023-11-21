@@ -46,11 +46,11 @@
     <Grid Grid.Row="3" Name="LR_Grid">
       <Grid.ColumnDefinitions>
         <!-- Left-space-template -->
-        <ColumnDefinition Width="300"/>
+        <ColumnDefinition Width="{Binding SpacesDimensions.LeftSpaceWidth}"/>
         <!-- Splitter-template -->
         <ColumnDefinition Width="1" MaxWidth="1"/>
         <!-- Right-space-template -->
-        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="{Binding SpacesDimensions.RightSpaceWidth}"/>
       </Grid.ColumnDefinitions>
 
       <!-- Left-space -->

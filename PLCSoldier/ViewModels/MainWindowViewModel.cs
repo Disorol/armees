@@ -62,6 +62,8 @@ namespace PLCSoldier.ViewModels
         // A list containing central space Tabitems
         public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
 
+        public SpacesDimensions SpacesDimensions { get; set; }
+
         public MainWindowViewModel() 
         {
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -79,6 +81,12 @@ namespace PLCSoldier.ViewModels
             LeftBottomContent.Add(leftBottomItems["Hardware Organizer"]);
             FarRightContent.Add(farRightItems["Property"]);
             CentralContent.Add(centralItems["Workspace"]);
+
+            SpacesDimensions = new SpacesDimensions()
+            {
+                LeftSpaceWidth = new GridLength(300, GridUnitType.Pixel),
+                RightSpaceWidth = new GridLength(1, GridUnitType.Star),
+            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -90,6 +98,7 @@ namespace PLCSoldier.ViewModels
             if (leftUpperItems.TryGetValue(key, out TabItemViewModel d))
             {
                 LeftUpperContent.Remove(leftUpperItems["Logical organizer"]);
+                
             }
         }
     }
