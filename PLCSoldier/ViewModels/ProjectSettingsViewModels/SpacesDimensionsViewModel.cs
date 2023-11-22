@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
-    public class SpacesDimensions
+    public class SpacesDimensionsViewModel
     {
         /*  
             Only the size values of FarRightSpace, BottomSpace, LeftBottomSpace and LeftSpace are stored,
@@ -19,7 +19,7 @@ namespace PLCSoldier.Models
         public GridLength BottomSpaceHeight { get; set; }
         public GridLength FarRightSpaceWidth { get; set; }
 
-        public SpacesDimensions() // Setting default values
+        public SpacesDimensionsViewModel() // Setting default values
         {
             LeftSpaceWidth = new GridLength(300, GridUnitType.Pixel);
 
@@ -30,7 +30,7 @@ namespace PLCSoldier.Models
             FarRightSpaceWidth = new GridLength(150, GridUnitType.Pixel);
         }
 
-        public SpacesDimensions(GridLength leftSpaceWidth, GridLength leftBottomSpaceHeight, GridLength bottomSpaceHeight, GridLength farRightSpaceWidth) // Setting custom value
+        public SpacesDimensionsViewModel(GridLength leftSpaceWidth, GridLength leftBottomSpaceHeight, GridLength bottomSpaceHeight, GridLength farRightSpaceWidth) // Setting custom value
         {
             LeftSpaceWidth = leftSpaceWidth;
             LeftBottomSpaceHeight = leftBottomSpaceHeight;

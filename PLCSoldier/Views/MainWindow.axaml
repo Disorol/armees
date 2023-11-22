@@ -25,7 +25,40 @@
     </Grid.RowDefinitions>
 
     <!-- Menu -->
-    <Grid Grid.Row="0"></Grid>
+    <Grid Grid.Row="0">
+      <Menu VerticalAlignment="Top" Grid.Row="0">
+        <MenuItem Header="Файл">
+          <MenuItem Header="Новый проект"/>
+          <MenuItem Header="Открыть проект" Command="{Binding OpenProject}"/>
+          <Separator />
+          <MenuItem Header="Настройки">
+            <MenuItem Header="Язык">
+              <MenuItem Header="Русский"/>
+              <MenuItem Header="Английский"/>
+            </MenuItem>
+          </MenuItem>
+          <Separator />
+          <MenuItem Header="Выход" Command="{Binding Exit}" />
+        </MenuItem>
+        <MenuItem Header="Редактировать" />
+        <MenuItem Header="Вид">
+          <MenuItem Header="Логический органайзер" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Аппаратный органайзер" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Ошибки" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Поиск результатов" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Просмотр" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Рабочая область" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Редактор переменных" Command="{Binding OpenTab}"/>
+          <MenuItem Header="Свойства" Command="{Binding OpenTab}"/>
+        </MenuItem>
+        <MenuItem Header="Поиск"></MenuItem>
+        <MenuItem Header="Логика"></MenuItem>
+        <MenuItem Header="Коммуникации"></MenuItem>
+        <MenuItem Header="Инструменты"></MenuItem>
+        <MenuItem Header="Окно"></MenuItem>
+        <MenuItem Header="Помощь"></MenuItem>
+      </Menu>
+    </Grid>
 
     <!-- Tools -->
     <Grid Grid.Row="1"></Grid>
