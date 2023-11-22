@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.TabItemViewModels
 {
+    // Shared ViewModel for all tabs.
     public class TabItemViewModel
     {
-        public string IdentificationName { get; set; }
-        public string Header { get; set; }
-        public bool isCloseButtonVisible { get; set; }
+        public string IdentificationName { get; set; }  // The key for the dictionary in which the tab model will be located.
+        public string Header { get; set; }  // Tab title.
+        public bool isCloseButtonVisible { get; set; }  // Visibility of the tab close button.
+
+        /* 
+            Contents of the tab. 
+            A ViewModel with the property as content will be placed here. 
+            Such ViewModels should be stored in the directory with this model.
+        */
         public object? Content { get; set; }
     }
 }

@@ -15,13 +15,13 @@ namespace PLCSoldier.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        // List of content for left upper space TabItems
+        // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Logical organizer", new TabItemViewModel(){IdentificationName = "Logical organizer", Header = "Логический органайзер", isCloseButtonVisible = true, Content = new LogicalOrganizerViewModel(){ LogicalOrganizer = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } } } },
         };
 
-        // List of content for bottom space TabItems
+        // List of content for bottom space TabItems.
         Dictionary<string, TabItemViewModel> bottomItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Errors", new TabItemViewModel(){IdentificationName = "Errors", Header = "Ошибки", isCloseButtonVisible = false, Content = new ErrorsViewModel() { SomeText = "Some text" } }},
@@ -29,43 +29,45 @@ namespace PLCSoldier.ViewModels
             {"Watch", new TabItemViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true, Content = new WatchViewModel() { SomeText = "Some text" } }},
         };
 
-        // List of content for left bottom space TabItems
+        // List of content for left bottom space TabItems.
         Dictionary<string, TabItemViewModel> leftBottomItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Hardware Organizer", new TabItemViewModel(){IdentificationName = "Hardware Organizer", Header = "Аппаратный органайзер", isCloseButtonVisible = true, Content = new HardwareOrganizerViewModel() { SomeText = "Some text" } }},
         };
 
-        // List of content for far right space TabItems
+        // List of content for far right space TabItems.
         Dictionary<string, TabItemViewModel> farRightItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Property", new TabItemViewModel(){IdentificationName = "Property", Header = "Свойства", isCloseButtonVisible = true, Content = new PropertyViewModel() { SomeText = "Some text" } }},
         };
 
-        // List of content for central space TabItems
+        // List of content for central space TabItems.
         Dictionary<string, TabItemViewModel> centralItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = "Рабочая область", isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = "Some text" } }},
         };
 
-        // A list containing left upper space Tabitems
+        // A list containing left upper space Tabitems.
         public ObservableCollection<TabItemViewModel> LeftUpperContent { get; set; }
 
-        // A list containing bottom space Tabitems
+        // A list containing bottom space Tabitems.
         public ObservableCollection<TabItemViewModel> BottomContent { get; set; }
 
-        // A list containing left bottom space Tabitems
+        // A list containing left bottom space Tabitems.
         public ObservableCollection<TabItemViewModel> LeftBottomContent { get; set; }
 
-        // A list containing far right space Tabitems
+        // A list containing far right space Tabitems.
         public ObservableCollection<TabItemViewModel> FarRightContent { get; set; }
 
-        // A list containing central space Tabitems
+        // A list containing central space Tabitems.
         public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
 
+        // Tracking the size of all spaces.
         public SpacesDimensions SpacesDimensions { get; set; }
 
         public MainWindowViewModel() 
         {
+            // The sizes of all spaces are set by default.
             SpacesDimensions = new SpacesDimensions();
 
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -89,6 +91,7 @@ namespace PLCSoldier.ViewModels
 
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
 
+        // Closing tabs by deleting them from the collection.
         public void ExecuteDeleteTabItem(string key)
         {
             if (leftUpperItems.TryGetValue(key, out TabItemViewModel d))
