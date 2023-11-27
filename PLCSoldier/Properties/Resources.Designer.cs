@@ -223,6 +223,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Какой-то текст.
+        /// </summary>
+        public static string SomeText {
+            get {
+                return ResourceManager.GetString("SomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Инструменты.
         /// </summary>
         public static string Tools {

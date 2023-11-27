@@ -34,8 +34,8 @@
           <Separator />
           <MenuItem Header="{x:Static resources:Resources.Settings}">
             <MenuItem Header="{x:Static resources:Resources.Language}">
-              <MenuItem Header="{x:Static resources:Resources.Russian}"/>
-              <MenuItem Header="{x:Static resources:Resources.English}"/>
+              <MenuItem Header="{x:Static resources:Resources.Russian}" Command="{Binding SwitchLanguage}" CommandParameter="ru-RU" />
+              <MenuItem Header="{x:Static resources:Resources.English}" Command="{Binding SwitchLanguage}" CommandParameter="en-US" />
             </MenuItem>
           </MenuItem>
           <Separator />
@@ -43,14 +43,14 @@
         </MenuItem>
         <MenuItem Header="{x:Static resources:Resources.Edit}" />
         <MenuItem Header="{x:Static resources:Resources.View}">
-          <MenuItem Header="{x:Static resources:Resources.LogicalOrganizer}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.HardwareOrganizer}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.Errors}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.SearchResults}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.Watch}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.Workspace}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.VariableEditor}" Command="{Binding OpenTab}"/>
-          <MenuItem Header="{x:Static resources:Resources.Property}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.LogicalOrganizer}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.LogicalOrganizer}"/>
+          <MenuItem Header="{x:Static resources:Resources.HardwareOrganizer}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.HardwareOrganizer}"/>
+          <MenuItem Header="{x:Static resources:Resources.Errors}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Errors}"/>
+          <MenuItem Header="{x:Static resources:Resources.SearchResults}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.SearchResults}"/>
+          <MenuItem Header="{x:Static resources:Resources.Watch}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Watch}"/>
+          <MenuItem Header="{x:Static resources:Resources.Workspace}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Workspace}"/>
+          <MenuItem Header="{x:Static resources:Resources.VariableEditor}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.VariableEditor}"/>
+          <MenuItem Header="{x:Static resources:Resources.Property}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Property}"/>
         </MenuItem>
         <MenuItem Header="{x:Static resources:Resources.Search}"></MenuItem>
         <MenuItem Header="{x:Static resources:Resources.Logic}"></MenuItem>

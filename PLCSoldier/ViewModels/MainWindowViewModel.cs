@@ -8,9 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reactive;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Serialization;
 
 namespace PLCSoldier.ViewModels
 {
@@ -20,37 +22,38 @@ namespace PLCSoldier.ViewModels
         public ReactiveCommand<Unit, Unit> OpenProject { get; set; }
         public ReactiveCommand<Unit, Unit> Exit { get; set; }
         public ReactiveCommand<string, Unit> OpenTab { get; set; }
+        public ReactiveCommand<string, Unit> SwitchLanguage { get; set; }
 
         // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Logical organizer", new TabItemViewModel(){IdentificationName = "Logical organizer", Header = "Логический органайзер", isCloseButtonVisible = true, Content = new LogicalOrganizerViewModel(){ LogicalOrganizer = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } } } },
+            {"Logical organizer", new TabItemViewModel(){IdentificationName = "Logical organizer", Header = Properties.Resources.LogicalOrganizer, isCloseButtonVisible = true, Content = new LogicalOrganizerViewModel(){ LogicalOrganizer = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } } } },
         };
 
         // List of content for left bottom space TabItems.
         Dictionary<string, TabItemViewModel> leftBottomItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Hardware Organizer", new TabItemViewModel(){IdentificationName = "Hardware Organizer", Header = "Аппаратный органайзер", isCloseButtonVisible = true, Content = new HardwareOrganizerViewModel() { SomeText = "Some text" } }},
+            {"Hardware Organizer", new TabItemViewModel(){IdentificationName = "Hardware Organizer", Header = Properties.Resources.HardwareOrganizer, isCloseButtonVisible = true, Content = new HardwareOrganizerViewModel() { SomeText = Properties.Resources.SomeText } }},
         };
 
         // List of content for central space TabItems.
         Dictionary<string, TabItemViewModel> centralItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = "Рабочая область", isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = "Some text" } }},
+            {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = Properties.Resources.Workspace, isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = Properties.Resources.SomeText } }},
         };
 
         // List of content for far right space TabItems.
         Dictionary<string, TabItemViewModel> farRightItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Property", new TabItemViewModel(){IdentificationName = "Property", Header = "Свойства", isCloseButtonVisible = true, Content = new PropertyViewModel() { SomeText = "Some text" } }},
+            {"Property", new TabItemViewModel(){IdentificationName = "Property", Header = Properties.Resources.Property, isCloseButtonVisible = true, Content = new PropertyViewModel() { SomeText = Properties.Resources.SomeText } }},
         };
 
         // List of content for bottom space TabItems.
         Dictionary<string, TabItemViewModel> bottomItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Errors", new TabItemViewModel(){IdentificationName = "Errors", Header = "Ошибки", isCloseButtonVisible = false, Content = new ErrorsViewModel() { SomeText = "Some text" } }},
-            {"Search results", new TabItemViewModel(){IdentificationName = "Search results", Header = "Поиск результатов", isCloseButtonVisible = false, Content = new SearchResultsViewModel() { SomeText = "Some text" } }},
-            {"Watch", new TabItemViewModel(){IdentificationName = "Watch", Header = "Просмотр", isCloseButtonVisible = true, Content = new WatchViewModel() { SomeText = "Some text" } }},
+            {"Errors", new TabItemViewModel(){IdentificationName = "Errors", Header = Properties.Resources.Errors, isCloseButtonVisible = false, Content = new ErrorsViewModel() { SomeText = Properties.Resources.SomeText } }},
+            {"Search results", new TabItemViewModel(){IdentificationName = "Search results", Header = Properties.Resources.SearchResults, isCloseButtonVisible = false, Content = new SearchResultsViewModel() { SomeText = Properties.Resources.SomeText } }},
+            {"Watch", new TabItemViewModel(){IdentificationName = "Watch", Header = Properties.Resources.Watch, isCloseButtonVisible = true, Content = new WatchViewModel() { SomeText = Properties.Resources.SomeText } }},
         };
 
         // A list containing left upper space Tabitems.
@@ -71,12 +74,19 @@ namespace PLCSoldier.ViewModels
         // Tracking the size of all spaces.
         public SpacesDimensionsViewModel SpacesDimensions { get; set; }
 
+        // Availability of MainMenuItems
+        public MainMenuItemsIsEnabledViewModel MainMenuItemsIsEnabled { get; set; }
+
         public MainWindowViewModel() 
         {
             // The sizes of all spaces are set by default.
             SpacesDimensions = new SpacesDimensionsViewModel();
 
+            // All items are available by default
+            MainMenuItemsIsEnabled = new MainMenuItemsIsEnabledViewModel();
+
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
+            SwitchLanguage = ReactiveCommand.Create<string>(ExecuteSwitchLanguage);
 
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
             BottomContent = new ObservableCollection<TabItemViewModel>();
@@ -145,6 +155,9 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-
+        private void ExecuteSwitchLanguage(string language)
+        {
+            Properties.Resources.Culture = new CultureInfo(language);
+        }
     }
 }

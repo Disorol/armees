@@ -171,6 +171,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="SomeText" xml:space="preserve">
+    <value>Какой-то текст</value>
+  </data>
   <data name="Tools" xml:space="preserve">
     <value>Инструменты</value>
   </data>
