@@ -75,7 +75,7 @@ namespace PLCSoldier.ViewModels
         public SpacesDimensionsViewModel SpacesDimensions { get; set; }
 
         // Availability of MainMenuItems
-        public MainMenuItemsIsEnabledViewModel MainMenuItemsIsEnabled { get; set; }
+        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability { get; set; }
 
         public MainWindowViewModel() 
         {
@@ -83,7 +83,7 @@ namespace PLCSoldier.ViewModels
             SpacesDimensions = new SpacesDimensionsViewModel();
 
             // All items are available by default
-            MainMenuItemsIsEnabled = new MainMenuItemsIsEnabledViewModel();
+            MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
 
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
             SwitchLanguage = ReactiveCommand.Create<string>(ExecuteSwitchLanguage);
@@ -113,8 +113,13 @@ namespace PLCSoldier.ViewModels
                 LeftUpperContent.Remove(leftUpperItems[key]);
                 
                 if (LeftUpperContent.Count == 0) 
-                { 
+                {
+                    /* 
+                        Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                        It is necessary to record only the initial pixel values.
+                    */
                     
+                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(10000, GridUnitType.Star);
                 }
             }
             else if (leftBottomItems.ContainsKey(key))

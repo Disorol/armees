@@ -43,14 +43,14 @@
         </MenuItem>
         <MenuItem Header="{x:Static resources:Resources.Edit}" />
         <MenuItem Header="{x:Static resources:Resources.View}">
-          <MenuItem Header="{x:Static resources:Resources.LogicalOrganizer}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.LogicalOrganizer}"/>
-          <MenuItem Header="{x:Static resources:Resources.HardwareOrganizer}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.HardwareOrganizer}"/>
-          <MenuItem Header="{x:Static resources:Resources.Errors}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Errors}"/>
-          <MenuItem Header="{x:Static resources:Resources.SearchResults}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.SearchResults}"/>
-          <MenuItem Header="{x:Static resources:Resources.Watch}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Watch}"/>
-          <MenuItem Header="{x:Static resources:Resources.Workspace}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Workspace}"/>
-          <MenuItem Header="{x:Static resources:Resources.VariableEditor}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.VariableEditor}"/>
-          <MenuItem Header="{x:Static resources:Resources.Property}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsIsEnabled.Property}"/>
+          <MenuItem Header="{x:Static resources:Resources.LogicalOrganizer}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.LogicalOrganizer}"/>
+          <MenuItem Header="{x:Static resources:Resources.HardwareOrganizer}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.HardwareOrganizer}"/>
+          <MenuItem Header="{x:Static resources:Resources.Errors}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.Errors}"/>
+          <MenuItem Header="{x:Static resources:Resources.SearchResults}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.SearchResults}"/>
+          <MenuItem Header="{x:Static resources:Resources.Watch}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.Watch}"/>
+          <MenuItem Header="{x:Static resources:Resources.Workspace}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.Workspace}"/>
+          <MenuItem Header="{x:Static resources:Resources.VariableEditor}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.VariableEditor}"/>
+          <MenuItem Header="{x:Static resources:Resources.Property}" Command="{Binding OpenTab}" IsEnabled="{Binding MainMenuItemsAvailability.Property}"/>
         </MenuItem>
         <MenuItem Header="{x:Static resources:Resources.Search}"></MenuItem>
         <MenuItem Header="{x:Static resources:Resources.Logic}"></MenuItem>
@@ -169,7 +169,8 @@
                       Background="Black"
                       ResizeDirection="Rows"
                       ResizeBehavior="PreviousAndNext"
-                      HorizontalAlignment="Stretch"/>
+                      HorizontalAlignment="Stretch"
+                      IsVisible="True"/>
 
         <!-- Left-bottom-space-template -->
         <Grid Grid.Row="2">

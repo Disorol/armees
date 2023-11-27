@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
-    public class MainMenuItemsIsEnabledViewModel
+    public class MainMenuItemsAvailabilityViewModel
     {
         public bool LogicalOrganizer { get; set; }
         public bool HardwareOrganizer { get; set; }
@@ -17,7 +17,7 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
         public bool VariableEditor { get; set; }
         public bool Property { get; set; }
 
-        public MainMenuItemsIsEnabledViewModel()
+        public MainMenuItemsAvailabilityViewModel()
         {
             LogicalOrganizer = true;
             HardwareOrganizer = true;
