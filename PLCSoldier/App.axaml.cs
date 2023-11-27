@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using PLCSoldier.ViewModels;
 using PLCSoldier.Views;
+using System.Globalization;
 
 namespace PLCSoldier
 {
@@ -15,6 +16,7 @@ namespace PLCSoldier
 
         public override void OnFrameworkInitializationCompleted()
         {
+            Properties.Resources.Culture = new CultureInfo("ru-RU");
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xxx="using:PLCSoldier.Models"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:resources="clr-namespace:PLCSoldier.Properties"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PLCSoldier.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -27,36 +28,36 @@
     <!-- Menu -->
     <Grid Grid.Row="0">
       <Menu VerticalAlignment="Top" Grid.Row="0">
-        <MenuItem Header="Файл">
-          <MenuItem Header="Новый проект"/>
-          <MenuItem Header="Открыть проект" Command="{Binding OpenProject}"/>
+        <MenuItem Header="{x:Static resources:Resources.File}">
+          <MenuItem Header="{x:Static resources:Resources.NewProject}"/>
+          <MenuItem Header="{x:Static resources:Resources.OpenProject}" Command="{Binding OpenProject}"/>
           <Separator />
-          <MenuItem Header="Настройки">
-            <MenuItem Header="Язык">
-              <MenuItem Header="Русский"/>
-              <MenuItem Header="Английский"/>
+          <MenuItem Header="{x:Static resources:Resources.Settings}">
+            <MenuItem Header="{x:Static resources:Resources.Language}">
+              <MenuItem Header="{x:Static resources:Resources.Russian}"/>
+              <MenuItem Header="{x:Static resources:Resources.English}"/>
             </MenuItem>
           </MenuItem>
           <Separator />
-          <MenuItem Header="Выход" Command="{Binding Exit}" />
+          <MenuItem Header="{x:Static resources:Resources.Exit}" Command="{Binding Exit}" />
         </MenuItem>
-        <MenuItem Header="Редактировать" />
-        <MenuItem Header="Вид">
-          <MenuItem Header="Логический органайзер" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Аппаратный органайзер" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Ошибки" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Поиск результатов" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Просмотр" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Рабочая область" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Редактор переменных" Command="{Binding OpenTab}"/>
-          <MenuItem Header="Свойства" Command="{Binding OpenTab}"/>
+        <MenuItem Header="{x:Static resources:Resources.Edit}" />
+        <MenuItem Header="{x:Static resources:Resources.View}">
+          <MenuItem Header="{x:Static resources:Resources.LogicalOrganizer}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.HardwareOrganizer}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.Errors}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.SearchResults}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.Watch}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.Workspace}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.VariableEditor}" Command="{Binding OpenTab}"/>
+          <MenuItem Header="{x:Static resources:Resources.Property}" Command="{Binding OpenTab}"/>
         </MenuItem>
-        <MenuItem Header="Поиск"></MenuItem>
-        <MenuItem Header="Логика"></MenuItem>
-        <MenuItem Header="Коммуникации"></MenuItem>
-        <MenuItem Header="Инструменты"></MenuItem>
-        <MenuItem Header="Окно"></MenuItem>
-        <MenuItem Header="Помощь"></MenuItem>
+        <MenuItem Header="{x:Static resources:Resources.Search}"></MenuItem>
+        <MenuItem Header="{x:Static resources:Resources.Logic}"></MenuItem>
+        <MenuItem Header="{x:Static resources:Resources.Communications}"></MenuItem>
+        <MenuItem Header="{x:Static resources:Resources.Tools}"></MenuItem>
+        <MenuItem Header="{x:Static resources:Resources.Window}"></MenuItem>
+        <MenuItem Header="{x:Static resources:Resources.Help}"></MenuItem>
       </Menu>
     </Grid>
 
