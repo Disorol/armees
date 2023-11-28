@@ -161,14 +161,14 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.LeftSpaceWidth = new GridLength(0, GridUnitType.Pixel);
                         SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
 
-                        //LR_Splitter.IsVisible = false;
+                        SplittersVisibility.LR_Splitter = false;
                     }
                     else
                     {
                         SpacesDimensions.LeftUpperSpaceHeight = new GridLength(0, GridUnitType.Pixel);
                         SpacesDimensions.LeftBottomSpaceHeight = new GridLength(1, GridUnitType.Star);
 
-                        //LULB_Splitter.IsVisible = false;
+                        SplittersVisibility.LULB_Splitter = false;
                     }
                 }
             }
@@ -197,14 +197,14 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.LeftSpaceWidth = new GridLength(0, GridUnitType.Pixel);
                         SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
 
-                        //LR_Splitter.IsVisible = false;
+                        SplittersVisibility.LR_Splitter = false;
                     }
                     else
                     {
                         SpacesDimensions.LeftUpperSpaceHeight = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.LeftBottomSpaceHeight = new GridLength(0, GridUnitType.Pixel);
 
-                        //LULB_Splitter.IsVisible = false;
+                        SplittersVisibility.LULB_Splitter = false;
                     }
                 }
             }
@@ -233,7 +233,7 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
 
-                        //LR_Splitter.IsVisible = false;
+                        SplittersVisibility.LR_Splitter = false;
                     }
                     else if (FarRightContent.Count == 0)
                     {
@@ -247,15 +247,15 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(0, GridUnitType.Pixel);
                         SpacesDimensions.BottomSpaceHeight = new GridLength(1, GridUnitType.Star);
 
-                        //CRB_Splitter.IsVisible = false;
+                        SplittersVisibility.CFRB_Splitter = false;
                     }
                     else
                     {
                         SpacesDimensions.FarRightSpaceWidth = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.CentralSpaceWidth = new GridLength(0, GridUnitType.Pixel);
-                        
 
-                        //CRR_Splitter.IsVisible = false;
+
+                        SplittersVisibility.CFR_Splitter = false;
                     }
                 }
             }
@@ -284,7 +284,7 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
 
-                        //LR_Splitter.IsVisible = false;
+                        SplittersVisibility.LR_Splitter = false;
                     }
                     else if (CentralContent.Count == 0)
                     {
@@ -298,14 +298,14 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(0, GridUnitType.Pixel);
                         SpacesDimensions.BottomSpaceHeight = new GridLength(1, GridUnitType.Star);
 
-                        //CRB_Splitter.IsVisible = false;
+                        SplittersVisibility.CFRB_Splitter = false;
                     }
                     else
                     {
                         SpacesDimensions.CentralSpaceWidth = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.FarRightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
 
-                        //CRR_Splitter.IsVisible = false;
+                        SplittersVisibility.CFR_Splitter = false;
                     }
                 }
             }
@@ -336,7 +336,7 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.BottomSpaceHeight = new GridLength(0, GridUnitType.Pixel);
 
-                        //CRB_Splitter.IsVisible = false;
+                        SplittersVisibility.CFRB_Splitter = false;
                     }
                     else
                     {
@@ -350,7 +350,7 @@ namespace PLCSoldier.ViewModels
                         SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
                         SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
 
-                        //LR_Splitter.IsVisible = false;
+                        SplittersVisibility.LR_Splitter = false;
                     }
                 }
             }
