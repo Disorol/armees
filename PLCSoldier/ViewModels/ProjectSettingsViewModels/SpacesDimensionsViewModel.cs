@@ -1,21 +1,31 @@
 ﻿using Avalonia.Controls;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
-    public class SpacesDimensionsViewModel
+    public class SpacesDimensionsViewModel : ObservableObject
     {
-        /*  
-            Only the size values of FarRightSpace, BottomSpace, LeftBottomSpace and LeftSpace are stored,
-            because the size values of neighboring spaces are set by a star.
-        */
+        private GridLength _LeftUpperSpaceHeight;
+        private GridLength _LeftBottomSpaceHeight;
 
         public GridLength LeftSpaceWidth { get; set; }
-        public GridLength LeftBottomSpaceHeight { get; set; }
+        public GridLength LeftUpperSpaceHeight
+        {
+            get { return _LeftUpperSpaceHeight; }
+            set { _LeftUpperSpaceHeight = value; RaisePropertyChanged(); }
+        }
+        public GridLength LeftBottomSpaceHeight
+        {
+            get { return _LeftUpperSpaceHeight; }
+            set { _LeftUpperSpaceHeight = value; RaisePropertyChanged(); }
+        }
         public GridLength BottomSpaceHeight { get; set; }
         public GridLength FarRightSpaceWidth { get; set; }
 
@@ -28,11 +38,14 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             BottomSpaceHeight = new GridLength(150, GridUnitType.Pixel);
 
             FarRightSpaceWidth = new GridLength(150, GridUnitType.Pixel);
+
+            LeftUpperSpaceHeight = new GridLength(220, GridUnitType.Star);
         }
 
-        public SpacesDimensionsViewModel(GridLength leftSpaceWidth, GridLength leftBottomSpaceHeight, GridLength bottomSpaceHeight, GridLength farRightSpaceWidth) // Setting custom value
+        public SpacesDimensionsViewModel(GridLength leftSpaceWidth, GridLength leftUpperSpaceHeight, GridLength leftBottomSpaceHeight, GridLength bottomSpaceHeight, GridLength farRightSpaceWidth)
         {
             LeftSpaceWidth = leftSpaceWidth;
+            LeftUpperSpaceHeight = leftUpperSpaceHeight;
             LeftBottomSpaceHeight = leftBottomSpaceHeight;
             BottomSpaceHeight = bottomSpaceHeight;
             FarRightSpaceWidth = farRightSpaceWidth;

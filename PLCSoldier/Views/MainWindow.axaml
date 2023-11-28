@@ -91,7 +91,7 @@
       <Grid Grid.Column="0" Name="LULB_Grid">
         <Grid.RowDefinitions>
           <!-- Left-upper-space-template -->
-          <RowDefinition Height="*"/>
+          <RowDefinition Height="{Binding SpacesDimensions.LeftUpperSpaceHeight}"/>
           <!-- Splitter-template -->
           <RowDefinition Height="1" MaxHeight="1" />
           <!-- Left-bottom-space-template -->

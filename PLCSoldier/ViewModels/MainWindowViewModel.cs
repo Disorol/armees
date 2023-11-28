@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reactive;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Serialization;
@@ -71,11 +72,16 @@ namespace PLCSoldier.ViewModels
         // A list containing central space Tabitems.
         public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
 
+        private SpacesDimensionsViewModel _SpacesDimensions;
         // Tracking the size of all spaces.
-        public SpacesDimensionsViewModel SpacesDimensions { get; set; }
+        public SpacesDimensionsViewModel SpacesDimensions
+        {
+            get { return _SpacesDimensions; }
+            set => this.RaiseAndSetIfChanged(ref _SpacesDimensions, value);
+        }
 
         // Availability of MainMenuItems
-        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability { get; set; }
+        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability {  get; set; }
 
         public MainWindowViewModel() 
         {
@@ -103,7 +109,12 @@ namespace PLCSoldier.ViewModels
             CentralContent.Add(centralItems["Workspace"]);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         // Closing tabs by deleting them from the collection.
         private void ExecuteDeleteTabItem(string key)
@@ -118,8 +129,9 @@ namespace PLCSoldier.ViewModels
                         Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
                         It is necessary to record only the initial pixel values.
                     */
-                    
-                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(10000, GridUnitType.Star);
+
+                    SpacesDimensions.LeftUpperSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(1, GridUnitType.Star);
                 }
             }
             else if (leftBottomItems.ContainsKey(key))
