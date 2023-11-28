@@ -84,7 +84,7 @@
         <!-- Splitter-template -->
         <ColumnDefinition Width="1" MaxWidth="1"/>
         <!-- Right-space-template -->
-        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="{Binding SpacesDimensions.RightSpaceWidth}"/>
       </Grid.ColumnDefinitions>
 
       <!-- Left-space -->
@@ -251,8 +251,8 @@
       <!-- Right-space -->
       <Grid Grid.Column="2" Name="CRB_Grid">
         <Grid.RowDefinitions>
-          <!-- Central-and-right-space-template -->
-          <RowDefinition Height="*"/>
+          <!-- Central-and-far-right-space-template -->
+          <RowDefinition Height="{Binding SpacesDimensions.CentralAndFarRightHeight}"/>
           <!-- Splitter-template -->
           <RowDefinition Height="1" MaxHeight="1"/>
           <!-- Bottom-space-template -->
@@ -263,7 +263,7 @@
         <Grid Grid.Row="0" Name="CRR_Grid">
           <Grid.ColumnDefinitions>
             <!-- Central-space-template -->
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{Binding SpacesDimensions.CentralWidth}"/>
             <!-- Splitter-template -->
             <ColumnDefinition Width="1" MaxWidth="1" />
             <!-- Far-right-space-template -->

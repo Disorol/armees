@@ -76,9 +76,11 @@ namespace PLCSoldier.ViewModels
         // Tracking the size of all spaces.
         public SpacesDimensionsViewModel SpacesDimensions
         {
-            get { return _SpacesDimensions; }
+            get => _SpacesDimensions;
             set => this.RaiseAndSetIfChanged(ref _SpacesDimensions, value);
         }
+
+        public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; set; }
 
         // Availability of MainMenuItems
         public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability {  get; set; }
@@ -87,6 +89,8 @@ namespace PLCSoldier.ViewModels
         {
             // The sizes of all spaces are set by default.
             SpacesDimensions = new SpacesDimensionsViewModel();
+
+            SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation.getInstance();
 
             // All items are available by default
             MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
@@ -129,9 +133,30 @@ namespace PLCSoldier.ViewModels
                         Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
                         It is necessary to record only the initial pixel values.
                     */
+                    if (SpacesDimensions.LeftBottomSpaceHeight != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftBottomSpaceHeight != new GridLength(0, GridUnitType.Pixel))
+                        SpacesDimensionsIntermediateСonservation.LeftBottomSpaceHeight = SpacesDimensions.LeftBottomSpaceHeight;
 
-                    SpacesDimensions.LeftUpperSpaceHeight = new GridLength(0, GridUnitType.Pixel);
-                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+                    if (LeftBottomContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.LeftSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.LeftSpaceWidth = SpacesDimensions.LeftSpaceWidth;
+
+                        SpacesDimensions.LeftSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
+
+                        //LR_Splitter.IsVisible = false;
+                    }
+                    else
+                    {
+                        SpacesDimensions.LeftUpperSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.LeftBottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+
+                        //LULB_Splitter.IsVisible = false;
+                    }
                 }
             }
             else if (leftBottomItems.ContainsKey(key))
@@ -163,7 +188,16 @@ namespace PLCSoldier.ViewModels
             }
             else if (bottomItems.ContainsKey(key))
             {
-                BottomContent.Remove(bottomItems[key]);
+                if (key == "Errors" || key == "Search results" || key == "Watch")
+                {
+                    BottomContent.Remove(bottomItems["Errors"]);
+                    BottomContent.Remove(bottomItems["Search results"]);
+                    BottomContent.Remove(bottomItems["Watch"]);
+                }
+                else
+                {
+                    BottomContent.Remove(bottomItems[key]);
+                }
 
                 if (BottomContent.Count == 0)
                 {
