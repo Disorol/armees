@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reactive;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Serialization;
@@ -71,16 +72,38 @@ namespace PLCSoldier.ViewModels
         // A list containing central space Tabitems.
         public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
 
-        // Tracking the size of all spaces.
-        public SpacesDimensionsViewModel SpacesDimensions { get; set; }
+        // Dimensions of all spaces.
+        private SpacesDimensionsViewModel _SpacesDimensions;
+        public SpacesDimensionsViewModel SpacesDimensions
+        {
+            get => _SpacesDimensions;
+            set => this.RaiseAndSetIfChanged(ref _SpacesDimensions, value);
+        }
+
+        // Intermediate conservation of the dimensions of spaces in pixels.
+        public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; set; }
+
+        // Visibility of spaces splitters.
+        private SplittersVisibilityViewModel _SplittersVisibility;
+        public SplittersVisibilityViewModel SplittersVisibility
+        {
+            get => _SplittersVisibility;
+            set => this.RaiseAndSetIfChanged(ref _SplittersVisibility, value);
+        }
 
         // Availability of MainMenuItems
-        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability { get; set; }
+        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability {  get; set; }
 
         public MainWindowViewModel() 
         {
             // The sizes of all spaces are set by default.
             SpacesDimensions = new SpacesDimensionsViewModel();
+
+            // Getting a reference to an instance.
+            SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation.getInstance();
+
+            // Visibility of all splitters is set by default.
+            SplittersVisibility = new SplittersVisibilityViewModel();
 
             // All items are available by default
             MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
@@ -103,7 +126,12 @@ namespace PLCSoldier.ViewModels
             CentralContent.Add(centralItems["Workspace"]);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         // Closing tabs by deleting them from the collection.
         private void ExecuteDeleteTabItem(string key)
@@ -118,8 +146,30 @@ namespace PLCSoldier.ViewModels
                         Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
                         It is necessary to record only the initial pixel values.
                     */
-                    
-                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(10000, GridUnitType.Star);
+                    if (SpacesDimensions.LeftBottomSpaceHeight != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftBottomSpaceHeight != new GridLength(0, GridUnitType.Pixel))
+                        SpacesDimensionsIntermediateСonservation.LeftBottomSpaceHeight = SpacesDimensions.LeftBottomSpaceHeight;
+
+                    if (LeftBottomContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.LeftSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.LeftSpaceWidth = SpacesDimensions.LeftSpaceWidth;
+
+                        SpacesDimensions.LeftSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
+
+                        SplittersVisibility.LR_Splitter = false;
+                    }
+                    else
+                    {
+                        SpacesDimensions.LeftUpperSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.LeftBottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+
+                        SplittersVisibility.LULB_Splitter = false;
+                    }
                 }
             }
             else if (leftBottomItems.ContainsKey(key))
@@ -128,7 +178,34 @@ namespace PLCSoldier.ViewModels
 
                 if (LeftBottomContent.Count == 0)
                 {
+                    /* 
+                        Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                        It is necessary to record only the initial pixel values.
+                    */
+                    if (SpacesDimensions.LeftBottomSpaceHeight != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftBottomSpaceHeight != new GridLength(0, GridUnitType.Pixel))
+                        SpacesDimensionsIntermediateСonservation.LeftBottomSpaceHeight = SpacesDimensions.LeftBottomSpaceHeight;
 
+                    if (LeftUpperContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.LeftSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.LeftSpaceWidth = SpacesDimensions.LeftSpaceWidth;
+
+                        SpacesDimensions.LeftSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
+
+                        SplittersVisibility.LR_Splitter = false;
+                    }
+                    else
+                    {
+                        SpacesDimensions.LeftUpperSpaceHeight = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.LeftBottomSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+
+                        SplittersVisibility.LULB_Splitter = false;
+                    }
                 }
             }
             else if (centralItems.ContainsKey(key))
@@ -137,7 +214,49 @@ namespace PLCSoldier.ViewModels
 
                 if (CentralContent.Count == 0)
                 {
+                    /* 
+                        Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                        It is necessary to record only the initial pixel values.
+                    */
+                    if (SpacesDimensions.FarRightSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.FarRightSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                        SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth = SpacesDimensions.FarRightSpaceWidth;
 
+                    if (BottomContent.Count == 0 && FarRightContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.LeftSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.LeftSpaceWidth = SpacesDimensions.LeftSpaceWidth;
+
+                        SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+
+                        SplittersVisibility.LR_Splitter = false;
+                    }
+                    else if (FarRightContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.BottomSpaceHeight != new GridLength(1, GridUnitType.Star) && SpacesDimensions.BottomSpaceHeight != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.BottomSpaceHeight = SpacesDimensions.BottomSpaceHeight;
+
+                        SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.BottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+
+                        SplittersVisibility.CFRB_Splitter = false;
+                    }
+                    else
+                    {
+                        SpacesDimensions.FarRightSpaceWidth = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.CentralSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+
+
+                        SplittersVisibility.CFR_Splitter = false;
+                    }
                 }
             }
             else if (farRightItems.ContainsKey(key))
@@ -146,16 +265,93 @@ namespace PLCSoldier.ViewModels
 
                 if (FarRightContent.Count == 0)
                 {
+                    /* 
+                        Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                        It is necessary to record only the initial pixel values.
+                    */
+                    if (SpacesDimensions.FarRightSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.FarRightSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                        SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth = SpacesDimensions.FarRightSpaceWidth;
 
+                    if (BottomContent.Count == 0 && CentralContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.LeftSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.LeftSpaceWidth = SpacesDimensions.LeftSpaceWidth;
+
+                        SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+
+                        SplittersVisibility.LR_Splitter = false;
+                    }
+                    else if (CentralContent.Count == 0)
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.BottomSpaceHeight != new GridLength(1, GridUnitType.Star) && SpacesDimensions.BottomSpaceHeight != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.BottomSpaceHeight = SpacesDimensions.BottomSpaceHeight;
+
+                        SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(0, GridUnitType.Pixel);
+                        SpacesDimensions.BottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+
+                        SplittersVisibility.CFRB_Splitter = false;
+                    }
+                    else
+                    {
+                        SpacesDimensions.CentralSpaceWidth = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.FarRightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+
+                        SplittersVisibility.CFR_Splitter = false;
+                    }
                 }
             }
             else if (bottomItems.ContainsKey(key))
             {
-                BottomContent.Remove(bottomItems[key]);
+                if (key == "Errors" || key == "Search results" || key == "Watch")
+                {
+                    BottomContent.Remove(bottomItems["Errors"]);
+                    BottomContent.Remove(bottomItems["Search results"]);
+                    BottomContent.Remove(bottomItems["Watch"]);
+                }
+                else
+                {
+                    BottomContent.Remove(bottomItems[key]);
+                }
 
                 if (BottomContent.Count == 0)
                 {
+                    /* 
+                        Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                        It is necessary to record only the initial pixel values.
+                    */
+                    if (SpacesDimensions.BottomSpaceHeight != new GridLength(1, GridUnitType.Star) && SpacesDimensions.BottomSpaceHeight != new GridLength(0, GridUnitType.Pixel))
+                        SpacesDimensionsIntermediateСonservation.BottomSpaceHeight = SpacesDimensions.BottomSpaceHeight;
 
+                    if ((CentralContent.Count > 0) || (FarRightContent.Count > 0))
+                    {
+                        SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.BottomSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+
+                        SplittersVisibility.CFRB_Splitter = false;
+                    }
+                    else
+                    {
+                        /* 
+                            Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
+                            It is necessary to record only the initial pixel values.
+                        */
+                        if (SpacesDimensions.LeftSpaceWidth != new GridLength(1, GridUnitType.Star) && SpacesDimensions.LeftSpaceWidth != new GridLength(0, GridUnitType.Pixel))
+                            SpacesDimensionsIntermediateСonservation.LeftSpaceWidth = SpacesDimensions.LeftSpaceWidth;
+
+                        SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
+                        SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+
+                        SplittersVisibility.LR_Splitter = false;
+                    }
                 }
             }
         }
