@@ -72,14 +72,15 @@ namespace PLCSoldier.ViewModels
         // A list containing central space Tabitems.
         public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
 
+        // Dimensions of all spaces.
         private SpacesDimensionsViewModel _SpacesDimensions;
-        // Tracking the size of all spaces.
         public SpacesDimensionsViewModel SpacesDimensions
         {
             get => _SpacesDimensions;
             set => this.RaiseAndSetIfChanged(ref _SpacesDimensions, value);
         }
 
+        // Intermediate conservation of the dimensions of spaces in pixels.
         public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; set; }
 
         // Availability of MainMenuItems
