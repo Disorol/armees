@@ -14,56 +14,55 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
     public class SpacesDimensionsViewModel : ViewModelBase
     {
         private GridLength _LeftSpaceWidth;
-        private GridLength _RightSpaceWidth;
-        private GridLength _LeftUpperSpaceHeight;
-        private GridLength _LeftBottomSpaceHeight;
-        private GridLength _CentralAndFarRightSpacesHeight;
-        private GridLength _BottomSpaceHeight;
-        private GridLength _CentralSpaceWidth;
-        private GridLength _FarRightSpaceWidth;
-
         public GridLength LeftSpaceWidth
         {
             get => _LeftSpaceWidth;
             set => this.RaiseAndSetIfChanged(ref _LeftSpaceWidth, value);
         }
 
+        private GridLength _RightSpaceWidth;
         public GridLength RightSpaceWidth
         {
             get => _RightSpaceWidth;
             set => this.RaiseAndSetIfChanged(ref _RightSpaceWidth, value);
         }
 
+        private GridLength _LeftUpperSpaceHeight;
         public GridLength LeftUpperSpaceHeight
         {
             get => _LeftUpperSpaceHeight;
             set => this.RaiseAndSetIfChanged(ref _LeftUpperSpaceHeight, value);
         }
 
+        private GridLength _LeftBottomSpaceHeight;
         public GridLength LeftBottomSpaceHeight
         {
             get => _LeftBottomSpaceHeight;
             set => this.RaiseAndSetIfChanged(ref _LeftBottomSpaceHeight, value);
         }
 
+        private GridLength _CentralAndFarRightSpacesHeight;
         public GridLength CentralAndFarRightSpacesHeight
         {
             get => _CentralAndFarRightSpacesHeight;
             set => this.RaiseAndSetIfChanged(ref _CentralAndFarRightSpacesHeight, value);
         }
 
+        private GridLength _BottomSpaceHeight;
         public GridLength BottomSpaceHeight
         {
             get => _BottomSpaceHeight;
             set => this.RaiseAndSetIfChanged(ref _BottomSpaceHeight, value);
         }
 
+        private GridLength _CentralSpaceWidth;
         public GridLength CentralSpaceWidth
         {
             get => _CentralSpaceWidth;
             set => this.RaiseAndSetIfChanged(ref _CentralSpaceWidth, value);
         }
 
+        private GridLength _FarRightSpaceWidth;
         public GridLength FarRightSpaceWidth
         {
             get => _FarRightSpaceWidth;
