@@ -23,8 +23,8 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
         }
         public GridLength LeftBottomSpaceHeight
         {
-            get { return _LeftUpperSpaceHeight; }
-            set { _LeftUpperSpaceHeight = value; RaisePropertyChanged(); }
+            get { return _LeftBottomSpaceHeight; }
+            set { _LeftBottomSpaceHeight = value; RaisePropertyChanged(); }
         }
         public GridLength BottomSpaceHeight { get; set; }
         public GridLength FarRightSpaceWidth { get; set; }
