@@ -37,5 +37,23 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             get => _CFRB_Splitter;
             set => this.RaiseAndSetIfChanged(ref _CFRB_Splitter, value);
         }
+
+        // Setting default values
+        public SplittersVisibilityViewModel()
+        {
+            _LULB_Splitter = true;
+            _LR_Splitter = true;
+            _CFR_Splitter = true;
+            _CFRB_Splitter = true;
+        }
+
+        // Setting custom values
+        public SplittersVisibilityViewModel(bool lULB_Splitter, bool lR_Splitter, bool cFR_Splitter, bool cFRB_Splitter)
+        {
+            LULB_Splitter = lULB_Splitter;
+            LR_Splitter = lR_Splitter;
+            CFR_Splitter = cFR_Splitter;
+            CFRB_Splitter = cFRB_Splitter;
+        }
     }
 }

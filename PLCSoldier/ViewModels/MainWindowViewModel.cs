@@ -83,6 +83,14 @@ namespace PLCSoldier.ViewModels
         // Intermediate conservation of the dimensions of spaces in pixels.
         public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; set; }
 
+        // Visibility of spaces splitters.
+        private SplittersVisibilityViewModel _SplittersVisibility;
+        public SplittersVisibilityViewModel SplittersVisibility
+        {
+            get => _SplittersVisibility;
+            set => this.RaiseAndSetIfChanged(ref _SplittersVisibility, value);
+        }
+
         // Availability of MainMenuItems
         public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability {  get; set; }
 
@@ -91,7 +99,11 @@ namespace PLCSoldier.ViewModels
             // The sizes of all spaces are set by default.
             SpacesDimensions = new SpacesDimensionsViewModel();
 
+            // Getting a reference to an instance.
             SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation.getInstance();
+
+            // Visibility of all splitters is set by default.
+            SplittersVisibility = new SplittersVisibilityViewModel();
 
             // All items are available by default
             MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();

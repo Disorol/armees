@@ -170,7 +170,7 @@
                       ResizeDirection="Rows"
                       ResizeBehavior="PreviousAndNext"
                       HorizontalAlignment="Stretch"
-                      IsVisible="True"/>
+                      IsVisible="{Binding SplittersVisibility.LULB_Splitter}"/>
 
         <!-- Left-bottom-space-template -->
         <Grid Grid.Row="2">
@@ -246,7 +246,8 @@
                     Background="Black"
                     ResizeDirection="Columns"
                     ResizeBehavior="PreviousAndNext"
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch"
+                    IsVisible="{Binding SplittersVisibility.LR_Splitter}" />
 
       <!-- Right-space -->
       <Grid Grid.Column="2" Name="CRB_Grid">
@@ -260,7 +261,7 @@
         </Grid.RowDefinitions>
 
         <!-- Central-and-far-right-space-template -->
-        <Grid Grid.Row="0" Name="CRR_Grid">
+        <Grid Grid.Row="0" Name="CFR_Grid">
           <Grid.ColumnDefinitions>
             <!-- Central-space-template -->
             <ColumnDefinition Width="{Binding SpacesDimensions.CentralSpaceWidth}"/>
@@ -334,14 +335,15 @@
 
           <!-- Splitter -->
           <GridSplitter Grid.Column="1"
-                        Name="CRR_Splitter"
+                        Name="CFR_Splitter"
                         Margin="-5, 0"
                         BorderThickness="5, 0"
                         BorderBrush="Transparent"
                         Background="Black"
                         ResizeDirection="Columns"
                         ResizeBehavior="PreviousAndNext"
-                        HorizontalAlignment="Stretch"/>
+                        HorizontalAlignment="Stretch"
+                        IsVisible="{Binding SplittersVisibility.CFR_Splitter}" />
 
           <!-- Far-right-space -->
           <Grid Grid.Column="2">
@@ -410,14 +412,15 @@
         <!-- Thanks to the margins, the capture area increases, 
              and the visible area decreases to the border -->
         <GridSplitter Grid.Row="1"
-                      Name="CRB_Splitter"
+                      Name="CFRB_Splitter"
                       Margin="0, -5"
                       BorderThickness="0, 5"
                       BorderBrush="Transparent"
                       Background="Black"
                       ResizeDirection="Rows"
                       ResizeBehavior="PreviousAndNext"
-                      HorizontalAlignment="Stretch"/>
+                      HorizontalAlignment="Stretch"
+                      IsVisible="{Binding SplittersVisibility.CFRB_Splitter}" />
 
         <!-- Bottom-space -->
         <Grid Grid.Row="2">
