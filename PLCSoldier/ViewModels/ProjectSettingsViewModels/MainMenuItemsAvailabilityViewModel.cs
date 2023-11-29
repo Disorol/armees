@@ -52,13 +52,6 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             set => this.RaiseAndSetIfChanged(ref _Workspace, value);
         }
 
-        private bool _VariableEditor;
-        public bool VariableEditor
-        {
-            get => _VariableEditor;
-            set => this.RaiseAndSetIfChanged(ref _VariableEditor, value);
-        }
-
         private bool _Property;
         public bool Property
         {
@@ -74,7 +67,6 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             SearchResults = true;
             Watch = true;
             Workspace = true;
-            VariableEditor = true;
             Property = true;
         }
 
@@ -85,6 +77,35 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             if (instance == null)
                 instance = new MainMenuItemsAvailabilityViewModel();
             return instance;
+        }
+
+        public void SetAvailabilityByKey(string key, bool isAvailable)
+        { 
+            switch (key)
+            {
+                case "Logical organizer":
+                    LogicalOrganizer = isAvailable;
+                    break;
+                case "Hardware organizer":
+                    HardwareOrganizer = isAvailable;
+                    break;
+                case "Errors":
+                    Errors = isAvailable;
+                    break;
+                case "Search results":
+                    SearchResults = isAvailable;
+                    break;
+                case "Watch":
+                    Watch = isAvailable;
+                    break;
+                case "Workspace":
+                    Workspace = isAvailable;
+                    break;
+                case "Property":
+                    Property = isAvailable;
+                    break;
+                default: break;
+            }
         }
     }
 }

@@ -48,7 +48,7 @@
                     IsEnabled="{Binding MainMenuItemsAvailability.LogicalOrganizer}"/>
           
           <MenuItem Header="{x:Static resources:Resources.HardwareOrganizer}" 
-                    Command="{Binding OpenTab}" CommandParameter="Hardware Organizer"
+                    Command="{Binding OpenTab}" CommandParameter="Hardware organizer"
                     IsEnabled="{Binding MainMenuItemsAvailability.HardwareOrganizer}"/>
           
           <MenuItem Header="{x:Static resources:Resources.Errors}" 
@@ -66,10 +66,6 @@
           <MenuItem Header="{x:Static resources:Resources.Workspace}" 
                     Command="{Binding OpenTab}" CommandParameter="Workspace"
                     IsEnabled="{Binding MainMenuItemsAvailability.Workspace}"/>
-          
-          <MenuItem Header="{x:Static resources:Resources.VariableEditor}" 
-                    Command="{Binding OpenTab}" CommandParameter="Variable editor"
-                    IsEnabled="{Binding MainMenuItemsAvailability.VariableEditor}"/>
           
           <MenuItem Header="{x:Static resources:Resources.Property}" 
                     Command="{Binding OpenTab}" CommandParameter="Property"

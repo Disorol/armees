@@ -34,7 +34,7 @@ namespace PLCSoldier.ViewModels
         // List of content for left bottom space TabItems.
         Dictionary<string, TabItemViewModel> leftBottomItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Hardware Organizer", new TabItemViewModel(){IdentificationName = "Hardware Organizer", Header = Properties.Resources.HardwareOrganizer, isCloseButtonVisible = true, Content = new HardwareOrganizerViewModel() { SomeText = Properties.Resources.SomeText } }},
+            {"Hardware organizer", new TabItemViewModel(){IdentificationName = "Hardware organizer", Header = Properties.Resources.HardwareOrganizer, isCloseButtonVisible = true, Content = new HardwareOrganizerViewModel() { SomeText = Properties.Resources.SomeText } }},
         };
 
         // List of content for central space TabItems.
@@ -123,7 +123,7 @@ namespace PLCSoldier.ViewModels
             BottomContent.Add(bottomItems["Errors"]);
             BottomContent.Add(bottomItems["Search results"]);
             BottomContent.Add(bottomItems["Watch"]);
-            LeftBottomContent.Add(leftBottomItems["Hardware Organizer"]);
+            LeftBottomContent.Add(leftBottomItems["Hardware organizer"]);
             FarRightContent.Add(farRightItems["Property"]);
             CentralContent.Add(centralItems["Workspace"]);
         }
@@ -355,28 +355,78 @@ namespace PLCSoldier.ViewModels
         {
             if (leftUpperItems.ContainsKey(key))
             {
+                LeftUpperSpaceExpansion();
+                LeftSpaceExpansion();
+
                 if (!LeftUpperContent.Contains(leftUpperItems[key]))
                 {
-                    LeftUpperSpaceExpansion();
-                    LeftSpaceExpansion();
+                    LeftUpperContent.Add(leftUpperItems[key]);
 
+                    MainMenuItemsAvailability.SetAvailabilityByKey(key, false);
                 }
             }
             else if (leftBottomItems.ContainsKey(key))
             {
-                 
+                LeftBottomSpaceExpansion();
+                LeftSpaceExpansion();
+
+                if (!LeftBottomContent.Contains(leftBottomItems[key]))
+                {
+                    LeftBottomContent.Add(leftBottomItems[key]);
+
+                    MainMenuItemsAvailability.SetAvailabilityByKey(key, false);
+                }
             }
             else if (centralItems.ContainsKey(key))
             {
+                CentralSpaceExpansion();
+                RightSpaceExpansion();
+                CentralAndFarRightSpaceExpansion();
 
+                if (!CentralContent.Contains(centralItems[key]))
+                {
+                    CentralContent.Add(centralItems[key]);
+
+                    MainMenuItemsAvailability.SetAvailabilityByKey(key, false);
+                }
             }
             else if (farRightItems.ContainsKey(key))
             {
+                FarRightSpaceExpansion();
+                CentralAndFarRightSpaceExpansion();
+                RightSpaceExpansion();
 
+                if (!FarRightContent.Contains(farRightItems[key]))
+                {
+                    FarRightContent.Add(farRightItems[key]);
+
+                    MainMenuItemsAvailability.SetAvailabilityByKey(key, false);
+                }
             }
             else if (bottomItems.ContainsKey(key))
             {
+                BottomSpaceExpansion();
+                RightSpaceExpansion();
 
+                if (!BottomContent.Contains(bottomItems[key]))
+                {
+                    if (key == "Errors" || key == "Search results" || key == "Watch")
+                    {
+                        BottomContent.Add(bottomItems["Errors"]);
+                        BottomContent.Add(bottomItems["Search results"]);
+                        BottomContent.Add(bottomItems["Watch"]);
+
+                        MainMenuItemsAvailability.Errors = false;
+                        MainMenuItemsAvailability.SearchResults = false;
+                        MainMenuItemsAvailability.Watch = false;
+                    }
+                    else
+                    {
+                        BottomContent.Add(bottomItems[key]);
+
+                        MainMenuItemsAvailability.SetAvailabilityByKey(key, false);
+                    }
+                }
             }
         }
 
