@@ -177,6 +177,33 @@
   <data name="Tools" xml:space="preserve">
     <value>Инструменты</value>
   </data>
+  <data name="Tooltip1" xml:space="preserve">
+    <value>Подсказка 1</value>
+  </data>
+  <data name="Tooltip2" xml:space="preserve">
+    <value>Подсказка 2</value>
+  </data>
+  <data name="Tooltip3" xml:space="preserve">
+    <value>Подсказка 3</value>
+  </data>
+  <data name="Tooltip4" xml:space="preserve">
+    <value>Подсказка 4</value>
+  </data>
+  <data name="Tooltip5" xml:space="preserve">
+    <value>Подсказка 5</value>
+  </data>
+  <data name="Tooltip6" xml:space="preserve">
+    <value>Подсказка 6</value>
+  </data>
+  <data name="Tooltip7" xml:space="preserve">
+    <value>Подсказка 7</value>
+  </data>
+  <data name="Tooltip8" xml:space="preserve">
+    <value>Подсказка 8</value>
+  </data>
+  <data name="Tooltip9" xml:space="preserve">
+    <value>Подсказка 9</value>
+  </data>
   <data name="VariableEditor" xml:space="preserve">
     <value>Редактор переменных</value>
   </data>

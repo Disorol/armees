@@ -177,6 +177,33 @@
   <data name="Tools" xml:space="preserve">
     <value>Tools</value>
   </data>
+  <data name="Tooltip1" xml:space="preserve">
+    <value>Tooltip 1</value>
+  </data>
+  <data name="Tooltip2" xml:space="preserve">
+    <value>Tooltip 2</value>
+  </data>
+  <data name="Tooltip3" xml:space="preserve">
+    <value>Tooltip 3</value>
+  </data>
+  <data name="Tooltip4" xml:space="preserve">
+    <value>Tooltip 4</value>
+  </data>
+  <data name="Tooltip5" xml:space="preserve">
+    <value>Tooltip 5</value>
+  </data>
+  <data name="Tooltip6" xml:space="preserve">
+    <value>Tooltip 6</value>
+  </data>
+  <data name="Tooltip7" xml:space="preserve">
+    <value>Tooltip 7</value>
+  </data>
+  <data name="Tooltip8" xml:space="preserve">
+    <value>ы</value>
+  </data>
+  <data name="Tooltip9" xml:space="preserve">
+    <value>Tooltip 9</value>
+  </data>
   <data name="VariableEditor" xml:space="preserve">
     <value>Variable Editor</value>
   </data>

@@ -62,7 +62,73 @@
     </Grid>
 
     <!-- Tools -->
-    <Grid Grid.Row="1"></Grid>
+    <Grid Grid.Row="1">
+        <Menu Height="33" VerticalAlignment="Bottom">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip1}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/txt.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip2}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/dock.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip3}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/unknown-file.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip4}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/txt.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip5}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/dock.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip6}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/unknown-file.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip7}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/txt.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip8}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/dock.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip9}">
+            <MenuItem.Header>
+              <StackPanel>
+                <Image Width="28" Height="28" Source="/Assets/images/icons/unknown-file.png" />
+              </StackPanel>
+            </MenuItem.Header>
+          </MenuItem>
+        </Menu>
+      </Grid>
 
     <!-- Splitter -->
     <!-- Thanks to the margins, the capture area increases, 

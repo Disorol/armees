@@ -241,6 +241,87 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 1.
+        /// </summary>
+        public static string Tooltip1 {
+            get {
+                return ResourceManager.GetString("Tooltip1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 2.
+        /// </summary>
+        public static string Tooltip2 {
+            get {
+                return ResourceManager.GetString("Tooltip2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 3.
+        /// </summary>
+        public static string Tooltip3 {
+            get {
+                return ResourceManager.GetString("Tooltip3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 4.
+        /// </summary>
+        public static string Tooltip4 {
+            get {
+                return ResourceManager.GetString("Tooltip4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 5.
+        /// </summary>
+        public static string Tooltip5 {
+            get {
+                return ResourceManager.GetString("Tooltip5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 6.
+        /// </summary>
+        public static string Tooltip6 {
+            get {
+                return ResourceManager.GetString("Tooltip6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 7.
+        /// </summary>
+        public static string Tooltip7 {
+            get {
+                return ResourceManager.GetString("Tooltip7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 8.
+        /// </summary>
+        public static string Tooltip8 {
+            get {
+                return ResourceManager.GetString("Tooltip8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подсказка 9.
+        /// </summary>
+        public static string Tooltip9 {
+            get {
+                return ResourceManager.GetString("Tooltip9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Редактор переменных.
         /// </summary>
         public static string VariableEditor {
