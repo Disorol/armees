@@ -108,8 +108,10 @@ namespace PLCSoldier.ViewModels
             // All items are available by default
             MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
 
+            // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
             SwitchLanguage = ReactiveCommand.Create<string>(ExecuteSwitchLanguage);
+            OpenTab = ReactiveCommand.Create<string>(ExecuteOpenTab);
 
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
             BottomContent = new ObservableCollection<TabItemViewModel>();
@@ -124,13 +126,6 @@ namespace PLCSoldier.ViewModels
             LeftBottomContent.Add(leftBottomItems["Hardware Organizer"]);
             FarRightContent.Add(farRightItems["Property"]);
             CentralContent.Add(centralItems["Workspace"]);
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         // Closing tabs by deleting them from the collection.
@@ -352,6 +347,187 @@ namespace PLCSoldier.ViewModels
 
                         SplittersVisibility.LR_Splitter = false;
                     }
+                }
+            }
+        }
+
+        private void ExecuteOpenTab(string key)
+        {
+            if (leftUpperItems.ContainsKey(key))
+            {
+                if (!LeftUpperContent.Contains(leftUpperItems[key]))
+                {
+                    LeftUpperSpaceExpansion();
+                    LeftSpaceExpansion();
+
+                }
+            }
+            else if (leftBottomItems.ContainsKey(key))
+            {
+                 
+            }
+            else if (centralItems.ContainsKey(key))
+            {
+
+            }
+            else if (farRightItems.ContainsKey(key))
+            {
+
+            }
+            else if (bottomItems.ContainsKey(key))
+            {
+
+            }
+        }
+
+        private void LeftUpperSpaceExpansion() 
+        {
+            if (LeftUpperContent.Count == 0)
+            {
+                if (LeftBottomContent.Count == 0)
+                {
+                    SpacesDimensions.LeftUpperSpaceHeight = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.LeftBottomSpaceHeight = SpacesDimensionsIntermediateСonservation.LeftBottomSpaceHeight;
+                    SpacesDimensions.LeftUpperSpaceHeight = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.LULB_Splitter = true;
+                }
+            }
+        }
+
+        private void LeftBottomSpaceExpansion()
+        {
+            if (LeftBottomContent.Count == 0)
+            {
+                if (LeftUpperContent.Count == 0)
+                {
+                    SpacesDimensions.LeftBottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.LeftUpperSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.LeftBottomSpaceHeight = SpacesDimensionsIntermediateСonservation.LeftBottomSpaceHeight;
+                    SpacesDimensions.LeftUpperSpaceHeight = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.LULB_Splitter = true;
+                }
+            }
+        }
+
+        private void CentralSpaceExpansion()
+        {
+            if (CentralContent.Count == 0)
+            {
+                if (FarRightContent.Count == 0)
+                {
+                    SpacesDimensions.CentralSpaceWidth = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.FarRightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.CentralSpaceWidth = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.FarRightSpaceWidth = SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth;
+
+                    SplittersVisibility.CFR_Splitter = true;
+                }
+            }
+        }
+
+        private void FarRightSpaceExpansion()
+        {
+            if (FarRightContent.Count == 0)
+            {
+                if (CentralContent.Count == 0)
+                {
+                    SpacesDimensions.FarRightSpaceWidth = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.CentralSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.FarRightSpaceWidth = SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth;
+                    SpacesDimensions.CentralSpaceWidth = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.CFR_Splitter = true;
+                }
+            }
+        }
+
+        private void BottomSpaceExpansion()
+        {
+            if (BottomContent.Count == 0)
+            {
+                if ((CentralContent.Count == 0) && (FarRightContent.Count == 0))
+                {
+                    SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(0, GridUnitType.Pixel);
+                    SpacesDimensions.BottomSpaceHeight = new GridLength(1, GridUnitType.Star);
+                }
+                else
+                {
+                    SpacesDimensions.BottomSpaceHeight = SpacesDimensionsIntermediateСonservation.BottomSpaceHeight;
+                    SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.CFRB_Splitter = true;
+                }
+            }
+        }
+
+        private void CentralAndFarRightSpaceExpansion() 
+        {
+            if (CentralContent.Count == 0 && FarRightContent.Count == 0)
+            {
+                if (BottomContent.Count == 0)
+                {
+                    SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.BottomSpaceHeight = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.BottomSpaceHeight = SpacesDimensionsIntermediateСonservation.BottomSpaceHeight;
+                    SpacesDimensions.CentralAndFarRightSpacesHeight = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.CFRB_Splitter = true;
+                }
+            }
+        }
+
+        private void LeftSpaceExpansion() 
+        {
+            if (LeftUpperContent.Count == 0 && LeftBottomContent.Count == 0)
+            {
+                if (BottomContent.Count == 0 && CentralContent.Count == 0 && FarRightContent.Count == 0)
+                {
+                    SpacesDimensions.LeftSpaceWidth = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.RightSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.LeftSpaceWidth = SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth;
+                    SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.LR_Splitter = true;
+                }
+            }
+        }
+
+        private void RightSpaceExpansion() 
+        {
+            if (CentralContent.Count == 0 && FarRightContent.Count == 0 && BottomContent.Count == 0)
+            {
+                if (LeftUpperContent.Count == 0 && LeftBottomContent.Count == 0)
+                {
+                    SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
+                    SpacesDimensions.LeftSpaceWidth = new GridLength(0, GridUnitType.Pixel);
+                }
+                else
+                {
+                    SpacesDimensions.LeftSpaceWidth = SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth;
+                    SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
+
+                    SplittersVisibility.LR_Splitter = true;
                 }
             }
         }
