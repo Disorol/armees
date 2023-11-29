@@ -92,7 +92,7 @@ namespace PLCSoldier.ViewModels
         }
 
         // Availability of MainMenuItems
-        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability {  get; set; }
+        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability { get; set; }
 
         public MainWindowViewModel() 
         {
@@ -105,8 +105,8 @@ namespace PLCSoldier.ViewModels
             // Visibility of all splitters is set by default.
             SplittersVisibility = new SplittersVisibilityViewModel();
 
-            // All items are available by default
-            MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
+            // Getting a reference to an instance.
+            MainMenuItemsAvailability = MainMenuItemsAvailabilityViewModel.getInstance();
 
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
