@@ -131,6 +131,8 @@ namespace PLCSoldier.ViewModels
         // Closing tabs by deleting them from the collection.
         private void ExecuteDeleteTabItem(string key)
         {
+            MainMenuItemsAvailability.SetAvailabilityByKey(key, true);
+
             if (leftUpperItems.ContainsKey(key))
             {
                 LeftUpperContent.Remove(leftUpperItems[key]);
@@ -555,7 +557,7 @@ namespace PLCSoldier.ViewModels
                 }
                 else
                 {
-                    SpacesDimensions.LeftSpaceWidth = SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth;
+                    SpacesDimensions.LeftSpaceWidth = SpacesDimensionsIntermediateСonservation.LeftSpaceWidth;
                     SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
 
                     SplittersVisibility.LR_Splitter = true;
@@ -574,7 +576,7 @@ namespace PLCSoldier.ViewModels
                 }
                 else
                 {
-                    SpacesDimensions.LeftSpaceWidth = SpacesDimensionsIntermediateСonservation.FarRightSpaceWidth;
+                    SpacesDimensions.LeftSpaceWidth = SpacesDimensionsIntermediateСonservation.LeftSpaceWidth;
                     SpacesDimensions.RightSpaceWidth = new GridLength(1, GridUnitType.Star);
 
                     SplittersVisibility.LR_Splitter = true;
