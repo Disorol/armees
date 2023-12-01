@@ -10,12 +10,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 {
     public class WatchViewModel : ViewModelBase
     {
-        private ObservableCollection<Node> _LogicalOrganizer;
-        public ObservableCollection<Node> LogicalOrganizer
+        private string _SomeText;
+        public string SomeText
         {
-            get => _LogicalOrganizer;
-            set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
+            get => _SomeText;
+            set => this.RaiseAndSetIfChanged(ref _SomeText, value);
         }
-        public string SomeText { get; set; }
     }
 }
