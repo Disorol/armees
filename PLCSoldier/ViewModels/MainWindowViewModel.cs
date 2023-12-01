@@ -323,6 +323,10 @@ namespace PLCSoldier.ViewModels
                     BottomContent.Remove(bottomItems["Errors"]);
                     BottomContent.Remove(bottomItems["Search results"]);
                     BottomContent.Remove(bottomItems["Watch"]);
+
+                    MainMenuItemsAvailability.Errors = true;
+                    MainMenuItemsAvailability.SearchResults = true;
+                    MainMenuItemsAvailability.Watch = true;
                 }
                 else
                 {
