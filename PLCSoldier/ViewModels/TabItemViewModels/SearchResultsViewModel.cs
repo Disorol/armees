@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 {
     public class SearchResultsViewModel : ViewModelBase
     {
-        public string SomeText { get; set; }
+        private string _SomeText;
+        public string SomeText
+        {
+            get => _SomeText;
+            set => this.RaiseAndSetIfChanged(ref _SomeText, value);
+        }
     }
 }

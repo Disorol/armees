@@ -1,4 +1,5 @@
 ﻿using PLCSoldier.Models;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,12 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 {
     public class LogicalOrganizerViewModel : ViewModelBase
     {
-        public ObservableCollection<Node> LogicalOrganizer { get; set; }
+        private ObservableCollection<Node> _LogicalOrganizer;
+        public ObservableCollection<Node> LogicalOrganizer
+        {
+            get => _LogicalOrganizer;
+            set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
+        }
+
     }
 }

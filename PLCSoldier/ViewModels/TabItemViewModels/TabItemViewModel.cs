@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace PLCSoldier.ViewModels.TabItemViewModels
 {
     // Shared ViewModel for all tabs.
-    public class TabItemViewModel
+    public class TabItemViewModel : ViewModelBase
     {
         public string IdentificationName { get; set; }  // The key for the dictionary in which the tab model will be located.
         public string Header { get; set; }  // Tab title.
@@ -18,6 +19,12 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             A ViewModel with the property as content will be placed here. 
             Such ViewModels should be stored in the directory with this model.
         */
-        public object? Content { get; set; }
+
+        private object? _Content;
+        public object? Content
+        {
+            get => _Content; 
+            set => this.RaiseAndSetIfChanged(ref _Content, value);
+        }
     }
 }
