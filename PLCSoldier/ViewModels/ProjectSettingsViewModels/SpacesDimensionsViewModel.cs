@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
+    /*
+        The representation model defines the states of the dimensions of Grid spaces.
+
+        The class is a singleton because it doesn't make sense to store multiple instances.
+    */
     public class SpacesDimensionsViewModel : ViewModelBase
     {
         private GridLength _LeftSpaceWidth;

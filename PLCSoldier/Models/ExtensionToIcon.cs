@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.Models
 {
+    /*
+        A static class for assigning icons to files based on their extensions.
+    */
     public static class ExtensionToIcon
     {
         // Dictionary of extensions and paths to icons.

@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
+    /*
+        The view model sets the state of isVisible splitters.
+
+        The class is a singleton because it doesn't make sense to store multiple instances.
+    */
     public class SplittersVisibilityViewModel : ViewModelBase
     {
         private bool _LULB_Splitter;
