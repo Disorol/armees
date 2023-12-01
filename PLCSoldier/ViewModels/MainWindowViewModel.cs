@@ -99,14 +99,14 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
-            // The sizes of all spaces are set by default.
-            SpacesDimensions = new SpacesDimensionsViewModel();
+            // Getting a reference to an instance.
+            SpacesDimensions = SpacesDimensionsViewModel.getInstance();
 
             // Getting a reference to an instance.
             SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation.getInstance();
 
-            // Visibility of all splitters is set by default.
-            SplittersVisibility = new SplittersVisibilityViewModel();
+            // Getting a reference to an instance.
+            SplittersVisibility = SplittersVisibilityViewModel.getInstance();
 
             // Getting a reference to an instance.
             MainMenuItemsAvailability = MainMenuItemsAvailabilityViewModel.getInstance();

@@ -70,7 +70,7 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
         }
 
         // Setting default values
-        public SpacesDimensionsViewModel()
+        private SpacesDimensionsViewModel()
         {
             LeftSpaceWidth = new GridLength(300, GridUnitType.Pixel);
             RightSpaceWidth = new GridLength(220, GridUnitType.Star);
@@ -85,17 +85,13 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             FarRightSpaceWidth = new GridLength(150, GridUnitType.Pixel);
         }
 
-        // Setting custom values
-        public SpacesDimensionsViewModel(GridLength leftSpaceWidth, GridLength rightSpaceWidth, GridLength leftUpperSpaceHeight, GridLength leftBottomSpaceHeight, GridLength centralAndFarRightSpaceHeight, GridLength bottomSpaceHeight, GridLength centralSpaceWidth, GridLength farRightSpaceWidth)
+        private static SpacesDimensionsViewModel instance;
+
+        public static SpacesDimensionsViewModel getInstance()
         {
-            LeftSpaceWidth = leftSpaceWidth;
-            RightSpaceWidth = rightSpaceWidth;
-            LeftUpperSpaceHeight = leftUpperSpaceHeight;
-            LeftBottomSpaceHeight = leftBottomSpaceHeight;
-            CentralAndFarRightSpacesHeight = centralAndFarRightSpaceHeight;
-            BottomSpaceHeight = bottomSpaceHeight;
-            CentralSpaceWidth = centralSpaceWidth;
-            FarRightSpaceWidth = farRightSpaceWidth;
+            if (instance == null)
+                instance = new SpacesDimensionsViewModel();
+            return instance;
         }
     }
 }

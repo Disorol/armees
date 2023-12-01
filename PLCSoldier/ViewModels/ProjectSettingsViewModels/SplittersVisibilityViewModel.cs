@@ -39,7 +39,7 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
         }
 
         // Setting default values
-        public SplittersVisibilityViewModel()
+        private SplittersVisibilityViewModel()
         {
             _LULB_Splitter = true;
             _LR_Splitter = true;
@@ -47,13 +47,13 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             _CFRB_Splitter = true;
         }
 
-        // Setting custom values
-        public SplittersVisibilityViewModel(bool lULB_Splitter, bool lR_Splitter, bool cFR_Splitter, bool cFRB_Splitter)
+        private static SplittersVisibilityViewModel instance;
+
+        public static SplittersVisibilityViewModel getInstance()
         {
-            LULB_Splitter = lULB_Splitter;
-            LR_Splitter = lR_Splitter;
-            CFR_Splitter = cFR_Splitter;
-            CFRB_Splitter = cFRB_Splitter;
+            if (instance == null)
+                instance = new SplittersVisibilityViewModel();
+            return instance;
         }
     }
 }
