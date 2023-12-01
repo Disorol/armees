@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.Models.Services
 {
     /*
     The dimensions of spaces are saved here in cases

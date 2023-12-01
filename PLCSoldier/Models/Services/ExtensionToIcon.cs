@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.Models.Services
 {
     /*
         A static class for assigning icons to files based on their extensions.

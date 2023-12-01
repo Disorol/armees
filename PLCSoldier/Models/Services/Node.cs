@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.Models.Services
 {
     /*
         A class with a recursive overloaded constructor for traversing through all directories
@@ -34,7 +34,7 @@ namespace PLCSoldier.Models
         {
             PathString = path;
 
-            NodeTitle = System.IO.Path.GetFileName(path);
+            NodeTitle = Path.GetFileName(path);
 
             Icon = new Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/images/icons/dock.png")));
 
@@ -77,7 +77,7 @@ namespace PLCSoldier.Models
         {
             PathString = path;
 
-            NodeTitle = System.IO.Path.GetFileName(path);
+            NodeTitle = Path.GetFileName(path);
 
             FileInfo fileInfo = new FileInfo(path);
 
@@ -85,6 +85,6 @@ namespace PLCSoldier.Models
         }
 
         // Overloaded constructor for opening empty directories
-        public Node(bool isEmpty) {}
+        public Node(bool isEmpty) { }
     }
 }

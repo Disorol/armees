@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using DynamicData;
-using PLCSoldier.Models;
+using PLCSoldier.Models.Services;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using PLCSoldier.ViewModels.TabItemViewModels;
 using PLCSoldier.Views;
