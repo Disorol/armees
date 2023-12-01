@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
+    /*
+        The view model sets the state of the isEnabled
+        property for menu items responsible for opening tabs.
+
+        The class is a singleton because it doesn't make sense to store multiple instances.
+    */
     public class MainMenuItemsAvailabilityViewModel : ViewModelBase
     {
         private bool _LogicalOrganizer;
@@ -79,6 +85,10 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             return instance;
         }
 
+        /*
+            This crutch is necessary because in cases where we only have the key
+            to the tab, it is easier to access accessibility properties this way.
+        */
         public void SetAvailabilityByKey(string key, bool isAvailable)
         { 
             switch (key)
