@@ -1,8 +1,11 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using DynamicData;
 using PLCSoldier.Models;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using PLCSoldier.ViewModels.TabItemViewModels;
+using PLCSoldier.Views;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -111,6 +114,7 @@ namespace PLCSoldier.ViewModels
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
             SwitchLanguage = ReactiveCommand.Create<string>(ExecuteSwitchLanguage);
+            OpenProject = ReactiveCommand.Create(ExecuteOpenProject);
             OpenTab = ReactiveCommand.Create<string>(ExecuteOpenTab);
 
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
@@ -595,6 +599,20 @@ namespace PLCSoldier.ViewModels
 
                     SplittersVisibility.LR_Splitter = true;
                 }
+            }
+        }
+
+        private async void ExecuteOpenProject()
+        {
+            var dialog = new OpenFolderDialog();
+
+            var mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow : null;
+
+            var result = await dialog.ShowAsync(mainWindow);
+
+            if (result != null)
+            {
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel() { LogicalOrganizer = new ObservableCollection<Node> { new Node(result) } };
             }
         }
 
