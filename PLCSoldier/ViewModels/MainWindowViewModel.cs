@@ -119,13 +119,23 @@ namespace PLCSoldier.ViewModels
             FarRightContent = new ObservableCollection<TabItemViewModel>();
             CentralContent = new ObservableCollection<TabItemViewModel>();
 
-            LeftUpperContent.Add(leftUpperItems["Logical organizer"]);
-            BottomContent.Add(bottomItems["Errors"]);
-            BottomContent.Add(bottomItems["Search results"]);
-            BottomContent.Add(bottomItems["Watch"]);
-            LeftBottomContent.Add(leftBottomItems["Hardware organizer"]);
-            FarRightContent.Add(farRightItems["Property"]);
-            CentralContent.Add(centralItems["Workspace"]);
+            AddingTabItemsAtStartup(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"],
+                                                                 centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"],
+                                                                 bottomItems["Search results"], bottomItems["Watch"] });
+        }
+
+        private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)
+        {
+            foreach (TabItemViewModel tabItem in tabItems)
+            {
+                MainMenuItemsAvailability.SetAvailabilityByKey(tabItem.IdentificationName, false);
+
+                if (leftUpperItems.ContainsKey(tabItem.IdentificationName)) LeftUpperContent.Add(tabItem);
+                else if (leftBottomItems.ContainsKey(tabItem.IdentificationName)) LeftBottomContent.Add(tabItem);
+                else if (centralItems.ContainsKey(tabItem.IdentificationName)) CentralContent.Add(tabItem);
+                else if (farRightItems.ContainsKey(tabItem.IdentificationName)) FarRightContent.Add(tabItem);
+                else if (bottomItems.ContainsKey(tabItem.IdentificationName)) BottomContent.Add(tabItem);
+            }
         }
 
         // Closing tabs by deleting them from the collection.
