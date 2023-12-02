@@ -16,7 +16,9 @@ namespace PLCSoldier
 
         public override void OnFrameworkInitializationCompleted()
         {
+            // Setting the Russian language to the default language quality
             Properties.Resources.Culture = new CultureInfo("ru-RU");
+
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow
