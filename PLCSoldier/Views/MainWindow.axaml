@@ -66,6 +66,10 @@
           <MenuItem Header="{x:Static resources:Resources.Workspace}" 
                     Command="{Binding OpenTab}" CommandParameter="Workspace"
                     IsEnabled="{Binding MainMenuItemsAvailability.Workspace}"/>
+
+          <MenuItem Header="{x:Static resources:Resources.ValueEditor}"
+                    Command="{Binding OpenTab}" CommandParameter="Value editor"
+                    IsEnabled="{Binding MainMenuItemsAvailability.ValueEditor}"/>
           
           <MenuItem Header="{x:Static resources:Resources.Property}" 
                     Command="{Binding OpenTab}" CommandParameter="Property"

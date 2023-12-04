@@ -127,7 +127,7 @@ namespace PLCSoldier.ViewModels
 
             AddingTabItemsAtStartup(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"],
                                                                  centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"],
-                                                                 bottomItems["Search results"], bottomItems["Watch"], centralItems["Value editor"] });
+                                                                 bottomItems["Search results"], bottomItems["Watch"] });
         }
 
         private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)

@@ -58,6 +58,13 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             set => this.RaiseAndSetIfChanged(ref _Workspace, value);
         }
 
+        private bool _ValueEditor;
+        public bool ValueEditor
+        {
+            get => _ValueEditor;
+            set => this.RaiseAndSetIfChanged(ref _ValueEditor, value);
+        }
+
         private bool _Property;
         public bool Property
         {
@@ -73,6 +80,7 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             SearchResults = true;
             Watch = true;
             Workspace = true;
+            ValueEditor = true;
             Property = true;
         }
 
@@ -110,6 +118,9 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
                     break;
                 case "Workspace":
                     Workspace = isAvailable;
+                    break;
+                case "Value editor":
+                    ValueEditor = isAvailable;
                     break;
                 case "Property":
                     Property = isAvailable;
