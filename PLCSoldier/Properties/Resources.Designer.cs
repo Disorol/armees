@@ -324,9 +324,9 @@ namespace PLCSoldier.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Редактор переменных.
         /// </summary>
-        public static string VariableEditor {
+        public static string ValueEditor {
             get {
-                return ResourceManager.GetString("VariableEditor", resourceCulture);
+                return ResourceManager.GetString("ValueEditor", resourceCulture);
             }
         }
         

@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using DynamicData;
+using HanumanInstitute.MvvmDialogs.Avalonia;
 using PLCSoldier.Models.Services;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using PLCSoldier.ViewModels.TabItemViewModels;
@@ -44,6 +45,7 @@ namespace PLCSoldier.ViewModels
         Dictionary<string, TabItemViewModel> centralItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = Properties.Resources.Workspace, isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = Properties.Resources.SomeText } }},
+            {"Value editor", new TabItemViewModel(){IdentificationName = "Value editor", Header = Properties.Resources.ValueEditor, isCloseButtonVisible = true, Content = new ValueEditorViewModel(new DialogService() ) { } } },
         };
 
         // List of content for far right space TabItems.
@@ -125,7 +127,7 @@ namespace PLCSoldier.ViewModels
 
             AddingTabItemsAtStartup(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"],
                                                                  centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"],
-                                                                 bottomItems["Search results"], bottomItems["Watch"] });
+                                                                 bottomItems["Search results"], bottomItems["Watch"], centralItems["Value editor"] });
         }
 
         private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)

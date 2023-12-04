@@ -204,8 +204,8 @@
   <data name="Tooltip9" xml:space="preserve">
     <value>Tooltip 9</value>
   </data>
-  <data name="VariableEditor" xml:space="preserve">
-    <value>Variable Editor</value>
+  <data name="ValueEditor" xml:space="preserve">
+    <value>Value editor</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>

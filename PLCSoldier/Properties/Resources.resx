@@ -204,7 +204,7 @@
   <data name="Tooltip9" xml:space="preserve">
     <value>Подсказка 9</value>
   </data>
-  <data name="VariableEditor" xml:space="preserve">
+  <data name="ValueEditor" xml:space="preserve">
     <value>Редактор переменных</value>
   </data>
   <data name="View" xml:space="preserve">
