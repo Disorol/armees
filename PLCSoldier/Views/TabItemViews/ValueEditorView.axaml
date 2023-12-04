@@ -1,0 +1,266 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:PLCSoldier.ViewModels"
+			       xmlns:m="using:PLCSoldier.Classes"
+             xmlns:i="using:Avalonia.Xaml.Interactivity"
+             xmlns:behaviours="clr-namespace:PLCSoldier.Behaviours;assembly=PLCSoldier"
+			       xmlns:Classes="clr-namespace:PLCSoldier.Classes;assembly=PLCSoldier"
+             xmlns:root="clr-namespace:PLCSoldier;assembly=PLCSoldier"
+             xmlns:customs="clr-namespace:PLCSoldier.CustomControls;assembly=PLCSoldier"
+             mc:Ignorable="d" d:DesignWidth="1500" d:DesignHeight="450"
+             x:Class="PLCSoldier.Views.TabItemViews.ValueEditorView"
+             x:DataType="vm:MainWindowViewModel"
+             Background="Transparent"
+             PointerPressed="OnPointerPressed">
+
+	<UserControl.Resources>
+		<Classes:TupleConverter x:Key="TupleConverter"/>
+	</UserControl.Resources>
+
+  <UserControl.Styles>
+    
+    <Style Selector="TextBox.Input">
+      <Setter Property="Height" Value="10"/>
+      <Setter Property="CornerRadius" Value="0"/>
+      <Setter Property="BorderThickness" Value="0,1,1,0"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style Selector="ComboBox.Input">
+      <Setter Property="BorderThickness" Value="0,1,1,0"/>
+      <Setter Property="CornerRadius" Value="0"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Margin="10,0,10,0"
+                Spacing="10">
+
+      <customs:AdvancedTextBox DefaultText="Фильтр по имени"
+                               Width="180"
+                               Margin="0,10"
+                               Text="{Binding NameFilter}"/>
+
+      <customs:AdvancedTextBox DefaultText="Фильтр по типу"
+                               Width="180"
+                               Margin="0,10"
+                               Text="{Binding DataTypeFilter}"/>
+      
+    </StackPanel>
+
+    <ScrollViewer Grid.Row="1"
+                  Margin="5"
+                  >
+      <StackPanel Orientation="Vertical">
+
+
+        <TreeDataGrid BorderThickness="1,1,0,0"
+                      BorderBrush="Gray"
+                      x:Name="TreeData"
+                      Source="{Binding Source}">
+          <TreeDataGrid.Resources>
+
+            <DataTemplate x:Key="DataValueNameCell" DataType="m:DataValue">
+              <TextBlock Text="{Binding Name}"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         FontSize="16"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DataValueNameEditCell" DataType="m:DataValue">
+              <TextBox Text="{Binding Name}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DataTypeCell" DataType="m:DataValue">
+              <TextBlock Text="{Binding EVarType}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="DataTypeEditCell" DataType="m:DataValue">
+              <ComboBox ItemsSource="{x:Static m:DataValuesModel.DataTypes}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        SelectedIndex="{Binding EVarType}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="AccessTypeCell" DataType="m:DataValue">
+              <ComboBox ItemsSource="{x:Static m:DataValuesModel.AccessTypes}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        SelectedIndex="{Binding AccessType}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="DisplayStyleCell" DataType="m:DataValue">
+              <ComboBox ItemsSource="{x:Static m:DataValuesModel.DisplayStyles}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        SelectedIndex="{Binding DisplayStyle}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="IsConstCell" DataType="m:DataValue">
+              <CheckBox IsChecked="{Binding IsConst}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="IsRetainCell" DataType="m:DataValue">
+              <CheckBox IsChecked="{Binding IsRetain}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+            </DataTemplate>
+
+          </TreeDataGrid.Resources>
+
+          <TreeDataGrid.Styles>
+            <Style Selector="TreeDataGridRow:nth-child(even)">
+              <Setter Property="Background" Value="#e8e8e9"/>
+            </Style>
+
+            <Style Selector="TreeDataGridRow">
+              <Setter Property="ContextMenu">
+                <Setter.Value>
+                  <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                    <MenuItem Header="Копировать"
+                              Command="{Binding $parent[UserControl].DataContext.CopyCommand}"
+                              CommandParameter="{Binding $parent[TreeDataGridRow].DataContext}"/>
+                    <MenuItem Header="Вставить"
+                              Command="{Binding $parent[UserControl].DataContext.InsertCommand}"/>
+                    <MenuItem Header="Удалить"
+                              Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"
+                              CommandParameter="{Binding $parent[TreeDataGridRow].DataContext}"/>
+                  </ContextMenu>
+                </Setter.Value>
+              </Setter>
+            </Style>
+
+            <Style Selector="ComboBox">
+              <Setter Property="BorderThickness" Value="0"/>
+              <Setter Property="CornerRadius" Value="0"/>
+            </Style>
+
+            <Style Selector="TreeDataGridRow">
+              <Setter Property="BorderThickness" Value="0,0,0,1"/>
+              <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+
+            <Style Selector="TreeDataGridCellsPresenter > :is(TreeDataGridCell)">
+              <Setter Property="BorderThickness" Value="0,0,1,0"/>
+              <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+
+            <Style Selector="ComboBox">
+              <Setter Property="BorderThickness" Value="0"/>
+              <Setter Property="CornerRadius" Value="0"/>
+            </Style>
+
+          </TreeDataGrid.Styles>
+
+        </TreeDataGrid>
+
+        <Border BorderBrush="Gray"
+                BorderThickness="1,0,1,1">
+
+          <StackPanel Orientation="Horizontal"
+                      KeyDown="OnNewVarKeyDown">
+
+            <TextBox Classes="Input"
+                     Text="{Binding DataValueToAdd.Name}">
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="0"/>
+              </i:Interaction.Behaviors>
+            </TextBox>
+
+            <TextBox Classes="Input"
+                     Text="{Binding DataValueToAdd.Value}">
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="1"/>
+              </i:Interaction.Behaviors>
+            </TextBox>
+
+            <ComboBox Classes="Input"
+                      ItemsSource="{x:Static m:DataValuesModel.DataTypes}"
+                      SelectedValue="{Binding DataValueToAdd.Type}">
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="2"/>
+              </i:Interaction.Behaviors>
+            </ComboBox>
+
+            <ComboBox Classes="Input"
+                      ItemsSource="{x:Static m:DataValuesModel.AccessTypes}"
+                      SelectedIndex="{Binding DataValueToAdd.AccessType}">
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="3"/>
+              </i:Interaction.Behaviors>
+            </ComboBox>
+
+            <Border Width="50"
+                    BorderThickness="0,1,1,0"
+                    BorderBrush="Gray">
+              <CheckBox IsChecked="{Binding DataValueToAdd.IsConst}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="-1"/>
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="4"/>
+              </i:Interaction.Behaviors>
+
+            </Border>
+
+            <ComboBox Classes="Input"
+                      ItemsSource="{x:Static m:DataValuesModel.DisplayStyles}"
+                      SelectedIndex="{Binding DataValueToAdd.DisplayStyle}">
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="5"/>
+              </i:Interaction.Behaviors>
+            </ComboBox>
+
+            <TextBox Classes="Input"
+                     Text="{Binding DataValueToAdd.Description}"
+                     CornerRadius="0">
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="6"/>
+              </i:Interaction.Behaviors>
+            </TextBox>
+
+            <Border Width="50"
+                    BorderThickness="0,1,1,0"
+                    BorderBrush="Gray">
+              <CheckBox IsChecked="{Binding DataValueToAdd.IsRetain}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="-1"/>
+              <i:Interaction.Behaviors>
+                <behaviours:SynchronizeWidthBehaviour Source="{Binding ElementName=TreeData}" ColumnIndex="7"/>
+              </i:Interaction.Behaviors>
+
+            </Border>
+          </StackPanel>
+        </Border>
+
+        <Button Command="{Binding DeleteColumnCommand}"
+                Content="Test"
+                Margin="0,5"
+                IsVisible="False"/>
+        
+        <Button Content="Удалить столбец"
+                Margin="0,5"
+                Click="OnRemoveButtonClick"
+                IsVisible="False"/>
+
+        
+
+      </StackPanel>
+    </ScrollViewer>
+
+
+
+  </Grid>
+  
+	
+</UserControl>

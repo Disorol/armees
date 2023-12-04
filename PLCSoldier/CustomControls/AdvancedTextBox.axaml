@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PLCSoldier.CustomControls.AdvancedTextBox">
+  <UserControl.Styles>
+    <Style Selector="Border.Classes.Highlighted">
+      <Setter Property="Background" Value="LightYellow"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border BorderThickness="1"
+          Classes.Highlighted="{Binding ElementName=textBox, Path=!Text.Length}"
+          Width="{Binding $parent.Width}"
+          Height="{Binding $parent.Height}"
+          BorderBrush="Gray"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          CornerRadius="3"
+          x:Name="Bounds">
+    <StackPanel Orientation="Horizontal"
+                Spacing="0">
+      <Viewbox VerticalAlignment="Stretch"
+               Width="15"
+               Margin="7,0">
+        <Path Data="M440-160q-17 0-28.5-11.5T400-200v-240L161-745q-14-17-4-36t31-19h584q21 0 31 19t-4 36L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-276 240-304H240l240 304Zm0 0Z"
+              Fill="DimGray"
+              Stretch="Uniform"/>
+      </Viewbox>
+
+      <Grid Margin="0,0,7,0">
+        <Grid.Styles>
+          <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+          </Style>
+          <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+          </Style>
+        </Grid.Styles>
+        <TextBlock Text="{Binding $parent[UserControl].DefaultText}"
+                 Foreground="Gray"
+                   VerticalAlignment="Center"
+                 x:Name="defaultTextTxtBlock"/>
+
+        <TextBox HorizontalAlignment="Stretch"
+                 x:Name="textBox"
+                 Padding="0,0"
+                 VerticalContentAlignment="Center"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="{Binding $parent[UserControl].Text}"/>
+      </Grid>     
+    </StackPanel>
+  </Border>
+
+</UserControl>
