@@ -2,12 +2,14 @@
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using DynamicData;
+using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
 using PLCSoldier.Models.Services;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using PLCSoldier.ViewModels.TabItemViewModels;
 using PLCSoldier.Views;
 using ReactiveUI;
+using Splat;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,7 +47,7 @@ namespace PLCSoldier.ViewModels
         Dictionary<string, TabItemViewModel> centralItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = Properties.Resources.Workspace, isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = Properties.Resources.SomeText } }},
-            {"Value editor", new TabItemViewModel(){IdentificationName = "Value editor", Header = Properties.Resources.ValueEditor, isCloseButtonVisible = true, Content = new ValueEditorViewModel(new DialogService() ) { } } },
+            {"Value editor", new TabItemViewModel(){IdentificationName = "Value editor", Header = Properties.Resources.ValueEditor, isCloseButtonVisible = true, Content = new ValueEditorViewModel((IDialogService)new DialogService(new DialogManager(viewLocator: new ViewLocator(), dialogFactory: new DialogFactory().AddMessageBox()), viewModelFactory: x => Locator.Current.GetService(x)) ) { } } },
         };
 
         // List of content for far right space TabItems.
