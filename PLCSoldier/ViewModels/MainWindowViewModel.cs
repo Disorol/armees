@@ -20,6 +20,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Serialization;
+using System.Text.Json;
+using System.IO;
 
 namespace PLCSoldier.ViewModels
 {
@@ -620,9 +622,28 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private void ExecuteSwitchLanguage(string language)
+        private async void ExecuteSwitchLanguage(string language)
         {
             Properties.Resources.Culture = new CultureInfo(language);
+
+            string json = JsonSerializer.Serialize(language);
+
+            using (FileStream fs = new FileStream("settings.json", FileMode.OpenOrCreate))
+            {
+                Settings settings = new Settings(language);
+                await JsonSerializer.SerializeAsync<Settings>(fs, settings);
+
+            }
         }
     }
+
+    public class Settings
+    {
+        public string Language { get; set; }
+
+        public Settings(string language)
+        {
+            Language = language;
+        }
+    } 
 }
