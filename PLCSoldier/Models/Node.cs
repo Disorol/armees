@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
-namespace PLCSoldier.Models.Services
+namespace PLCSoldier.Models
 {
     /*
         A class with a recursive overloaded constructor for traversing through all directories
@@ -27,7 +27,7 @@ namespace PLCSoldier.Models.Services
         public string? PathString { get; set; }
 
         // The path to the icon. Maybe Null for empty folders.
-        public Bitmap? Icon { get; set; }
+        public Avalonia.Media.Imaging.Bitmap? Icon { get; set; }
 
         // Overloaded Constructor for the directory path.
         public Node(string path)
@@ -36,7 +36,7 @@ namespace PLCSoldier.Models.Services
 
             NodeTitle = Path.GetFileName(path);
 
-            Icon = new Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/images/icons/dock.png")));
+            Icon = ExtensionToIcon.GetIcon(".dock");
 
             Subnodes = new ObservableCollection<Node>();
 
@@ -81,7 +81,7 @@ namespace PLCSoldier.Models.Services
 
             FileInfo fileInfo = new FileInfo(path);
 
-            Icon = new Bitmap(AssetLoader.Open(ExtensionToIcon.GetIcon(fileInfo.Extension)));
+            Icon = ExtensionToIcon.GetIcon(fileInfo.Extension);
         }
 
         // Overloaded constructor for opening empty directories

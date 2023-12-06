@@ -1,4 +1,4 @@
-﻿using PLCSoldier.Models.Services;
+﻿using PLCSoldier.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;

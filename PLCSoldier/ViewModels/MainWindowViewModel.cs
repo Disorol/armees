@@ -4,7 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using DynamicData;
 using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
-using PLCSoldier.Models.Services;
+using PLCSoldier.Models;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using PLCSoldier.ViewModels.TabItemViewModels;
 using PLCSoldier.Views;
