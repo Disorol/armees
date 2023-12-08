@@ -9,11 +9,11 @@ namespace PLCSoldier.Models
 {
     public class GUISetttingsModel
     {
-        SpacesDimensionsViewModel SpacesDimensionsViewModel { get; set; }
-        SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; set; }
-        MainMenuItemsAvailabilityViewModel MainMenuItemsAvailabilityViewModel { get; set; }
-        SplittersVisibilityViewModel SplittersVisibilityViewModel { get; set; }
-        string ApplicationLanguage { get; set; }
+        public SpacesDimensionsViewModel SpacesDimensionsViewModel { get; private set; }
+        public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; private set; }
+        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailabilityViewModel { get; private set; }
+        public SplittersVisibilityViewModel SplittersVisibilityViewModel { get; private set; }
+        public string ApplicationLanguage { get; set; }
 
         public GUISetttingsModel(SpacesDimensionsViewModel spacesDimensionsViewModel, SpacesDimensionsIntermediateСonservation spacesDimensionsIntermediateСonservation, MainMenuItemsAvailabilityViewModel mainMenuItemsAvailabilityViewModel, SplittersVisibilityViewModel splittersVisibilityViewModel, string applicationLanguage)
         {

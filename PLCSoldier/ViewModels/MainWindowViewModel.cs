@@ -33,6 +33,8 @@ namespace PLCSoldier.ViewModels
         public ReactiveCommand<string, Unit> OpenTab { get; set; }
         public ReactiveCommand<string, Unit> SwitchLanguage { get; set; }
 
+        public bool isDefaultSettings {  get; set; }
+
         // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
         {
@@ -105,6 +107,8 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
+            isDefaultSettings = false;
+
             // Getting a reference to an instance.
             SpacesDimensions = SpacesDimensionsViewModel.getInstance();
 
@@ -622,18 +626,11 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private async void ExecuteSwitchLanguage(string language)
+        private void ExecuteSwitchLanguage(string language)
         {
-            Properties.Resources.Culture = new CultureInfo(language);
+            JsonGUISettingsWorker.GUISetttingsModel.ApplicationLanguage = language;
 
-            string json = JsonSerializer.Serialize(language);
-
-            using (FileStream fs = new FileStream("settings.json", FileMode.OpenOrCreate))
-            {
-                Settings settings = new Settings(language);
-                await JsonSerializer.SerializeAsync<Settings>(fs, settings);
-
-            }
+            JsonGUISettingsWorker.FileWrite();
         }
     }
 
