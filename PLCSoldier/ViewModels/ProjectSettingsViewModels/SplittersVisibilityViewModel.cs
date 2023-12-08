@@ -10,8 +10,6 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
     /*
         The view model sets the state of isVisible splitters.
-
-        The class is a singleton because it doesn't make sense to store multiple instances.
     */
     public class SplittersVisibilityViewModel : ViewModelBase
     {
@@ -44,21 +42,12 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
         }
 
         // Setting default values
-        private SplittersVisibilityViewModel()
+        public SplittersVisibilityViewModel()
         {
             _LULB_Splitter = true;
             _LR_Splitter = true;
             _CFR_Splitter = true;
             _CFRB_Splitter = true;
-        }
-
-        private static SplittersVisibilityViewModel instance;
-
-        public static SplittersVisibilityViewModel getInstance()
-        {
-            if (instance == null)
-                instance = new SplittersVisibilityViewModel();
-            return instance;
         }
     }
 }

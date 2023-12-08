@@ -72,7 +72,7 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             set => this.RaiseAndSetIfChanged(ref _Property, value);
         }
 
-        private MainMenuItemsAvailabilityViewModel()
+        public MainMenuItemsAvailabilityViewModel()
         {
             LogicalOrganizer = true;
             HardwareOrganizer = true;
@@ -82,15 +82,6 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
             Workspace = true;
             ValueEditor = true;
             Property = true;
-        }
-
-        private static MainMenuItemsAvailabilityViewModel instance;
-
-        public static MainMenuItemsAvailabilityViewModel getInstance()
-        {
-            if (instance == null)
-                instance = new MainMenuItemsAvailabilityViewModel();
-            return instance;
         }
 
         /*
@@ -126,6 +117,31 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
                     Property = isAvailable;
                     break;
                 default: break;
+            }
+        }
+
+        public bool GetAvailabilityByKey(string key)
+        {
+            switch (key)
+            {
+                case "Logical organizer":
+                    return LogicalOrganizer;
+                case "Hardware organizer":
+                    return HardwareOrganizer;
+                case "Errors":
+                    return Errors;
+                case "Search results":
+                    return SearchResults;
+                case "Watch":
+                    return Watch;
+                case "Workspace":
+                    return Workspace;
+                case "Value editor":
+                    return ValueEditor;
+                case "Property":
+                    return Property;
+                default:
+                    return false;
             }
         }
     }

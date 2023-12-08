@@ -33,7 +33,7 @@ namespace PLCSoldier.ViewModels
         public ReactiveCommand<string, Unit> OpenTab { get; set; }
         public ReactiveCommand<string, Unit> SwitchLanguage { get; set; }
 
-        public bool isDefaultSettings {  get; set; }
+        public bool isDefaultSettings { get; set; }
 
         // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
@@ -107,19 +107,17 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
-            isDefaultSettings = false;
+            isDefaultSettings = true;
 
-            // Getting a reference to an instance.
-            SpacesDimensions = SpacesDimensionsViewModel.getInstance();
+            if (!isDefaultSettings) JsonGUISettingsWorker.FileRead();
 
-            // Getting a reference to an instance.
-            SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation.getInstance();
+            SpacesDimensions = isDefaultSettings ? new SpacesDimensionsViewModel() : JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsViewModel;
 
-            // Getting a reference to an instance.
-            SplittersVisibility = SplittersVisibilityViewModel.getInstance();
+            SpacesDimensionsIntermediateСonservation = isDefaultSettings ? new SpacesDimensionsIntermediateСonservation() : JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsIntermediateСonservation;
 
-            // Getting a reference to an instance.
-            MainMenuItemsAvailability = MainMenuItemsAvailabilityViewModel.getInstance();
+            SplittersVisibility = isDefaultSettings ? new SplittersVisibilityViewModel() : JsonGUISettingsWorker.GUISetttingsModel.SplittersVisibilityViewModel;
+
+            MainMenuItemsAvailability = isDefaultSettings ? new MainMenuItemsAvailabilityViewModel() : JsonGUISettingsWorker.GUISetttingsModel.MainMenuItemsAvailabilityViewModel;
 
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -133,9 +131,27 @@ namespace PLCSoldier.ViewModels
             FarRightContent = new ObservableCollection<TabItemViewModel>();
             CentralContent = new ObservableCollection<TabItemViewModel>();
 
-            AddingTabItemsAtStartup(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"],
-                                                                 centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"],
-                                                                 bottomItems["Search results"], bottomItems["Watch"] });
+            if (isDefaultSettings) AddingTabItemsAtStartup(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"], 
+                                                                                        centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"], 
+                                                                                        bottomItems["Search results"], bottomItems["Watch"] });
+            else
+            {
+                List<TabItemViewModel> tabItems = new List<TabItemViewModel>();
+
+                foreach (string key in GetAllKeys())
+                {
+                    if (!MainMenuItemsAvailability.GetAvailabilityByKey(key)) tabItems.Add(KeyToTabItem(key));
+                }
+
+                AddingTabItemsAtStartup(tabItems);
+            }
+
+
+            if (isDefaultSettings)
+            {
+                JsonGUISettingsWorker.GUISetttingsModel = new GUISetttingsModel(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility, Properties.Resources.Culture);
+                JsonGUISettingsWorker.FileWrite();
+            }
         }
 
         private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)
@@ -150,6 +166,45 @@ namespace PLCSoldier.ViewModels
                 else if (farRightItems.ContainsKey(tabItem.IdentificationName)) FarRightContent.Add(tabItem);
                 else if (bottomItems.ContainsKey(tabItem.IdentificationName)) BottomContent.Add(tabItem);
             }
+        }
+
+        private List<string> GetAllKeys()
+        {
+            List<string> allKeys = new List<string>();
+
+            foreach (string key in leftUpperItems.Keys)
+            {
+                allKeys.Add(key);
+            }
+            foreach (string key in leftBottomItems.Keys)
+            {
+                allKeys.Add(key);
+            }
+            foreach (string key in centralItems.Keys)
+            {
+                allKeys.Add(key);
+            }
+            foreach (string key in farRightItems.Keys)
+            {
+                allKeys.Add(key);
+            }
+            foreach (string key in bottomItems.Keys)
+            {
+                allKeys.Add(key);
+            }
+
+            return allKeys;
+        }
+
+        private TabItemViewModel KeyToTabItem(string key)
+        {
+            if (leftUpperItems.ContainsKey(key)) return leftUpperItems[key];
+            else if (leftBottomItems.ContainsKey(key)) return leftBottomItems[key];
+            else if (centralItems.ContainsKey(key)) return centralItems[key];
+            else if (farRightItems.ContainsKey(key)) return farRightItems[key];
+            else if (bottomItems.ContainsKey(key)) return bottomItems[key];
+
+            return null;
         }
 
         // Closing tabs by deleting them from the collection.
@@ -628,7 +683,7 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
-            JsonGUISettingsWorker.GUISetttingsModel.ApplicationLanguage = language;
+            JsonGUISettingsWorker.GUISetttingsModel.ApplicationLanguage = new CultureInfo(language);
 
             JsonGUISettingsWorker.FileWrite();
         }

@@ -13,8 +13,6 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 {
     /*
         The representation model defines the states of the dimensions of Grid spaces.
-
-        The class is a singleton because it doesn't make sense to store multiple instances.
     */
     public class SpacesDimensionsViewModel : ViewModelBase
     {
@@ -75,7 +73,7 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
         }
 
         // Setting default values
-        private SpacesDimensionsViewModel()
+        public SpacesDimensionsViewModel()
         {
             LeftSpaceWidth = new GridLength(300, GridUnitType.Pixel);
             RightSpaceWidth = new GridLength(220, GridUnitType.Star);
@@ -88,15 +86,6 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 
             CentralSpaceWidth = new GridLength(220, GridUnitType.Star);
             FarRightSpaceWidth = new GridLength(150, GridUnitType.Pixel);
-        }
-
-        private static SpacesDimensionsViewModel instance;
-
-        public static SpacesDimensionsViewModel getInstance()
-        {
-            if (instance == null)
-                instance = new SpacesDimensionsViewModel();
-            return instance;
         }
     }
 }

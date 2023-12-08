@@ -18,8 +18,6 @@ namespace PLCSoldier.Models
     Also, the "setters" take into
     account cases of attempts to record one star or zero pixels.
     Such cases may occur during the closure of the adjacent space.
-
-    The class is a singleton because it doesn't make sense to store multiple instances.
     */
     public class SpacesDimensionsIntermediateСonservation
     {
@@ -61,17 +59,6 @@ namespace PLCSoldier.Models
             {
                 if (value != new GridLength(1, GridUnitType.Star) && value != new GridLength(0, GridUnitType.Pixel)) _FarRightSpaceWidth = value;
             }
-        }
-
-        private SpacesDimensionsIntermediateСonservation() { }
-
-        private static SpacesDimensionsIntermediateСonservation instance;
-
-        public static SpacesDimensionsIntermediateСonservation getInstance()
-        {
-            if (instance == null)
-                instance = new SpacesDimensionsIntermediateСonservation();
-            return instance;
         }
     }
 }
