@@ -149,7 +149,12 @@ namespace PLCSoldier.ViewModels
 
             if (isDefaultSettings)
             {
-                JsonGUISettingsWorker.GUISetttingsModel = new GUISetttingsModel(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility, Properties.Resources.Culture);
+                JsonGUISettingsWorker.GUISetttingsModel = new GUISetttingsModel();
+                JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsViewModel = SpacesDimensions;
+                JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation;
+                JsonGUISettingsWorker.GUISetttingsModel.SplittersVisibilityViewModel = SplittersVisibility;
+                JsonGUISettingsWorker.GUISetttingsModel.MainMenuItemsAvailabilityViewModel = MainMenuItemsAvailability;
+                JsonGUISettingsWorker.GUISetttingsModel.ApplicationLanguage = Properties.Resources.Culture;
                 JsonGUISettingsWorker.FileWrite();
             }
         }

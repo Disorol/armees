@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels

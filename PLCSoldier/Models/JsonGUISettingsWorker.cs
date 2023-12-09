@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PLCSoldier.Models
@@ -14,23 +15,32 @@ namespace PLCSoldier.Models
     {
         public static GUISetttingsModel GUISetttingsModel { get; set; }
 
-        public static async void FileWrite()
+        public static void FileWrite()
         {
             if (GUISetttingsModel != null) 
             {
                 using (FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate))
                 {
-                    await JsonSerializer.SerializeAsync<GUISetttingsModel>(fileStream, GUISetttingsModel);
+                    JsonSerializer.Serialize<GUISetttingsModel>(fileStream, GUISetttingsModel, GetSerializerSettings());
                 }
             }
         }
 
-        public static async void FileRead()
+        public static void FileRead()
         {
             using (FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate))
-            {
-                GUISetttingsModel = await JsonSerializer.DeserializeAsync<GUISetttingsModel>(fileStream);
+            { 
+                JsonSerializer.Deserialize<GUISetttingsModel>(fileStream, GetSerializerSettings());
             }
+        }
+        
+        private static JsonSerializerOptions GetSerializerSettings()
+        {
+            return new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true,
+            };
         }
     }
 }

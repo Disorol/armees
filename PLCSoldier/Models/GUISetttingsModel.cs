@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PLCSoldier.Models
@@ -15,14 +16,5 @@ namespace PLCSoldier.Models
         public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailabilityViewModel { get; set; }
         public SplittersVisibilityViewModel SplittersVisibilityViewModel { get; set; }
         public CultureInfo ApplicationLanguage { get; set; }
-
-        public GUISetttingsModel(SpacesDimensionsViewModel spacesDimensionsViewModel, SpacesDimensionsIntermediateСonservation spacesDimensionsIntermediateСonservation, MainMenuItemsAvailabilityViewModel mainMenuItemsAvailabilityViewModel, SplittersVisibilityViewModel splittersVisibilityViewModel, CultureInfo applicationLanguage)
-        {
-            SpacesDimensionsViewModel = spacesDimensionsViewModel;
-            SpacesDimensionsIntermediateСonservation = spacesDimensionsIntermediateСonservation;
-            MainMenuItemsAvailabilityViewModel = mainMenuItemsAvailabilityViewModel;
-            SplittersVisibilityViewModel = splittersVisibilityViewModel;
-            ApplicationLanguage = applicationLanguage;
-        }
     }
 }
