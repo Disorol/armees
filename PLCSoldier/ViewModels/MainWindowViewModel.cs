@@ -109,7 +109,11 @@ namespace PLCSoldier.ViewModels
         {
             isDefaultSettings = false;
 
-            if (!isDefaultSettings) JsonGUISettingsWorker.FileRead();
+            if (!isDefaultSettings) 
+                JsonGUISettingsWorker.FileRead();
+
+            if (JsonGUISettingsWorker.GUISettingsModel == null) 
+                isDefaultSettings = true;
 
             SpacesDimensions = isDefaultSettings ? new SpacesDimensionsViewModel() : GridLengthDeconverter.ConvertToSpacesDimensionsViewModel(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted);
 
@@ -688,7 +692,7 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
-
+            JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = language;
             JsonGUISettingsWorker.FileWrite();
         }
     }
