@@ -107,17 +107,17 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
-            isDefaultSettings = true;
+            isDefaultSettings = false;
 
             if (!isDefaultSettings) JsonGUISettingsWorker.FileRead();
 
-            SpacesDimensions = isDefaultSettings ? new SpacesDimensionsViewModel() : JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsViewModel;
+            SpacesDimensions = new SpacesDimensionsViewModel();
 
-            SpacesDimensionsIntermediateСonservation = isDefaultSettings ? new SpacesDimensionsIntermediateСonservation() : JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsIntermediateСonservation;
+            SpacesDimensionsIntermediateСonservation = new SpacesDimensionsIntermediateСonservation();
 
-            SplittersVisibility = isDefaultSettings ? new SplittersVisibilityViewModel() : JsonGUISettingsWorker.GUISetttingsModel.SplittersVisibilityViewModel;
+            SplittersVisibility = new SplittersVisibilityViewModel();
 
-            MainMenuItemsAvailability = isDefaultSettings ? new MainMenuItemsAvailabilityViewModel() : JsonGUISettingsWorker.GUISetttingsModel.MainMenuItemsAvailabilityViewModel;
+            MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
 
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -149,12 +149,12 @@ namespace PLCSoldier.ViewModels
 
             if (isDefaultSettings)
             {
-                JsonGUISettingsWorker.GUISetttingsModel = new GUISetttingsModel();
-                JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsViewModel = SpacesDimensions;
-                JsonGUISettingsWorker.GUISetttingsModel.SpacesDimensionsIntermediateСonservation = SpacesDimensionsIntermediateСonservation;
-                JsonGUISettingsWorker.GUISetttingsModel.SplittersVisibilityViewModel = SplittersVisibility;
-                JsonGUISettingsWorker.GUISetttingsModel.MainMenuItemsAvailabilityViewModel = MainMenuItemsAvailability;
-                JsonGUISettingsWorker.GUISetttingsModel.ApplicationLanguage = Properties.Resources.Culture;
+                JsonGUISettingsWorker.GUISettingsModel = new GUISettingsModel();
+                JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted = new SpacesDimensionsConverted(SpacesDimensions);
+                JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted = new SpacesDimensionsIntermediateConservationConverted(SpacesDimensionsIntermediateСonservation);
+                JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability = MainMenuItemsAvailability;
+                JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility = SplittersVisibility;
+                JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = Properties.Resources.Culture.Name;
                 JsonGUISettingsWorker.FileWrite();
             }
         }
@@ -688,7 +688,6 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
-            JsonGUISettingsWorker.GUISetttingsModel.ApplicationLanguage = new CultureInfo(language);
 
             JsonGUISettingsWorker.FileWrite();
         }
