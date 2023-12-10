@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using GalaSoft.MvvmLight;
+using PLCSoldier.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
@@ -86,6 +88,19 @@ namespace PLCSoldier.ViewModels.ProjectSettingsViewModels
 
             CentralSpaceWidth = new GridLength(220, GridUnitType.Star);
             FarRightSpaceWidth = new GridLength(150, GridUnitType.Pixel);
+        }
+
+        // Setting custom values
+        public SpacesDimensionsViewModel(GridLength leftSpaceWidth, GridLength rightSpaceWidth, GridLength leftUpperSpaceHeight, GridLength leftBottomSpaceHeight, GridLength centralAndFarRightSpacesHeight, GridLength bottomSpaceHeight, GridLength centralSpaceWidth, GridLength farRightSpaceWidth)
+        {
+            LeftSpaceWidth = leftSpaceWidth;
+            RightSpaceWidth = rightSpaceWidth;
+            LeftUpperSpaceHeight = leftUpperSpaceHeight;
+            LeftBottomSpaceHeight = leftBottomSpaceHeight;
+            CentralAndFarRightSpacesHeight = centralAndFarRightSpacesHeight;
+            BottomSpaceHeight = bottomSpaceHeight;
+            CentralSpaceWidth = centralSpaceWidth;
+            FarRightSpaceWidth = farRightSpaceWidth;
         }
     }
 }

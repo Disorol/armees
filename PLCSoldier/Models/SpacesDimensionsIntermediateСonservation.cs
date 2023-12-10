@@ -60,5 +60,17 @@ namespace PLCSoldier.Models
                 if (value != new GridLength(1, GridUnitType.Star) && value != new GridLength(0, GridUnitType.Pixel)) _FarRightSpaceWidth = value;
             }
         }
+
+        // Setting default values
+        public SpacesDimensionsIntermediateСonservation() { }
+
+        // Setting custom values
+        public SpacesDimensionsIntermediateСonservation(GridLength leftSpaceWidth, GridLength leftBottomSpaceHeight, GridLength bottomSpaceHeight, GridLength farRightSpaceWidth)
+        {
+            LeftSpaceWidth = leftSpaceWidth;
+            LeftBottomSpaceHeight = leftBottomSpaceHeight;
+            BottomSpaceHeight = bottomSpaceHeight;
+            FarRightSpaceWidth = farRightSpaceWidth;
+        }
     }
 }

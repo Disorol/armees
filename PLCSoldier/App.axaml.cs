@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using PLCSoldier.Models;
 using PLCSoldier.ViewModels;
 using PLCSoldier.Views;
 using System.Globalization;
@@ -16,8 +17,20 @@ namespace PLCSoldier
 
         public override void OnFrameworkInitializationCompleted()
         {
-            // Setting the Russian language to the default language quality
-            Properties.Resources.Culture = new CultureInfo("ru-RU");
+            if (JsonGUISettingsWorker.GUISettingsModel == null) JsonGUISettingsWorker.FileRead();
+
+            if (JsonGUISettingsWorker.GUISettingsModel != null)
+                try
+                {
+                    Properties.Resources.Culture = new CultureInfo(JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage);
+                }
+                catch 
+                {
+                    // Setting the Russian language to the default language quality
+                    Properties.Resources.Culture = new CultureInfo("ru-RU");
+                }
+            else
+                Properties.Resources.Culture = new CultureInfo("ru-RU");
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
