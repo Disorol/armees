@@ -13,7 +13,7 @@ namespace PLCSoldier.Models
 {
     public static class JsonGUISettingsWorker
     {
-        public static GUISettingsModel GUISettingsModel { get; set; }
+        public static GUISettingsModel? GUISettingsModel { get; set; }
 
         public static void FileWrite()
         {
@@ -30,7 +30,10 @@ namespace PLCSoldier.Models
         {
             using (FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate))
             {
-                GUISettingsModel? GUISettingsModel111 = JsonSerializer.Deserialize<GUISettingsModel>(fileStream, GetSerializerSettings());
+                if (fileStream.Length > 0)
+                    GUISettingsModel = JsonSerializer.Deserialize<GUISettingsModel>(fileStream, GetSerializerSettings());
+                else
+                    GUISettingsModel = null;
             }
         }
         

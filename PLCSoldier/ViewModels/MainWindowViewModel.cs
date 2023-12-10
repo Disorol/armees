@@ -111,13 +111,13 @@ namespace PLCSoldier.ViewModels
 
             if (!isDefaultSettings) JsonGUISettingsWorker.FileRead();
 
-            SpacesDimensions = new SpacesDimensionsViewModel();
+            SpacesDimensions = isDefaultSettings ? new SpacesDimensionsViewModel() : GridLengthDeconverter.ConvertToSpacesDimensionsViewModel(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted);
 
-            SpacesDimensionsIntermediateСonservation = new SpacesDimensionsIntermediateСonservation();
+            SpacesDimensionsIntermediateСonservation = isDefaultSettings ? new SpacesDimensionsIntermediateСonservation() : GridLengthDeconverter.ConvertToSpacesDimensionsIntermediateСonservation(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted);
 
-            SplittersVisibility = new SplittersVisibilityViewModel();
+            SplittersVisibility = isDefaultSettings ? new SplittersVisibilityViewModel() : JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility;
 
-            MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
+            MainMenuItemsAvailability = isDefaultSettings ? new MainMenuItemsAvailabilityViewModel() : JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability;
 
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);

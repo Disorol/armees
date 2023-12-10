@@ -15,6 +15,7 @@ namespace PLCSoldier.Models
         public GridLengthConverted FarRightSpaceWidth { get; set; }
 
         public SpacesDimensionsIntermediateConservationConverted() { }
+
         public SpacesDimensionsIntermediateConservationConverted(SpacesDimensionsIntermediateСonservation spacesDimensionsIntermediateСonservation)
         {
             LeftSpaceWidth = new GridLengthConverted(spacesDimensionsIntermediateСonservation.LeftSpaceWidth);
