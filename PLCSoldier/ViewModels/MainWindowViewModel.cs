@@ -22,6 +22,7 @@ using System.Windows.Input;
 using System.Xml.Serialization;
 using System.Text.Json;
 using System.IO;
+using System.Threading;
 
 namespace PLCSoldier.ViewModels
 {
@@ -38,7 +39,7 @@ namespace PLCSoldier.ViewModels
         // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
         {
-            {"Logical organizer", new TabItemViewModel(){IdentificationName = "Logical organizer", Header = Properties.Resources.LogicalOrganizer, isCloseButtonVisible = true, Content = new LogicalOrganizerViewModel(){ LogicalOrganizer = new ObservableCollection<Node> { new Node(@"C:\Users\T\source\repos\ValueEditor") } } } },
+            {"Logical organizer", new TabItemViewModel(){IdentificationName = "Logical organizer", Header = Properties.Resources.LogicalOrganizer, isCloseButtonVisible = true, Content = null } },
         };
 
         // List of content for left bottom space TabItems.
@@ -107,14 +108,16 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
-            isDefaultSettings = false;
+            isDefaultSettings = true;
 
-            if (!isDefaultSettings) 
+            if (!isDefaultSettings)
+            {
                 JsonGUISettingsWorker.FileRead();
 
-            if (JsonGUISettingsWorker.GUISettingsModel == null) 
-                isDefaultSettings = true;
-
+                if (JsonGUISettingsWorker.GUISettingsModel == null)
+                    isDefaultSettings = true;
+            }
+                
             SpacesDimensions = isDefaultSettings ? new SpacesDimensionsViewModel() : GridLengthDeconverter.ConvertToSpacesDimensionsViewModel(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted);
 
             SpacesDimensionsIntermediateСonservation = isDefaultSettings ? new SpacesDimensionsIntermediateСonservation() : GridLengthDeconverter.ConvertToSpacesDimensionsIntermediateСonservation(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted);
@@ -151,16 +154,7 @@ namespace PLCSoldier.ViewModels
             }
 
 
-            if (isDefaultSettings)
-            {
-                JsonGUISettingsWorker.GUISettingsModel = new GUISettingsModel();
-                JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted = new SpacesDimensionsConverted(SpacesDimensions);
-                JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted = new SpacesDimensionsIntermediateConservationConverted(SpacesDimensionsIntermediateСonservation);
-                JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability = MainMenuItemsAvailability;
-                JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility = SplittersVisibility;
-                JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = Properties.Resources.Culture.Name;
-                JsonGUISettingsWorker.FileWrite();
-            }
+
         }
 
         private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)
@@ -696,14 +690,4 @@ namespace PLCSoldier.ViewModels
             JsonGUISettingsWorker.FileWrite();
         }
     }
-
-    public class Settings
-    {
-        public string Language { get; set; }
-
-        public Settings(string language)
-        {
-            Language = language;
-        }
-    } 
 }

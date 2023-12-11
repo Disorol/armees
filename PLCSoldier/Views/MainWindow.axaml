@@ -11,7 +11,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         RequestedThemeVariant="Light"
-        Title="ПЛК Армеец">
+        Title="{x:Static resources:Resources.ApplicationTitle}">
 
   <Grid Name="MainGrid">
     <Grid.RowDefinitions>
@@ -169,22 +169,22 @@
     <Grid Grid.Row="3" Name="LR_Grid">
       <Grid.ColumnDefinitions>
         <!-- Left-space-template -->
-        <ColumnDefinition Width="{Binding SpacesDimensions.LeftSpaceWidth}"/>
+        <ColumnDefinition Width="{Binding SpacesDimensions.LeftSpaceWidth, Mode=TwoWay}"/>
         <!-- Splitter-template -->
         <ColumnDefinition Width="1" MaxWidth="1"/>
         <!-- Right-space-template -->
-        <ColumnDefinition Width="{Binding SpacesDimensions.RightSpaceWidth}"/>
+        <ColumnDefinition Width="{Binding SpacesDimensions.RightSpaceWidth, Mode=TwoWay}"/>
       </Grid.ColumnDefinitions>
 
       <!-- Left-space -->
       <Grid Grid.Column="0" Name="LULB_Grid">
         <Grid.RowDefinitions>
           <!-- Left-upper-space-template -->
-          <RowDefinition Height="{Binding SpacesDimensions.LeftUpperSpaceHeight}"/>
+          <RowDefinition Height="{Binding SpacesDimensions.LeftUpperSpaceHeight, Mode=TwoWay}"/>
           <!-- Splitter-template -->
           <RowDefinition Height="1" MaxHeight="1" />
           <!-- Left-bottom-space-template -->
-          <RowDefinition Height="{Binding SpacesDimensions.LeftBottomSpaceHeight}"/>
+          <RowDefinition Height="{Binding SpacesDimensions.LeftBottomSpaceHeight, Mode=TwoWay}"/>
         </Grid.RowDefinitions>
 
         <!-- Left-upper-space -->
@@ -342,22 +342,22 @@
       <Grid Grid.Column="2" Name="CRB_Grid">
         <Grid.RowDefinitions>
           <!-- Central-and-far-right-space-template -->
-          <RowDefinition Height="{Binding SpacesDimensions.CentralAndFarRightSpacesHeight}"/>
+          <RowDefinition Height="{Binding SpacesDimensions.CentralAndFarRightSpacesHeight, Mode=TwoWay}"/>
           <!-- Splitter-template -->
           <RowDefinition Height="1" MaxHeight="1"/>
           <!-- Bottom-space-template -->
-          <RowDefinition Height="{Binding SpacesDimensions.BottomSpaceHeight}" />
+          <RowDefinition Height="{Binding SpacesDimensions.BottomSpaceHeight, Mode=TwoWay}" />
         </Grid.RowDefinitions>
 
         <!-- Central-and-far-right-space-template -->
         <Grid Grid.Row="0" Name="CFR_Grid">
           <Grid.ColumnDefinitions>
             <!-- Central-space-template -->
-            <ColumnDefinition Width="{Binding SpacesDimensions.CentralSpaceWidth}"/>
+            <ColumnDefinition Width="{Binding SpacesDimensions.CentralSpaceWidth, Mode=TwoWay}"/>
             <!-- Splitter-template -->
             <ColumnDefinition Width="1" MaxWidth="1" />
             <!-- Far-right-space-template -->
-            <ColumnDefinition Width="{Binding SpacesDimensions.FarRightSpaceWidth}"/>
+            <ColumnDefinition Width="{Binding SpacesDimensions.FarRightSpaceWidth, Mode=TwoWay}"/>
           </Grid.ColumnDefinitions>
 
           <!-- Central-space -->

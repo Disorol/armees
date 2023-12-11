@@ -1,0 +1,106 @@
+{
+  "$id": "1",
+  "SpacesDimensionsConverted": {
+    "$id": "2",
+    "LeftSpaceWidth": {
+      "$id": "3",
+      "typeOfValue": 1,
+      "Value": 300
+    },
+    "RightSpaceWidth": {
+      "$id": "4",
+      "typeOfValue": 0,
+      "Value": 1
+    },
+    "LeftUpperSpaceHeight": {
+      "$id": "5",
+      "typeOfValue": 0,
+      "Value": 1
+    },
+    "LeftBottomSpaceHeight": {
+      "$id": "6",
+      "typeOfValue": 1,
+      "Value": 220
+    },
+    "CentralAndFarRightSpacesHeight": {
+      "$id": "7",
+      "typeOfValue": 0,
+      "Value": 1
+    },
+    "BottomSpaceHeight": {
+      "$id": "8",
+      "typeOfValue": 1,
+      "Value": 150
+    },
+    "CentralSpaceWidth": {
+      "$id": "9",
+      "typeOfValue": 0,
+      "Value": 1
+    },
+    "FarRightSpaceWidth": {
+      "$id": "10",
+      "typeOfValue": 1,
+      "Value": 150
+    }
+  },
+  "SpacesDimensionsIntermediateConservationConverted": {
+    "$id": "11",
+    "LeftSpaceWidth": {
+      "$id": "12",
+      "typeOfValue": 1,
+      "Value": 0
+    },
+    "LeftBottomSpaceHeight": {
+      "$id": "13",
+      "typeOfValue": 1,
+      "Value": 0
+    },
+    "BottomSpaceHeight": {
+      "$id": "14",
+      "typeOfValue": 1,
+      "Value": 0
+    },
+    "FarRightSpaceWidth": {
+      "$id": "15",
+      "typeOfValue": 1,
+      "Value": 0
+    }
+  },
+  "MainMenuItemsAvailability": {
+    "$id": "16",
+    "LogicalOrganizer": false,
+    "HardwareOrganizer": false,
+    "Errors": false,
+    "SearchResults": false,
+    "Watch": false,
+    "Workspace": false,
+    "ValueEditor": true,
+    "Property": false,
+    "Changing": {
+      "$id": "17"
+    },
+    "Changed": {
+      "$id": "18"
+    },
+    "ThrownExceptions": {
+      "$id": "19"
+    }
+  },
+  "SplittersVisibility": {
+    "$id": "20",
+    "LULB_Splitter": true,
+    "LR_Splitter": true,
+    "CFR_Splitter": true,
+    "CFRB_Splitter": true,
+    "Changing": {
+      "$id": "21"
+    },
+    "Changed": {
+      "$id": "22"
+    },
+    "ThrownExceptions": {
+      "$id": "23"
+    }
+  },
+  "ApplicationLanguage": "ru-RU"
+}
