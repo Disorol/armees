@@ -142,6 +142,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Интерфейс.
+        /// </summary>
+        public static string Interface {
+            get {
+                return ResourceManager.GetString("Interface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Язык.
         /// </summary>
         public static string Language {
@@ -219,6 +228,15 @@ namespace PLCSoldier.Properties {
         public static string SearchResults {
             get {
                 return ResourceManager.GetString("SearchResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Установить по умолчанию.
+        /// </summary>
+        public static string SetAsDefault {
+            get {
+                return ResourceManager.GetString("SetAsDefault", resourceCulture);
             }
         }
         

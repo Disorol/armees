@@ -33,6 +33,7 @@ namespace PLCSoldier.ViewModels
         public ReactiveCommand<Unit, Unit> Exit { get; set; }
         public ReactiveCommand<string, Unit> OpenTab { get; set; }
         public ReactiveCommand<string, Unit> SwitchLanguage { get; set; }
+        public ReactiveCommand<Unit, Unit> SetGUISettingsAsDefault { get; set; }
 
         public bool isDefaultSettings { get; set; }
 
@@ -141,6 +142,7 @@ namespace PLCSoldier.ViewModels
             SwitchLanguage = ReactiveCommand.Create<string>(ExecuteSwitchLanguage);
             OpenProject = ReactiveCommand.Create(ExecuteOpenProject);
             OpenTab = ReactiveCommand.Create<string>(ExecuteOpenTab);
+            SetGUISettingsAsDefault = ReactiveCommand.Create(ExecuteSetGUISettingsAsDefault);
 
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
             BottomContent = new ObservableCollection<TabItemViewModel>();
@@ -701,6 +703,17 @@ namespace PLCSoldier.ViewModels
             Properties.Resources.Culture = new CultureInfo(language);
 
             var i = SpacesDimensions;
+        }
+
+        private void ExecuteSetGUISettingsAsDefault()
+        {
+            SpacesDimensions = new SpacesDimensionsViewModel();
+
+            SpacesDimensionsIntermediateСonservation = new SpacesDimensionsIntermediateСonservation();
+
+            SplittersVisibility = new SplittersVisibilityViewModel();
+
+            MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
         }
     }
 }

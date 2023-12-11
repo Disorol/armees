@@ -37,6 +37,10 @@
               <MenuItem Header="{x:Static resources:Resources.Russian}" Command="{Binding SwitchLanguage}" CommandParameter="ru-RU" />
               <MenuItem Header="{x:Static resources:Resources.English}" Command="{Binding SwitchLanguage}" CommandParameter="en-US" />
             </MenuItem>
+
+            <MenuItem Header="{x:Static resources:Resources.Interface}">
+              <MenuItem Header="{x:Static resources:Resources.SetAsDefault}" Command="{Binding SetGUISettingsAsDefault}" />
+            </MenuItem>
           </MenuItem>
           <Separator />
           <MenuItem Header="{x:Static resources:Resources.Exit}" Command="{Binding Exit}" />
