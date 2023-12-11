@@ -698,12 +698,9 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
-            JsonGUISettingsWorker.PauseSaveTimer();
+            Properties.Resources.Culture = new CultureInfo(language);
 
-            if (JsonGUISettingsWorker.GUISettingsModel != null)
-                JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = language;
-
-            JsonGUISettingsWorker.ContinueSaveTimer();
+            var i = SpacesDimensions;
         }
     }
 }

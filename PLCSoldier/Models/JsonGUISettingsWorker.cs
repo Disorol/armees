@@ -73,9 +73,9 @@ namespace PLCSoldier.Models
 
         public static void StartSaveTimer(SpacesDimensionsViewModel SpacesDimensions, SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability, SplittersVisibilityViewModel SplittersVisibility)
         {
-            TimerCallback ??= new TimerCallback(SaveChanges);
+            TimerCallback = new TimerCallback(SaveChanges);
 
-            SaveTimer ??= new Timer(TimerCallback, new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, 2000);
+            SaveTimer = new Timer(TimerCallback, new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, 2000);
         }
 
         public static void PauseSaveTimer()
