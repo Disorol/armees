@@ -1,4 +1,5 @@
-﻿using HarfBuzzSharp;
+﻿using Avalonia.Controls;
+using HarfBuzzSharp;
 using PLCSoldier.ViewModels;
 using System;
 using System.Collections.Generic;

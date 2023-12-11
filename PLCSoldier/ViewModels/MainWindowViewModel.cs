@@ -93,7 +93,12 @@ namespace PLCSoldier.ViewModels
         }
 
         // Intermediate conservation of the dimensions of spaces in pixels.
-        public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation { get; set; }
+        private SpacesDimensionsIntermediateСonservation _SpacesDimensionsIntermediateСonservation;
+        public SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation
+        {
+            get => _SpacesDimensionsIntermediateСonservation;
+            set => this.RaiseAndSetIfChanged(ref _SpacesDimensionsIntermediateСonservation, value);
+        }
 
         // Visibility of spaces splitters.
         private SplittersVisibilityViewModel _SplittersVisibility;
@@ -104,7 +109,12 @@ namespace PLCSoldier.ViewModels
         }
 
         // Availability of MainMenuItems
-        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability { get; set; }
+        private MainMenuItemsAvailabilityViewModel _MainMenuItemsAvailability;
+        public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability
+        {
+            get => _MainMenuItemsAvailability;
+            set => this.RaiseAndSetIfChanged(ref _MainMenuItemsAvailability, value);
+        }
 
         public MainWindowViewModel() 
         {
@@ -153,8 +163,15 @@ namespace PLCSoldier.ViewModels
                 AddingTabItemsAtStartup(tabItems);
             }
 
+            
 
-
+            JsonGUISettingsWorker.GUISettingsModel = new GUISettingsModel();
+            JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted = new SpacesDimensionsConverted(SpacesDimensions);
+            JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted = new SpacesDimensionsIntermediateConservationConverted(SpacesDimensionsIntermediateСonservation);
+            JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability = MainMenuItemsAvailability;
+            JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility = SplittersVisibility;
+            JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = Properties.Resources.Culture.Name;
+            JsonGUISettingsWorker.FileWrite();
         }
 
         private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)
