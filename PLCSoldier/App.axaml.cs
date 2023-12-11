@@ -5,6 +5,7 @@ using PLCSoldier.Models;
 using PLCSoldier.ViewModels;
 using PLCSoldier.Views;
 using System.Globalization;
+using System.IO;
 
 namespace PLCSoldier
 {
@@ -24,7 +25,7 @@ namespace PLCSoldier
                 {
                     Properties.Resources.Culture = new CultureInfo(JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage);
                 }
-                catch 
+                catch (IOException)
                 {
                     // Setting the Russian language to the default language quality
                     Properties.Resources.Culture = new CultureInfo("ru-RU");

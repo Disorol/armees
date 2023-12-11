@@ -118,7 +118,7 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel() 
         {
-            isDefaultSettings = true;
+            isDefaultSettings = false;
 
             if (!isDefaultSettings)
             {
@@ -163,16 +163,10 @@ namespace PLCSoldier.ViewModels
                 AddingTabItemsAtStartup(tabItems);
             }
 
-            
-
-            JsonGUISettingsWorker.GUISettingsModel = new GUISettingsModel();
-            JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted = new SpacesDimensionsConverted(SpacesDimensions);
-            JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted = new SpacesDimensionsIntermediateConservationConverted(SpacesDimensionsIntermediateСonservation);
-            JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability = MainMenuItemsAvailability;
-            JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility = SplittersVisibility;
-            JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = Properties.Resources.Culture.Name;
-            JsonGUISettingsWorker.FileWrite();
+            JsonGUISettingsWorker.StartTimer(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility);
         }
+
+        
 
         private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)
         {
@@ -703,6 +697,7 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
+            
             JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = language;
             JsonGUISettingsWorker.FileWrite();
         }
