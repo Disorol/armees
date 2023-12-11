@@ -71,19 +71,44 @@ namespace PLCSoldier.ViewModels
         };
 
         // A list containing left upper space Tabitems.
-        public ObservableCollection<TabItemViewModel> LeftUpperContent { get; set; }
+        private ObservableCollection<TabItemViewModel> _LeftUpperContent;
+        public ObservableCollection<TabItemViewModel> LeftUpperContent
+        {
+            get => _LeftUpperContent;
+            set => this.RaiseAndSetIfChanged(ref _LeftUpperContent, value);
+        }
 
         // A list containing bottom space Tabitems.
-        public ObservableCollection<TabItemViewModel> BottomContent { get; set; }
+        private ObservableCollection<TabItemViewModel> _BottomContent;
+        public ObservableCollection<TabItemViewModel> BottomContent
+        {
+            get => _BottomContent;
+            set => this.RaiseAndSetIfChanged(ref _BottomContent, value);
+        }
 
         // A list containing left bottom space Tabitems.
-        public ObservableCollection<TabItemViewModel> LeftBottomContent { get; set; }
+        private ObservableCollection<TabItemViewModel> _LeftBottomContent;
+        public ObservableCollection<TabItemViewModel> LeftBottomContent
+        {
+            get => _LeftBottomContent;
+            set => this.RaiseAndSetIfChanged(ref _LeftBottomContent, value);
+        }
 
         // A list containing far right space Tabitems.
-        public ObservableCollection<TabItemViewModel> FarRightContent { get; set; }
+        private ObservableCollection<TabItemViewModel> _FarRightContent;
+        public ObservableCollection<TabItemViewModel> FarRightContent
+        {
+            get => _FarRightContent;
+            set => this.RaiseAndSetIfChanged(ref _FarRightContent, value);
+        }
 
         // A list containing central space Tabitems.
-        public ObservableCollection<TabItemViewModel> CentralContent { get; set; }
+        private ObservableCollection<TabItemViewModel> _CentralContent;
+        public ObservableCollection<TabItemViewModel> CentralContent
+        {
+            get => _CentralContent;
+            set => this.RaiseAndSetIfChanged(ref _CentralContent, value);
+        }
 
         // Dimensions of all spaces.
         private SpacesDimensionsViewModel _SpacesDimensions;
@@ -121,21 +146,39 @@ namespace PLCSoldier.ViewModels
         {
             isDefaultSettings = false;
 
-            if (!isDefaultSettings)
+            if(!isDefaultSettings)
             {
                 JsonGUISettingsWorker.FileRead();
 
                 if (JsonGUISettingsWorker.GUISettingsModel == null)
                     isDefaultSettings = true;
             }
-                
-            SpacesDimensions = isDefaultSettings ? new SpacesDimensionsViewModel() : GridLengthDeconverter.ConvertToSpacesDimensionsViewModel(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted);
 
-            SpacesDimensionsIntermediateСonservation = isDefaultSettings ? new SpacesDimensionsIntermediateСonservation() : GridLengthDeconverter.ConvertToSpacesDimensionsIntermediateСonservation(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted);
+            if (isDefaultSettings)
+            {
+                ExecuteSetGUISettingsAsDefault();
+            }
+            else
+            {
+                SpacesDimensions = GridLengthDeconverter.ConvertToSpacesDimensionsViewModel(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsConverted);
 
-            SplittersVisibility = isDefaultSettings ? new SplittersVisibilityViewModel() : JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility;
+                SpacesDimensionsIntermediateСonservation = GridLengthDeconverter.ConvertToSpacesDimensionsIntermediateСonservation(JsonGUISettingsWorker.GUISettingsModel.SpacesDimensionsIntermediateConservationConverted);
 
-            MainMenuItemsAvailability = isDefaultSettings ? new MainMenuItemsAvailabilityViewModel() : JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability;
+                SplittersVisibility = JsonGUISettingsWorker.GUISettingsModel.SplittersVisibility;
+
+                MainMenuItemsAvailability = JsonGUISettingsWorker.GUISettingsModel.MainMenuItemsAvailability;
+
+                CompleteCleanSpaces();
+
+                List<TabItemViewModel> tabItems = new List<TabItemViewModel>();
+
+                foreach (string key in GetAllKeys())
+                {
+                    if (!MainMenuItemsAvailability.GetAvailabilityByKey(key)) tabItems.Add(KeyToTabItem(key));
+                }
+
+                AddTabItems(tabItems);
+            }
 
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -144,33 +187,10 @@ namespace PLCSoldier.ViewModels
             OpenTab = ReactiveCommand.Create<string>(ExecuteOpenTab);
             SetGUISettingsAsDefault = ReactiveCommand.Create(ExecuteSetGUISettingsAsDefault);
 
-            LeftUpperContent = new ObservableCollection<TabItemViewModel>();
-            BottomContent = new ObservableCollection<TabItemViewModel>();
-            LeftBottomContent = new ObservableCollection<TabItemViewModel>();
-            FarRightContent = new ObservableCollection<TabItemViewModel>();
-            CentralContent = new ObservableCollection<TabItemViewModel>();
-
-            if (isDefaultSettings) AddingTabItemsAtStartup(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"], 
-                                                                                        centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"], 
-                                                                                        bottomItems["Search results"], bottomItems["Watch"] });
-            else
-            {
-                List<TabItemViewModel> tabItems = new List<TabItemViewModel>();
-
-                foreach (string key in GetAllKeys())
-                {
-                    if (!MainMenuItemsAvailability.GetAvailabilityByKey(key)) tabItems.Add(KeyToTabItem(key));
-                }
-
-                AddingTabItemsAtStartup(tabItems);
-            }
-
             JsonGUISettingsWorker.StartSaveTimer(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility);
         }
 
-        
-
-        private void AddingTabItemsAtStartup(List<TabItemViewModel> tabItems)
+        private void AddTabItems(List<TabItemViewModel> tabItems)
         {
             foreach (TabItemViewModel tabItem in tabItems)
             {
@@ -221,6 +241,15 @@ namespace PLCSoldier.ViewModels
             else if (bottomItems.ContainsKey(key)) return bottomItems[key];
 
             return null;
+        }
+
+        private void CompleteCleanSpaces()
+        {
+            LeftUpperContent = new ObservableCollection<TabItemViewModel>();
+            BottomContent = new ObservableCollection<TabItemViewModel>();
+            LeftBottomContent = new ObservableCollection<TabItemViewModel>();
+            FarRightContent = new ObservableCollection<TabItemViewModel>();
+            CentralContent = new ObservableCollection<TabItemViewModel>();
         }
 
         // Closing tabs by deleting them from the collection.
@@ -700,13 +729,13 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
-            Properties.Resources.Culture = new CultureInfo(language);
-
-            var i = SpacesDimensions;
+            Properties.Resources.Culture = new CultureInfo(language);;
         }
 
         private void ExecuteSetGUISettingsAsDefault()
         {
+            JsonGUISettingsWorker.PauseSaveTimer();
+
             SpacesDimensions = new SpacesDimensionsViewModel();
 
             SpacesDimensionsIntermediateСonservation = new SpacesDimensionsIntermediateСonservation();
@@ -714,6 +743,14 @@ namespace PLCSoldier.ViewModels
             SplittersVisibility = new SplittersVisibilityViewModel();
 
             MainMenuItemsAvailability = new MainMenuItemsAvailabilityViewModel();
+
+            CompleteCleanSpaces();
+
+            AddTabItems(new List<TabItemViewModel> { leftUpperItems["Logical organizer"], leftBottomItems["Hardware organizer"],
+                                                                                        centralItems["Workspace"], farRightItems["Property"], bottomItems["Errors"],
+                                                                                        bottomItems["Search results"], bottomItems["Watch"] });
+
+            JsonGUISettingsWorker.StartSaveTimer(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility);
         }
     }
 }

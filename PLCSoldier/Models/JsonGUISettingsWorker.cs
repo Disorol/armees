@@ -26,8 +26,7 @@ namespace PLCSoldier.Models
             {
                 try
                 {
-                    using FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate);
-                        JsonSerializer.Serialize<GUISettingsModel>(fileStream, GUISettingsModel, GetSerializerSettings());
+                    File.WriteAllText("settings.json", JsonSerializer.Serialize<GUISettingsModel>(GUISettingsModel, GetSerializerSettings()));
                 }
                 catch (IOException) { }
             }
@@ -37,11 +36,12 @@ namespace PLCSoldier.Models
         {
             try
             {
-                using FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate);
-                    if (fileStream.Length > 0)
-                        GUISettingsModel = JsonSerializer.Deserialize<GUISettingsModel>(fileStream, GetSerializerSettings());
-                    else
-                        GUISettingsModel = null;
+                string readText = File.ReadAllText("settings.json");
+
+                if (!string.IsNullOrEmpty(readText))
+                    GUISettingsModel = JsonSerializer.Deserialize<GUISettingsModel>(readText, GetSerializerSettings());
+                else 
+                    GUISettingsModel = null;
             }
             catch (IOException) { }
         }
