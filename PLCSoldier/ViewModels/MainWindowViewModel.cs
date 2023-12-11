@@ -163,7 +163,7 @@ namespace PLCSoldier.ViewModels
                 AddingTabItemsAtStartup(tabItems);
             }
 
-            JsonGUISettingsWorker.StartTimer(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility);
+            JsonGUISettingsWorker.StartSaveTimer(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility);
         }
 
         
@@ -681,13 +681,14 @@ namespace PLCSoldier.ViewModels
             }
         }
 
+        [Obsolete]
         private async void ExecuteOpenProject()
         {
-            var dialog = new OpenFolderDialog();
+            OpenFolderDialog dialog = new OpenFolderDialog();
 
-            var mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow : null;
+            Window? mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow : null;
 
-            var result = await dialog.ShowAsync(mainWindow);
+            string? result = await dialog.ShowAsync(mainWindow);
 
             if (result != null)
             {
@@ -697,9 +698,12 @@ namespace PLCSoldier.ViewModels
 
         private void ExecuteSwitchLanguage(string language)
         {
-            
-            JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = language;
-            JsonGUISettingsWorker.FileWrite();
+            JsonGUISettingsWorker.PauseSaveTimer();
+
+            if (JsonGUISettingsWorker.GUISettingsModel != null)
+                JsonGUISettingsWorker.GUISettingsModel.ApplicationLanguage = language;
+
+            JsonGUISettingsWorker.ContinueSaveTimer();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace PLCSoldier.Models
     public static class JsonGUISettingsWorker
     {
         public static GUISettingsModel? GUISettingsModel { get; set; }
+        private static TimerCallback? TimerCallback { get; set; }
         private static Timer? SaveTimer {  get; set; }
 
         public static void FileWrite()
@@ -25,10 +26,8 @@ namespace PLCSoldier.Models
             {
                 try
                 {
-                    using (FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate))
-                    {
+                    using FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate);
                         JsonSerializer.Serialize<GUISettingsModel>(fileStream, GUISettingsModel, GetSerializerSettings());
-                    }
                 }
                 catch (IOException) { }
             }
@@ -38,13 +37,11 @@ namespace PLCSoldier.Models
         {
             try
             {
-                using (FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate))
-                {
+                using FileStream fileStream = new FileStream("settings.json", FileMode.OpenOrCreate);
                     if (fileStream.Length > 0)
                         GUISettingsModel = JsonSerializer.Deserialize<GUISettingsModel>(fileStream, GetSerializerSettings());
                     else
                         GUISettingsModel = null;
-                }
             }
             catch (IOException) { }
         }
@@ -62,20 +59,33 @@ namespace PLCSoldier.Models
         {
             List<object> settingsList = (List<object>)obj;
 
-            GUISettingsModel = new GUISettingsModel();
-            GUISettingsModel.SpacesDimensionsConverted = new SpacesDimensionsConverted((SpacesDimensionsViewModel)settingsList[0]);
-            GUISettingsModel.SpacesDimensionsIntermediateConservationConverted = new SpacesDimensionsIntermediateConservationConverted((SpacesDimensionsIntermediateСonservation)settingsList[1]);
-            GUISettingsModel.MainMenuItemsAvailability = (MainMenuItemsAvailabilityViewModel)settingsList[2];
-            GUISettingsModel.SplittersVisibility = (SplittersVisibilityViewModel)settingsList[3];
-            GUISettingsModel.ApplicationLanguage = Properties.Resources.Culture.Name;
+            GUISettingsModel = new GUISettingsModel
+            {
+                SpacesDimensionsConverted = new SpacesDimensionsConverted((SpacesDimensionsViewModel)settingsList[0]),
+                SpacesDimensionsIntermediateConservationConverted = new SpacesDimensionsIntermediateConservationConverted((SpacesDimensionsIntermediateСonservation)settingsList[1]),
+                MainMenuItemsAvailability = (MainMenuItemsAvailabilityViewModel)settingsList[2],
+                SplittersVisibility = (SplittersVisibilityViewModel)settingsList[3],
+                ApplicationLanguage = Properties.Resources.Culture.Name
+            };
+
             FileWrite();
         }
 
-        public static void StartTimer(SpacesDimensionsViewModel SpacesDimensions, SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability, SplittersVisibilityViewModel SplittersVisibility)
+        public static void StartSaveTimer(SpacesDimensionsViewModel SpacesDimensions, SpacesDimensionsIntermediateСonservation SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability, SplittersVisibilityViewModel SplittersVisibility)
         {
-            TimerCallback timerCallback = new TimerCallback(SaveChanges);
+            TimerCallback ??= new TimerCallback(SaveChanges);
 
-            SaveTimer = new Timer(timerCallback, new List<object>() { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, 2000);
+            SaveTimer ??= new Timer(TimerCallback, new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, 2000);
+        }
+
+        public static void PauseSaveTimer()
+        {
+            SaveTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+        }
+
+        public static void ContinueSaveTimer()
+        {
+            SaveTimer?.Change(0, 2000);
         }
     }
 }
