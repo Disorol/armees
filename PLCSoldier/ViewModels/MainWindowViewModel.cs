@@ -23,11 +23,17 @@ using System.Xml.Serialization;
 using System.Text.Json;
 using System.IO;
 using System.Threading;
+using PLCSoldier.ViewModels.DialogBoxViewModels;
+using System.Reactive.Linq;
 
 namespace PLCSoldier.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        public Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> ShowSwitchLanguageDialog { get; }
+
+        public ICommand SwitchLanguageCommand { get; }
+
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
         public ReactiveCommand<Unit, Unit> OpenProject { get; set; }
         public ReactiveCommand<Unit, Unit> Exit { get; set; }
@@ -142,7 +148,7 @@ namespace PLCSoldier.ViewModels
             set => this.RaiseAndSetIfChanged(ref _MainMenuItemsAvailability, value);
         }
 
-        public MainWindowViewModel() 
+        public MainWindowViewModel()
         {
             isDefaultSettings = false;
 
@@ -179,6 +185,8 @@ namespace PLCSoldier.ViewModels
 
                 AddTabItems(tabItems);
             }
+
+            ShowSwitchLanguageDialog = new Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?>();
 
             // Assigning methods to commands
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -727,9 +735,13 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private void ExecuteSwitchLanguage(string language)
+        private async void ExecuteSwitchLanguage(string language)
         {
-            Properties.Resources.Culture = new CultureInfo(language);;
+            Properties.Resources.Culture = new CultureInfo(language);
+
+            SwitchLanguageViewModel switchLanguageViewModel = new SwitchLanguageViewModel();
+
+            SwitchingLanguageResultViewModel result = await ShowSwitchLanguageDialog.Handle(switchLanguageViewModel);
         }
 
         private void ExecuteSetGUISettingsAsDefault()

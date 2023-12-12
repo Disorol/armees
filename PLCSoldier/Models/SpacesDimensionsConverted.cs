@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.Models
 {
+
     public class SpacesDimensionsConverted
     {
         public GridLengthConverted LeftSpaceWidth { get; set; }

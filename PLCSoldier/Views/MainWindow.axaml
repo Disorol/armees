@@ -11,6 +11,7 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         RequestedThemeVariant="Light"
+        WindowStartupLocation="CenterScreen"
         Title="{x:Static resources:Resources.ApplicationTitle}">
 
   <Grid Name="MainGrid">

@@ -223,7 +223,7 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Поиск результатов.
+        ///   Ищет локализованную строку, похожую на Результаты поиска.
         /// </summary>
         public static string SearchResults {
             get {

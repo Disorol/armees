@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:PLCSoldier.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200" MaxWidth="400" MaxHeight="200"
+        x:Class="PLCSoldier.Views.DialogBoxViews.SwitchLanguageView"
+
+        WindowStartupLocation="CenterOwner"
+        RequestedThemeVariant="Light"
+        Title="Предупрежднение">
+  <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="White"
+                    TintOpacity="1"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+
+        <Panel Margin="40">
+          <Button Command="" />
+        </Panel>
+    </Panel>
+</Window>
