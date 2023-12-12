@@ -32,8 +32,6 @@ namespace PLCSoldier.ViewModels
     {
         public Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> ShowSwitchLanguageDialog { get; }
 
-        public ICommand SwitchLanguageCommand { get; }
-
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
         public ReactiveCommand<Unit, Unit> OpenProject { get; set; }
         public ReactiveCommand<Unit, Unit> Exit { get; set; }

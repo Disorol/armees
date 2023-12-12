@@ -22,8 +22,10 @@ namespace PLCSoldier.Views
         private async Task DoShowDialogAsync(InteractionContext<SwitchLanguageViewModel,
                                         SwitchingLanguageResultViewModel?> interaction)
         {
-            SwitchLanguageView dialog = new SwitchLanguageView();
-            dialog.DataContext = interaction.Input;
+            SwitchLanguageView dialog = new()
+            {
+                DataContext = interaction.Input
+            };
 
             SwitchingLanguageResultViewModel? result = await dialog.ShowDialog<SwitchingLanguageResultViewModel?>(this);
             interaction.SetOutput(result);

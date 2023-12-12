@@ -5,10 +5,10 @@
         xmlns:vm="using:PLCSoldier.ViewModels"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200" MaxWidth="400" MaxHeight="200"
         x:Class="PLCSoldier.Views.DialogBoxViews.SwitchLanguageView"
-
         WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
-        Title="Предупрежднение">
+        Title="Предупрежднение"
+        x:DataType="vm:MainWindowViewModel">
   <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
@@ -21,7 +21,7 @@
         </ExperimentalAcrylicBorder>
 
         <Panel Margin="40">
-          <Button Command="" />
+          <TextBox Text="{Binding isReboot}" />
         </Panel>
     </Panel>
 </Window>
