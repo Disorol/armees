@@ -13,8 +13,20 @@ namespace PLCSoldier.Views.DialogBoxViews
         public SwitchLanguageView()
         {
             InitializeComponent();
+
+            ConfirmationButton.Command = ReactiveCommand.Create(ConfirmRebootingExecute);
+
+            CancelButton.Command = ReactiveCommand.Create(CancelRebootingExecute);
         }
 
-        // Close(new SwitchingLanguageResultViewModel() { IsReboot = true });
+        private void ConfirmRebootingExecute()
+        {
+            Close(new SwitchingLanguageResultViewModel() { IsReboot = true });
+        }
+
+        private void CancelRebootingExecute()
+        {
+            Close(new SwitchingLanguageResultViewModel() { IsReboot = false });
+        }
     }
 }

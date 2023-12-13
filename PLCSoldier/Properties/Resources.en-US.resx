@@ -120,8 +120,14 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Soldier</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Communications" xml:space="preserve">
     <value>Communications</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -218,6 +224,12 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="WarningRestart" xml:space="preserve">
+    <value>The program will be restarted</value>
   </data>
   <data name="Watch" xml:space="preserve">
     <value>Watch</value>

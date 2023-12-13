@@ -70,11 +70,29 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Отмена.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Коммуникации.
         /// </summary>
         public static string Communications {
             get {
                 return ResourceManager.GetString("Communications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подтвердить.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
         
@@ -363,6 +381,24 @@ namespace PLCSoldier.Properties {
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предупреждение.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Программа будет перезапущена.
+        /// </summary>
+        public static string WarningRestart {
+            get {
+                return ResourceManager.GetString("WarningRestart", resourceCulture);
             }
         }
         

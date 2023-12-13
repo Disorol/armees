@@ -2,26 +2,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:PLCSoldier.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200" MaxWidth="400" MaxHeight="200"
+        xmlns:vm="using:PLCSoldier.ViewModels.DialogBoxViewModels"
+        xmlns:resources="clr-namespace:PLCSoldier.Properties"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="150" MaxWidth="400" MaxHeight="150"
         x:Class="PLCSoldier.Views.DialogBoxViews.SwitchLanguageView"
         WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
-        Title="Предупрежднение"
-        x:DataType="vm:MainWindowViewModel">
+        Title="{x:Static resources:Resources.Warning}"
+        Icon="/Assets/images/icons/warning.ico"
+        x:DataType="vm:SwitchLanguageViewModel">
   <Panel>
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    TintColor="White"
-                    TintOpacity="1"
-                    MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
+    <StackPanel Margin="0 20 0 0">
+      <TextBlock Text="{x:Static resources:Resources.WarningRestart}"
+                 FontSize="{Binding WarningText_FontSize}"
+                 Height="40"
+                 TextAlignment="Center"
+                 VerticalAlignment="Center"/>
+      <Grid>
+        <Button Name="ConfirmationButton"
+                HorizontalAlignment="Left"
+                Margin="40 20 0 0"
+                Width="{Binding ConfirmationButton_Width}"
+                Height=""
+                HorizontalContentAlignment="Center"
+                FontSize="{Binding ConfirmationButton_FontSize}"
+                Content="{x:Static resources:Resources.Confirm}" />
 
-        <Panel Margin="40">
-          <TextBox Text="{Binding isReboot}" />
-        </Panel>
+        <Button Name="CancelButton"
+                HorizontalAlignment="Right"
+                Margin="0 20 40 0"
+                Width="{Binding CancelButton_Width}"
+                Height=""
+                HorizontalContentAlignment="Center"
+                FontSize="{Binding CancelButton_FontSize}"
+                Content="{x:Static resources:Resources.Cancel}" />
+      </Grid>
+    </StackPanel>
     </Panel>
 </Window>

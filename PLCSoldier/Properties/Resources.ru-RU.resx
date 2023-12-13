@@ -120,8 +120,14 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Армеец</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="Communications" xml:space="preserve">
     <value>Коммуникации</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
@@ -218,6 +224,12 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Вид</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="WarningRestart" xml:space="preserve">
+    <value>Программа будет перезапущена</value>
   </data>
   <data name="Watch" xml:space="preserve">
     <value>Просмотр</value>
