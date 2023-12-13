@@ -150,7 +150,7 @@ namespace PLCSoldier.ViewModels
         {
             isDefaultSettings = false;
 
-            if(!isDefaultSettings)
+            if (!isDefaultSettings)
             {
                 JsonGUISettingsWorker.FileRead();
 
@@ -266,8 +266,8 @@ namespace PLCSoldier.ViewModels
             if (leftUpperItems.ContainsKey(key))
             {
                 LeftUpperContent.Remove(leftUpperItems[key]);
-                
-                if (LeftUpperContent.Count == 0) 
+
+                if (LeftUpperContent.Count == 0)
                 {
                     /* 
                         Checking for an attempt to write values of 1 Star or 0 Pixel to TabStatus.
@@ -566,7 +566,7 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private void LeftUpperSpaceExpansion() 
+        private void LeftUpperSpaceExpansion()
         {
             if (LeftUpperContent.Count == 0)
             {
@@ -661,7 +661,7 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private void CentralAndFarRightSpaceExpansion() 
+        private void CentralAndFarRightSpaceExpansion()
         {
             if (CentralContent.Count == 0 && FarRightContent.Count == 0)
             {
@@ -680,7 +680,7 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private void LeftSpaceExpansion() 
+        private void LeftSpaceExpansion()
         {
             if (LeftUpperContent.Count == 0 && LeftBottomContent.Count == 0)
             {
@@ -699,7 +699,7 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        private void RightSpaceExpansion() 
+        private void RightSpaceExpansion()
         {
             if (CentralContent.Count == 0 && FarRightContent.Count == 0 && BottomContent.Count == 0)
             {
@@ -735,11 +735,22 @@ namespace PLCSoldier.ViewModels
 
         private async void ExecuteSwitchLanguage(string language)
         {
-            Properties.Resources.Culture = new CultureInfo(language);
-
             SwitchLanguageViewModel switchLanguageViewModel = new SwitchLanguageViewModel();
 
             SwitchingLanguageResultViewModel result = await ShowSwitchLanguageDialog.Handle(switchLanguageViewModel);
+
+            if (result != null)
+            {
+                if (result.IsReboot)
+                {
+                    Properties.Resources.Culture = new CultureInfo(language);
+                    JsonGUISettingsWorker.PauseSaveTimer();
+                    JsonGUISettingsWorker.SaveChanges(new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility });
+
+                    if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime) 
+                        lifetime.Shutdown();
+                }
+            }
         }
 
         private void ExecuteSetGUISettingsAsDefault()

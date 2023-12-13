@@ -8,6 +8,6 @@ namespace PLCSoldier.ViewModels.DialogBoxViewModels
 {
     public class SwitchingLanguageResultViewModel
     {
-        public bool? IsReboot { get; set; }
+        public bool IsReboot { get; set; } = false;
     }
 }
