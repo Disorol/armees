@@ -18,6 +18,7 @@ namespace PLCSoldier.Classes
 {
     public static class JsonGUISettingsWorker
     {
+        // GUI settings that will be saved
         public static GUISettingsModel? GUISettingsModel { get; set; }
         private static TimerCallback? TimerCallback { get; set; }
         private static Timer? SaveTimer { get; set; }
@@ -98,8 +99,15 @@ namespace PLCSoldier.Classes
             IsTimerRun = true;
         }
 
+        /*
+            A method for saving GUI settings immediately. 
+
+            The PauseSaveTimer() and ContinueSaveTimer() methods
+            are used, because saving occurs by starting the timer.
+        */
         public static void SaveNow()
         {
+            // The condition is necessary to return the timer to the previous state.
             if (IsTimerRun)
             {
                 PauseSaveTimer();
