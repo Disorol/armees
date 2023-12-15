@@ -66,7 +66,7 @@ namespace PLCSoldier.Utils
             {
                 _isValid = false;
                 _suggestedName = null;
-                _errorMessage ??= "Введите название переменной";
+                _errorMessage ??= Properties.Resources.WarningVariableName;
             }
 
             return this;
@@ -102,7 +102,7 @@ namespace PLCSoldier.Utils
             {
                 _suggestedName = null;
                 _isValid = false;
-                _errorMessage ??= "Неправильный формат имени переменной";
+                _errorMessage ??= Properties.Resources.ErrorIncorrectFormat;
             }
 
             return this;

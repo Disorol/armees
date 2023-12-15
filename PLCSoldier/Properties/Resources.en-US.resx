@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>Soldier</value>
+  <data name="AccessType" xml:space="preserve">
+    <value>Access type</value>
+  </data>
+  <data name="Armees" xml:space="preserve">
+    <value>Armees</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -129,20 +135,50 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="Constant" xml:space="preserve">
+    <value>Constant</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="DataType" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="DeleteColumn" xml:space="preserve">
+    <value>Delete column</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Detele" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="ErrorIncorrectFormat" xml:space="preserve">
+    <value>Incorrect format of the variable name</value>
+  </data>
   <data name="Errors" xml:space="preserve">
     <value>Errors</value>
+  </data>
+  <data name="ErrorUnknownError" xml:space="preserve">
+    <value>Unknown error</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
+  </data>
+  <data name="FilterByName" xml:space="preserve">
+    <value>Filter by name</value>
+  </data>
+  <data name="FilterByType" xml:space="preserve">
+    <value>Filter by type</value>
   </data>
   <data name="HardwareOrganizer" xml:space="preserve">
     <value>Hardware organizer</value>
@@ -168,11 +204,17 @@
   <data name="OpenProject" xml:space="preserve">
     <value>Open project</value>
   </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
   <data name="Property" xml:space="preserve">
     <value>Property</value>
   </data>
   <data name="Russian" xml:space="preserve">
     <value>Russian</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -188,6 +230,9 @@
   </data>
   <data name="SomeText" xml:space="preserve">
     <value>Some text</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Style</value>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Tools</value>
@@ -219,8 +264,14 @@
   <data name="Tooltip9" xml:space="preserve">
     <value>Tooltip 9</value>
   </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
   <data name="ValueEditor" xml:space="preserve">
     <value>Value editor</value>
+  </data>
+  <data name="VariableName" xml:space="preserve">
+    <value>Variable name</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
@@ -228,8 +279,17 @@
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="WarningDeleteBranch" xml:space="preserve">
+    <value>Are you sure you want to delete the branch of the variable</value>
+  </data>
   <data name="WarningRestart" xml:space="preserve">
     <value>The program will be restarted</value>
+  </data>
+  <data name="WarningSelectVariable" xml:space="preserve">
+    <value>Select the variable to delete</value>
+  </data>
+  <data name="WarningVariableName" xml:space="preserve">
+    <value>Enter the name of the variable</value>
   </data>
   <data name="Watch" xml:space="preserve">
     <value>Watch</value>

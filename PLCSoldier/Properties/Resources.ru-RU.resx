@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationTitle" xml:space="preserve">
+  <data name="AccessType" xml:space="preserve">
+    <value>Тип доступа</value>
+  </data>
+  <data name="Armees" xml:space="preserve">
     <value>Армеец</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Внимание</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
@@ -129,20 +135,50 @@
   <data name="Confirm" xml:space="preserve">
     <value>Подтвердить</value>
   </data>
+  <data name="Constant" xml:space="preserve">
+    <value>Константа</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="DataType" xml:space="preserve">
+    <value>Тип данных</value>
+  </data>
+  <data name="DeleteColumn" xml:space="preserve">
+    <value>Удалить столбец</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Detele" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>Английский</value>
   </data>
+  <data name="ErrorIncorrectFormat" xml:space="preserve">
+    <value>Неправильный формат имени переменной</value>
+  </data>
   <data name="Errors" xml:space="preserve">
     <value>Ошибки</value>
+  </data>
+  <data name="ErrorUnknownError" xml:space="preserve">
+    <value>Неизвестная ошибка</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Выход</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>Файл</value>
+  </data>
+  <data name="FilterByName" xml:space="preserve">
+    <value>Фильтр по имени</value>
+  </data>
+  <data name="FilterByType" xml:space="preserve">
+    <value>Фильтр по типу</value>
   </data>
   <data name="HardwareOrganizer" xml:space="preserve">
     <value>Аппаратный органайзер</value>
@@ -168,11 +204,17 @@
   <data name="OpenProject" xml:space="preserve">
     <value>Открыть проект</value>
   </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
   <data name="Property" xml:space="preserve">
     <value>Свойства</value>
   </data>
   <data name="Russian" xml:space="preserve">
     <value>Русский</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранять</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск</value>
@@ -188,6 +230,9 @@
   </data>
   <data name="SomeText" xml:space="preserve">
     <value>Какой-то текст</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Стиль</value>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Инструменты</value>
@@ -219,8 +264,14 @@
   <data name="Tooltip9" xml:space="preserve">
     <value>Подсказка 9</value>
   </data>
+  <data name="Value" xml:space="preserve">
+    <value>Значение</value>
+  </data>
   <data name="ValueEditor" xml:space="preserve">
     <value>Редактор переменных</value>
+  </data>
+  <data name="VariableName" xml:space="preserve">
+    <value>Имя переменной</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Вид</value>
@@ -228,8 +279,17 @@
   <data name="Warning" xml:space="preserve">
     <value>Предупреждение</value>
   </data>
+  <data name="WarningDeleteBranch" xml:space="preserve">
+    <value>Вы точно хотите удалить ветвь переменной</value>
+  </data>
   <data name="WarningRestart" xml:space="preserve">
     <value>Программа будет перезапущена</value>
+  </data>
+  <data name="WarningSelectVariable" xml:space="preserve">
+    <value>Выделите удаляемую переменную</value>
+  </data>
+  <data name="WarningVariableName" xml:space="preserve">
+    <value>Введите название переменной</value>
   </data>
   <data name="Watch" xml:space="preserve">
     <value>Просмотр</value>

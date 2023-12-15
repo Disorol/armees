@@ -6,6 +6,7 @@
 			       xmlns:m="using:PLCSoldier.Classes"
              xmlns:i="using:Avalonia.Xaml.Interactivity"
              xmlns:behaviours="clr-namespace:PLCSoldier.Behaviours;assembly=PLCSoldier"
+             xmlns:resources="clr-namespace:PLCSoldier.Properties"
 			       xmlns:Classes="clr-namespace:PLCSoldier.Classes;assembly=PLCSoldier"
              xmlns:root="clr-namespace:PLCSoldier;assembly=PLCSoldier"
              xmlns:customs="clr-namespace:PLCSoldier.CustomControls;assembly=PLCSoldier"
@@ -47,12 +48,12 @@
                 Margin="10,0,10,0"
                 Spacing="10">
 
-      <customs:AdvancedTextBox DefaultText="Фильтр по имени"
+      <customs:AdvancedTextBox DefaultText="{x:Static resources:Resources.FilterByName}"
                                Width="180"
                                Margin="0,10"
                                Text="{Binding NameFilter}"/>
 
-      <customs:AdvancedTextBox DefaultText="Фильтр по типу"
+      <customs:AdvancedTextBox DefaultText="{x:Static resources:Resources.FilterByType}"
                                Width="180"
                                Margin="0,10"
                                Text="{Binding DataTypeFilter}"/>
@@ -126,12 +127,12 @@
               <Setter Property="ContextMenu">
                 <Setter.Value>
                   <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
-                    <MenuItem Header="Копировать"
+                    <MenuItem Header="{x:Static resources:Resources.Copy}"
                               Command="{Binding $parent[UserControl].DataContext.CopyCommand}"
                               CommandParameter="{Binding $parent[TreeDataGridRow].DataContext}"/>
-                    <MenuItem Header="Вставить"
+                    <MenuItem Header="{x:Static resources:Resources.Paste}"
                               Command="{Binding $parent[UserControl].DataContext.InsertCommand}"/>
-                    <MenuItem Header="Удалить"
+                    <MenuItem Header="{x:Static resources:Resources.Detele}"
                               Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"
                               CommandParameter="{Binding $parent[TreeDataGridRow].DataContext}"/>
                   </ContextMenu>
@@ -248,7 +249,7 @@
                 Margin="0,5"
                 IsVisible="False"/>
         
-        <Button Content="Удалить столбец"
+        <Button Content="{x:Static resources:Resources.DeleteColumn}"
                 Margin="0,5"
                 Click="OnRemoveButtonClick"
                 IsVisible="False"/>

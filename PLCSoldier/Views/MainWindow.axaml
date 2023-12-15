@@ -12,7 +12,7 @@
         Icon="/Assets/avalonia-logo.ico"
         RequestedThemeVariant="Light"
         WindowStartupLocation="CenterScreen"
-        Title="{x:Static resources:Resources.ApplicationTitle}">
+        Title="{x:Static resources:Resources.Armees}">
 
   <Grid Name="MainGrid">
     <Grid.RowDefinitions>

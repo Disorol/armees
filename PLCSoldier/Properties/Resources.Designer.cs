@@ -61,11 +61,29 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип доступа.
+        /// </summary>
+        public static string AccessType {
+            get {
+                return ResourceManager.GetString("AccessType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Армеец.
         /// </summary>
-        public static string ApplicationTitle {
+        public static string Armees {
             get {
-                return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+                return ResourceManager.GetString("Armees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Внимание.
+        /// </summary>
+        public static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
             }
         }
         
@@ -97,6 +115,60 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Константа.
+        /// </summary>
+        public static string Constant {
+            get {
+                return ResourceManager.GetString("Constant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Копировать.
+        /// </summary>
+        public static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип данных.
+        /// </summary>
+        public static string DataType {
+            get {
+                return ResourceManager.GetString("DataType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить столбец.
+        /// </summary>
+        public static string DeleteColumn {
+            get {
+                return ResourceManager.GetString("DeleteColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Описание.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить.
+        /// </summary>
+        public static string Detele {
+            get {
+                return ResourceManager.GetString("Detele", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Редактировать.
         /// </summary>
         public static string Edit {
@@ -115,11 +187,29 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Неправильный формат имени переменной.
+        /// </summary>
+        public static string ErrorIncorrectFormat {
+            get {
+                return ResourceManager.GetString("ErrorIncorrectFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибки.
         /// </summary>
         public static string Errors {
             get {
                 return ResourceManager.GetString("Errors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Неизвестная ошибка.
+        /// </summary>
+        public static string ErrorUnknownError {
+            get {
+                return ResourceManager.GetString("ErrorUnknownError", resourceCulture);
             }
         }
         
@@ -138,6 +228,24 @@ namespace PLCSoldier.Properties {
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фильтр по имени.
+        /// </summary>
+        public static string FilterByName {
+            get {
+                return ResourceManager.GetString("FilterByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фильтр по типу.
+        /// </summary>
+        public static string FilterByType {
+            get {
+                return ResourceManager.GetString("FilterByType", resourceCulture);
             }
         }
         
@@ -214,6 +322,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вставить.
+        /// </summary>
+        public static string Paste {
+            get {
+                return ResourceManager.GetString("Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Свойства.
         /// </summary>
         public static string Property {
@@ -228,6 +345,15 @@ namespace PLCSoldier.Properties {
         public static string Russian {
             get {
                 return ResourceManager.GetString("Russian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранять.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -273,6 +399,15 @@ namespace PLCSoldier.Properties {
         public static string SomeText {
             get {
                 return ResourceManager.GetString("SomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Стиль.
+        /// </summary>
+        public static string Style {
+            get {
+                return ResourceManager.GetString("Style", resourceCulture);
             }
         }
         
@@ -367,11 +502,29 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Значение.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Редактор переменных.
         /// </summary>
         public static string ValueEditor {
             get {
                 return ResourceManager.GetString("ValueEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Имя переменной.
+        /// </summary>
+        public static string VariableName {
+            get {
+                return ResourceManager.GetString("VariableName", resourceCulture);
             }
         }
         
@@ -394,11 +547,38 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы точно хотите удалить ветвь переменной.
+        /// </summary>
+        public static string WarningDeleteBranch {
+            get {
+                return ResourceManager.GetString("WarningDeleteBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Программа будет перезапущена.
         /// </summary>
         public static string WarningRestart {
             get {
                 return ResourceManager.GetString("WarningRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выделите удаляемую переменную.
+        /// </summary>
+        public static string WarningSelectVariable {
+            get {
+                return ResourceManager.GetString("WarningSelectVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Введите название переменной.
+        /// </summary>
+        public static string WarningVariableName {
+            get {
+                return ResourceManager.GetString("WarningVariableName", resourceCulture);
             }
         }
         

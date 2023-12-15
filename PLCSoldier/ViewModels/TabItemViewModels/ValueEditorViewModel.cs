@@ -115,7 +115,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
             Columns =
             {
                 new HierarchicalExpanderColumn<DataValue>(
-                    new TextColumn<DataValue, string>("Имя переменной", x => x.Name,
+                    new TextColumn<DataValue, string>(Properties.Resources.VariableName, x => x.Name,
                     (var, value) => var.Name = value,
                     new GridLength(100, GridUnitType.Auto),
                     new TextColumnOptions<DataValue>()
@@ -123,11 +123,11 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                         MinWidth = new GridLength(100)
                     }),
                     x => x.Childrens), //вывод иерархии детей переменной
-                new TextColumn<DataValue, string>("Значение", x => x.StoredData.ToString(), (var, value) => var.StoredData = value, new GridLength(10, GridUnitType.Auto), new TextColumnOptions<DataValue>()
+                new TextColumn<DataValue, string>(Properties.Resources.Value, x => x.StoredData.ToString(), (var, value) => var.StoredData = value, new GridLength(10, GridUnitType.Auto), new TextColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(100),
                 }),
-                new TemplateColumn<DataValue>("Тип данных", "DataTypeEditCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
+                new TemplateColumn<DataValue>(Properties.Resources.DataType, "DataTypeEditCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(100),
                     CompareAscending = (x, y) =>
@@ -139,7 +139,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                         return y.ValueType.Title.CompareTo(x.ValueType.Title);
                     },
                 }),
-                new TemplateColumn<DataValue>("Тип доступа", "AccessTypeCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
+                new TemplateColumn<DataValue>(Properties.Resources.AccessType, "AccessTypeCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(100),
                     CompareAscending = (x, y) =>
@@ -151,7 +151,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                         return y.AccessType.CompareTo(x.AccessType);
                     },
                 }),
-                new TemplateColumn<DataValue>("Константа", "IsConstCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
+                new TemplateColumn<DataValue>(Properties.Resources.Constant, "IsConstCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(0),
                     CompareAscending = (x, y) =>
@@ -163,7 +163,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                         return y.IsConst.CompareTo(x.IsConst);
                     },
                 }),
-                new TemplateColumn<DataValue>("Стиль", "DisplayStyleCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
+                new TemplateColumn<DataValue>(Properties.Resources.Style, "DisplayStyleCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(100),
                     CompareAscending = (x, y) =>
@@ -175,11 +175,11 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                         return y.DisplayStyle.CompareTo(x.DisplayStyle);
                     },
                 }),
-                new TextColumn<DataValue, string>("Описание", x => x.Description, (var, value) => var.Description = value, new GridLength(10, GridUnitType.Star), new TextColumnOptions<DataValue>()
+                new TextColumn<DataValue, string>(Properties.Resources.Description, x => x.Description, (var, value) => var.Description = value, new GridLength(10, GridUnitType.Star), new TextColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(100),
                 }),
-                new TemplateColumn<DataValue>("Сохранять", "IsRetainCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
+                new TemplateColumn<DataValue>(Properties.Resources.Save, "IsRetainCell", null, new GridLength(100, GridUnitType.Auto), new TemplateColumnOptions<DataValue>()
                 {
                     MinWidth = new GridLength(100),
                     CompareAscending = (x, y) =>
@@ -238,7 +238,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
             }
             else
             {
-                _notificationService.Notify("Неизвестная ошибка", ENotificationType.Error);
+                _notificationService.Notify(Properties.Resources.ErrorUnknownError, ENotificationType.Error);
             }
             return null;
         }
@@ -284,7 +284,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
         DataValue selection = (DataValue)((ITreeSelectionModel)Source.Selection!).SelectedItem;
         if (selection == null)
         {
-            var box = MessageBoxManager.GetMessageBoxStandard("Внимание", "Выделите удаляемую переменную", MessageBox.Avalonia.Enums.ButtonEnum.Ok);
+            var box = MessageBoxManager.GetMessageBoxStandard($"{Properties.Resources.Attention}.", $"{Properties.Resources.WarningSelectVariable}", MessageBox.Avalonia.Enums.ButtonEnum.Ok);;
             var result = await box.ShowAsync();
         }
         else
@@ -292,8 +292,8 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
             if (selection.ContainsIn == "")
             {
                 var resultDel = await _dialogService.ShowMessageBoxAsync(this,
-                    $"Вы точно хотите удалить ветвь переменной {selection.ContainsIn}",
-                    "Внимание.",
+                    $"{Properties.Resources.WarningDeleteBranch} {selection.ContainsIn}",
+                    $"{Properties.Resources.Attention}.",
                     MessageBoxButton.OkCancel);
                 if (resultDel == true)
                 {
@@ -305,8 +305,8 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
             else
             {
                 var result = await _dialogService.ShowMessageBoxAsync(this,
-                        $"Точно хотите удалить ветвь переменной {selection.ContainsIn}",
-                        "Внимание.",
+                        $"{Properties.Resources.WarningDeleteBranch} {selection.ContainsIn}",
+                        $"{Properties.Resources.Attention}.",
                         MessageBoxButton.OkCancel);
                 if (result == true)
                 {
