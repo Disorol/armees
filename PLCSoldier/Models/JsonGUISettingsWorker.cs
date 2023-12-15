@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace PLCSoldier.Models
 {
@@ -18,7 +19,8 @@ namespace PLCSoldier.Models
     {
         public static GUISettingsModel? GUISettingsModel { get; set; }
         private static TimerCallback? TimerCallback { get; set; }
-        private static Timer? SaveTimer {  get; set; }
+        private static Timer? SaveTimer { get; set; }
+        private static bool IsTimerRun { get; set; }
 
         public static void FileWrite()
         {
@@ -76,16 +78,36 @@ namespace PLCSoldier.Models
             TimerCallback = new TimerCallback(SaveChanges);
 
             SaveTimer = new Timer(TimerCallback, new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, 2000);
+
+            IsTimerRun = true;
         }
 
         public static void PauseSaveTimer()
         {
             SaveTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+            IsTimerRun = false;
         }
 
         public static void ContinueSaveTimer()
         {
             SaveTimer?.Change(0, 2000);
+
+            IsTimerRun = true;
+        }
+
+        public static void SaveNow()
+        {
+            if (IsTimerRun)
+            {
+                PauseSaveTimer();
+                ContinueSaveTimer();
+            }
+            else
+            {
+                ContinueSaveTimer();
+                PauseSaveTimer();
+            }
         }
     }
 }

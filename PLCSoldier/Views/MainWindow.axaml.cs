@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.ReactiveUI;
+using PLCSoldier.Models;
 using PLCSoldier.ViewModels;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
 using PLCSoldier.Views.DialogBoxViews;
@@ -29,6 +30,11 @@ namespace PLCSoldier.Views
 
             SwitchingLanguageResultViewModel? result = await dialog.ShowDialog<SwitchingLanguageResultViewModel?>(this);
             interaction.SetOutput(result);
+        }
+
+        override protected void OnClosing(WindowClosingEventArgs e)
+        {
+            JsonGUISettingsWorker.SaveNow();
         }
     }
 }

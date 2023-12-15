@@ -746,8 +746,7 @@ namespace PLCSoldier.ViewModels
                     if (result.IsReboot)
                     {
                         Properties.Resources.Culture = new CultureInfo(language);
-                        JsonGUISettingsWorker.PauseSaveTimer();
-                        JsonGUISettingsWorker.SaveChanges(new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility });
+                        JsonGUISettingsWorker.SaveNow();
 
                         if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime)
                             lifetime.Shutdown();
