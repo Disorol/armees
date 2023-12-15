@@ -22,6 +22,7 @@ namespace PLCSoldier.Classes
         private static TimerCallback? TimerCallback { get; set; }
         private static Timer? SaveTimer { get; set; }
         private static bool IsTimerRun { get; set; }
+        public static int SavingInterval { get; set; } = 10000;
 
         public static void FileWrite()
         {
@@ -78,7 +79,7 @@ namespace PLCSoldier.Classes
         {
             TimerCallback = new TimerCallback(SaveChanges);
 
-            SaveTimer = new Timer(TimerCallback, new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, 2000);
+            SaveTimer = new Timer(TimerCallback, new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility }, 0, SavingInterval);
 
             IsTimerRun = true;
         }
@@ -92,7 +93,7 @@ namespace PLCSoldier.Classes
 
         public static void ContinueSaveTimer()
         {
-            SaveTimer?.Change(0, 2000);
+            SaveTimer?.Change(0, SavingInterval);
 
             IsTimerRun = true;
         }

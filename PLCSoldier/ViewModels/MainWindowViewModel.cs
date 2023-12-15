@@ -31,6 +31,12 @@ namespace PLCSoldier.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        /* 
+            Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> for the language change dialog box.
+            
+            SwitchLanguageViewModel - the view model for the view.
+            SwitchingLanguageResultViewModel - the view model for the return.
+        */
         public Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> ShowSwitchLanguageDialog { get; }
 
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
@@ -40,7 +46,7 @@ namespace PLCSoldier.ViewModels
         public ReactiveCommand<string, Unit> SwitchLanguage { get; set; }
         public ReactiveCommand<Unit, Unit> SetGUISettingsAsDefault { get; set; }
 
-        public bool isDefaultSettings { get; set; }
+        public bool isDefaultGUISettings { get; set; }
 
         // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
@@ -139,7 +145,7 @@ namespace PLCSoldier.ViewModels
             set => this.RaiseAndSetIfChanged(ref _SplittersVisibility, value);
         }
 
-        // Availability of MainMenuItems
+        // Availability of MainMenuItems.
         private MainMenuItemsAvailabilityViewModel _MainMenuItemsAvailability;
         public MainMenuItemsAvailabilityViewModel MainMenuItemsAvailability
         {
@@ -149,17 +155,17 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel()
         {
-            isDefaultSettings = false;
+            isDefaultGUISettings = false;
 
-            if (!isDefaultSettings)
+            if (!isDefaultGUISettings)
             {
                 JsonGUISettingsWorker.FileRead();
 
                 if (JsonGUISettingsWorker.GUISettingsModel == null)
-                    isDefaultSettings = true;
+                    isDefaultGUISettings = true;
             }
 
-            if (isDefaultSettings)
+            if (isDefaultGUISettings)
             {
                 ExecuteSetGUISettingsAsDefault();
             }
@@ -187,7 +193,7 @@ namespace PLCSoldier.ViewModels
 
             ShowSwitchLanguageDialog = new Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?>();
 
-            // Assigning methods to commands
+            // Assigning methods to commands.
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
             SwitchLanguage = ReactiveCommand.Create<string>(ExecuteSwitchLanguage);
             OpenProject = ReactiveCommand.Create(ExecuteOpenProject);
@@ -197,6 +203,7 @@ namespace PLCSoldier.ViewModels
             JsonGUISettingsWorker.StartSaveTimer(SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility);
         }
 
+        // Adding tabs to display collections.
         private void AddTabItems(List<TabItemViewModel> tabItems)
         {
             foreach (TabItemViewModel tabItem in tabItems)
@@ -211,6 +218,7 @@ namespace PLCSoldier.ViewModels
             }
         }
 
+        // Getting all the keys of all the tab dictionaries.
         private List<string> GetAllKeys()
         {
             List<string> allKeys = new List<string>();
@@ -239,6 +247,7 @@ namespace PLCSoldier.ViewModels
             return allKeys;
         }
 
+        // Returning tab objects by dictionary keys.
         private TabItemViewModel KeyToTabItem(string key)
         {
             if (leftUpperItems.ContainsKey(key)) return leftUpperItems[key];
@@ -250,6 +259,8 @@ namespace PLCSoldier.ViewModels
             return null;
         }
 
+
+        // Clearing spaces from tabs by assigning new links to variables.
         private void CompleteCleanSpaces()
         {
             LeftUpperContent = new ObservableCollection<TabItemViewModel>();
