@@ -735,22 +735,25 @@ namespace PLCSoldier.ViewModels
 
         private async void ExecuteSwitchLanguage(string language)
         {
-            SwitchLanguageViewModel switchLanguageViewModel = new SwitchLanguageViewModel();
-
-            SwitchingLanguageResultViewModel result = await ShowSwitchLanguageDialog.Handle(switchLanguageViewModel);
-
-            if (result != null)
+            if (language != Properties.Resources.Culture.Name)
             {
-                if (result.IsReboot)
-                {
-                    Properties.Resources.Culture = new CultureInfo(language);
-                    JsonGUISettingsWorker.PauseSaveTimer();
-                    JsonGUISettingsWorker.SaveChanges(new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility });
+                SwitchLanguageViewModel switchLanguageViewModel = new SwitchLanguageViewModel();
 
-                    if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime) 
-                        lifetime.Shutdown();
+                SwitchingLanguageResultViewModel result = await ShowSwitchLanguageDialog.Handle(switchLanguageViewModel);
+
+                if (result != null)
+                {
+                    if (result.IsReboot)
+                    {
+                        Properties.Resources.Culture = new CultureInfo(language);
+                        JsonGUISettingsWorker.PauseSaveTimer();
+                        JsonGUISettingsWorker.SaveChanges(new List<object> { SpacesDimensions, SpacesDimensionsIntermediateСonservation, MainMenuItemsAvailability, SplittersVisibility });
+
+                        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime)
+                            lifetime.Shutdown();
+                    }
                 }
-            }
+            } 
         }
 
         private void ExecuteSetGUISettingsAsDefault()
