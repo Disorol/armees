@@ -5,6 +5,7 @@ using PLCSoldier.ViewModels;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
 using PLCSoldier.Views.DialogBoxViews;
 using ReactiveUI;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace PLCSoldier.Views
@@ -34,6 +35,9 @@ namespace PLCSoldier.Views
 
         override protected void OnClosing(WindowClosingEventArgs e)
         {
+            if (SaveBeforeClosing.ApplicationLanguage != null)
+                Properties.Resources.Culture = new CultureInfo(SaveBeforeClosing.ApplicationLanguage);
+
             JsonGUISettingsWorker.SaveNow();
         }
     }

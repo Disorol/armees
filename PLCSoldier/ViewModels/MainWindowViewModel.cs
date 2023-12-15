@@ -745,11 +745,16 @@ namespace PLCSoldier.ViewModels
                 {
                     if (result.IsReboot)
                     {
+                        SaveBeforeClosing.ApplicationLanguage = null;
                         Properties.Resources.Culture = new CultureInfo(language);
                         JsonGUISettingsWorker.SaveNow();
 
                         if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime)
                             lifetime.Shutdown();
+                    }
+                    else
+                    {
+                        SaveBeforeClosing.ApplicationLanguage = language;
                     }
                 }
             } 
