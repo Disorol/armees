@@ -1,4 +1,4 @@
-﻿namespace PLCSoldier.Models
+﻿namespace PLCSoldier.Enums
 {
     public enum GridLengthType
     {

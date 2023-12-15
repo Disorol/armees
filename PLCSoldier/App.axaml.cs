@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using PLCSoldier.Models;
+using PLCSoldier.Classes;
 using PLCSoldier.ViewModels;
 using PLCSoldier.Views;
 using System.Globalization;

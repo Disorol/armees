@@ -1,4 +1,6 @@
 ﻿using Avalonia.Controls;
+using PLCSoldier.Enums;
+using PLCSoldier.Models;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.Classes
 {
     public static class GridLengthDeconverter
     {
@@ -20,12 +22,12 @@ namespace PLCSoldier.Models
 
         public static SpacesDimensionsViewModel ConvertToSpacesDimensionsViewModel(SpacesDimensionsConverted spacesDimensionsConverted)
         {
-            return new SpacesDimensionsViewModel(ConvertToGridLength(spacesDimensionsConverted.LeftSpaceWidth), 
+            return new SpacesDimensionsViewModel(ConvertToGridLength(spacesDimensionsConverted.LeftSpaceWidth),
                                                  ConvertToGridLength(spacesDimensionsConverted.RightSpaceWidth),
-                                                 ConvertToGridLength(spacesDimensionsConverted.LeftUpperSpaceHeight), 
+                                                 ConvertToGridLength(spacesDimensionsConverted.LeftUpperSpaceHeight),
                                                  ConvertToGridLength(spacesDimensionsConverted.LeftBottomSpaceHeight),
-                                                 ConvertToGridLength(spacesDimensionsConverted.CentralAndFarRightSpacesHeight), 
-                                                 ConvertToGridLength(spacesDimensionsConverted.BottomSpaceHeight), 
+                                                 ConvertToGridLength(spacesDimensionsConverted.CentralAndFarRightSpacesHeight),
+                                                 ConvertToGridLength(spacesDimensionsConverted.BottomSpaceHeight),
                                                  ConvertToGridLength(spacesDimensionsConverted.CentralSpaceWidth),
                                                  ConvertToGridLength(spacesDimensionsConverted.FarRightSpaceWidth));
         }

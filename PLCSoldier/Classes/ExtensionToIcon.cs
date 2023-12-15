@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.Classes
 {
     /*
         A static class for assigning icons to files based on their extensions.

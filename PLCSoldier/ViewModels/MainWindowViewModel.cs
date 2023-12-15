@@ -25,6 +25,7 @@ using System.IO;
 using System.Threading;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
 using System.Reactive.Linq;
+using PLCSoldier.Classes;
 
 namespace PLCSoldier.ViewModels
 {

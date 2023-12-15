@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.ReactiveUI;
+using PLCSoldier.Classes;
 using PLCSoldier.Models;
 using PLCSoldier.ViewModels;
 using PLCSoldier.ViewModels.DialogBoxViewModels;

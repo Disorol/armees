@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using HarfBuzzSharp;
+using PLCSoldier.Models;
 using PLCSoldier.ViewModels;
 using PLCSoldier.ViewModels.ProjectSettingsViewModels;
 using System;
@@ -13,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace PLCSoldier.Models
+namespace PLCSoldier.Classes
 {
     public static class JsonGUISettingsWorker
     {
@@ -24,11 +25,11 @@ namespace PLCSoldier.Models
 
         public static void FileWrite()
         {
-            if (GUISettingsModel != null) 
+            if (GUISettingsModel != null)
             {
                 try
                 {
-                    File.WriteAllText("settings.json", JsonSerializer.Serialize<GUISettingsModel>(GUISettingsModel, GetSerializerSettings()));
+                    File.WriteAllText("settings.json", JsonSerializer.Serialize(GUISettingsModel, GetSerializerSettings()));
                 }
                 catch (IOException) { }
             }
@@ -42,12 +43,12 @@ namespace PLCSoldier.Models
 
                 if (!string.IsNullOrEmpty(readText))
                     GUISettingsModel = JsonSerializer.Deserialize<GUISettingsModel>(readText, GetSerializerSettings());
-                else 
+                else
                     GUISettingsModel = null;
             }
             catch (IOException) { }
         }
-        
+
         private static JsonSerializerOptions GetSerializerSettings()
         {
             return new JsonSerializerOptions
