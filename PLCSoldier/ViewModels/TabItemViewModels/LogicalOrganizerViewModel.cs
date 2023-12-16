@@ -49,7 +49,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 if (path != LogicalOrganizer[0].PathString)
                 {
                     List<string> allAncestors = FileWorker.FindAllAncestorFiles(path, LogicalOrganizer[0].PathString);
-                    LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true) };
+                    LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allAncestors) };
                 }
                 else
                     LogicalOrganizer = null;

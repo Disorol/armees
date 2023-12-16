@@ -34,7 +34,7 @@ namespace PLCSoldier.Models
         public bool IsExpanded { get; set; } = false;
 
         // Overloaded Constructor for the directory path.
-        public Node(string? path, bool isDirectory)
+        public Node(string? path, bool isDirectory, List<string>? openedDirectories = null)
         {
             if (isDirectory && path != null) // This is the directory
             {
@@ -46,13 +46,16 @@ namespace PLCSoldier.Models
 
                 Subnodes = new ObservableCollection<Node>();
 
+                if (openedDirectories != null && openedDirectories.Contains(path) )
+                    IsExpanded = true;
+
                 if (Directory.GetFileSystemEntries(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
                 {
                     if (Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
                     {
                         foreach (string subpath in Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly))
                         {
-                            Node node = new Node(subpath, true);
+                            Node node = new Node(subpath, true, openedDirectories);
 
                             Subnodes.Add(node);
                         }
@@ -62,7 +65,7 @@ namespace PLCSoldier.Models
                     {
                         foreach (string subpath in Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly))
                         {
-                            Node node = new Node(subpath, false);
+                            Node node = new Node(subpath, false, openedDirectories);
 
                             Subnodes.Add(node);
                         }
