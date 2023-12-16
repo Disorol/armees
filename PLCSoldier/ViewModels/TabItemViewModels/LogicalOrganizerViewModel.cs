@@ -1,8 +1,10 @@
-﻿using PLCSoldier.Models;
+﻿using PLCSoldier.Classes;
+using PLCSoldier.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reactive;
 using System.Text;
@@ -30,7 +32,27 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         private void ExecuteDeleteFile(string path)
         {
-            
+            bool isDeleted = false;
+
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+                isDeleted = true;
+            }
+            else if (File.Exists(path))
+            {
+                File.Delete(path);
+                isDeleted = true;
+            }
+
+            if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
+                if (path != LogicalOrganizer[0].PathString)
+                {
+                    List<string> allAncestors = FileWorker.FindAllAncestorFiles(path, LogicalOrganizer[0].PathString);
+                    LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true) };
+                }
+                else
+                    LogicalOrganizer = null;
         }
     }
 }

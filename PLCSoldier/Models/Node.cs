@@ -30,62 +30,68 @@ namespace PLCSoldier.Models
         // The path to the icon. Maybe Null for empty folders.
         public Avalonia.Media.Imaging.Bitmap? Icon { get; set; }
 
+        // Is the TreeView branch open?
+        public bool IsExpanded { get; set; } = false;
+
         // Overloaded Constructor for the directory path.
-        public Node(string path)
+        public Node(string? path, bool isDirectory)
         {
-            PathString = path;
-
-            NodeTitle = Path.GetFileName(path);
-
-            Icon = ExtensionToIcon.GetIcon(".dock");
-
-            Subnodes = new ObservableCollection<Node>();
-
-            if (Directory.GetFileSystemEntries(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
+            if (isDirectory && path != null) // This is the directory
             {
-                if (Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
-                {
-                    foreach (string subpath in Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly))
-                    {
-                        Node node = new Node(subpath);
+                PathString = path;
 
-                        Subnodes.Add(node);
+                NodeTitle = Path.GetFileName(path);
+
+                Icon = ExtensionToIcon.GetIcon(".dock");
+
+                Subnodes = new ObservableCollection<Node>();
+
+                if (Directory.GetFileSystemEntries(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
+                {
+                    if (Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
+                    {
+                        foreach (string subpath in Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly))
+                        {
+                            Node node = new Node(subpath, true);
+
+                            Subnodes.Add(node);
+                        }
+                    }
+
+                    if (Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
+                    {
+                        foreach (string subpath in Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly))
+                        {
+                            Node node = new Node(subpath, false);
+
+                            Subnodes.Add(node);
+                        }
                     }
                 }
-
-                if (Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly).Length > 0)
+                else
                 {
-                    foreach (string subpath in Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly))
-                    {
-                        Node node = new Node(subpath, true);
+                    // Creating an empty directory
 
-                        Subnodes.Add(node);
-                    }
+                    Node node = new Node(null, false);
+
+                    Subnodes.Add(node);
                 }
+                
             }
-            else
+            else if (path != null) // This is the file
             {
-                // Creating an empty directory
+                PathString = path;
 
-                Node node = new Node(true);
+                NodeTitle = Path.GetFileName(path);
 
-                Subnodes.Add(node);
+                FileInfo fileInfo = new FileInfo(path);
+
+                Icon = ExtensionToIcon.GetIcon(fileInfo.Extension);
             }
-        }
-
-        // Overloaded Constructor for the file path.
-        public Node(string path, bool isFile)
-        {
-            PathString = path;
-
-            NodeTitle = Path.GetFileName(path);
-
-            FileInfo fileInfo = new FileInfo(path);
-
-            Icon = ExtensionToIcon.GetIcon(fileInfo.Extension);
-        }
-
-        // Overloaded constructor for opening empty directories
-        public Node(bool isEmpty) { }
+            else // This is the void
+            {
+                NodeTitle = "[Пустота]";
+            }
+        } 
     }
 }

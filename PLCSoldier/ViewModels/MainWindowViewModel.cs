@@ -741,7 +741,7 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel() { LogicalOrganizer = new ObservableCollection<Node> { new Node(result) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel() { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
             }
         }
 

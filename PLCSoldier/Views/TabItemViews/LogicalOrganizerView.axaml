@@ -9,6 +9,11 @@
              x:Class="PLCSoldier.Views.TabItemViews.LogicalOrganizerView"
              x:DataType="vm:MainWindowViewModel">
     <TreeView ItemsSource="{Binding LogicalOrganizer}">
+      <TreeView.Styles>
+        <Style Selector="TreeViewItem">
+          <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+        </Style>
+      </TreeView.Styles>
       <TreeView.ItemTemplate>
         <TreeDataTemplate ItemsSource="{Binding Subnodes}">
           <DockPanel>
