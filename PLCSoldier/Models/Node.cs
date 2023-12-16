@@ -72,9 +72,11 @@ namespace PLCSoldier.Models
                 {
                     // Creating an empty directory
 
+                    /*
                     Node node = new Node(null, false);
 
                     Subnodes.Add(node);
+                    */
                 }
                 
             }
