@@ -769,7 +769,11 @@ namespace PLCSoldier.ViewModels
                         SaveBeforeClosing.ApplicationLanguage = language;
                     }
                 }
-            } 
+            }
+            else if (language != SaveBeforeClosing.ApplicationLanguage)
+            {
+                SaveBeforeClosing.ApplicationLanguage = null;
+            }
         }
 
         private void ExecuteSetGUISettingsAsDefault()
