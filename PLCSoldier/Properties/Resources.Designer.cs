@@ -142,6 +142,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Удалить столбец.
         /// </summary>
         public static string DeleteColumn {
@@ -156,15 +165,6 @@ namespace PLCSoldier.Properties {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Удалить.
-        /// </summary>
-        public static string Detele {
-            get {
-                return ResourceManager.GetString("Detele", resourceCulture);
             }
         }
         

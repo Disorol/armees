@@ -132,7 +132,7 @@
                               CommandParameter="{Binding $parent[TreeDataGridRow].DataContext}"/>
                     <MenuItem Header="{x:Static resources:Resources.Paste}"
                               Command="{Binding $parent[UserControl].DataContext.InsertCommand}"/>
-                    <MenuItem Header="{x:Static resources:Resources.Detele}"
+                    <MenuItem Header="{x:Static resources:Resources.Delete}"
                               Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"
                               CommandParameter="{Binding $parent[TreeDataGridRow].DataContext}"/>
                   </ContextMenu>

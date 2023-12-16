@@ -144,14 +144,14 @@
   <data name="DataType" xml:space="preserve">
     <value>Data type</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="DeleteColumn" xml:space="preserve">
     <value>Delete column</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
-  </data>
-  <data name="Detele" xml:space="preserve">
-    <value>Delete</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>

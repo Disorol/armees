@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:xxx="using:PLCSoldier.Models"
              xmlns:vm="using:PLCSoldier.ViewModels"
+             xmlns:resources="clr-namespace:PLCSoldier.Properties"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PLCSoldier.Views.TabItemViews.LogicalOrganizerView"
              x:DataType="vm:MainWindowViewModel">
@@ -11,9 +12,14 @@
       <TreeView.ItemTemplate>
         <TreeDataTemplate ItemsSource="{Binding Subnodes}">
           <DockPanel>
+            <DockPanel.ContextMenu>
+              <ContextMenu>
+                <MenuItem Header="{x:Static resources:Resources.Delete}" Command="{Binding $parent[UserControl].DataContext.DeleteFile}" CommandParameter="{Binding PathString}"/>
+              </ContextMenu>
+            </DockPanel.ContextMenu>
             <Image Width="10" Height="10" Source="{Binding Icon}" />
             <TextBlock Text=" " />
-            <TextBlock Text="{Binding NodeTitle}"/>
+            <TextBlock Text="{Binding NodeTitle}" />
           </DockPanel>
         </TreeDataTemplate>
       </TreeView.ItemTemplate>
