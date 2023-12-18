@@ -35,6 +35,17 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // The variable to which the reference to the object created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
 
+        // If the file has not been copied, the paste button should be disabled
+        private bool _PasteButton_IsEnabled;
+        public bool PasteButton_IsEnabled
+        {
+            get => _PasteButton_IsEnabled;
+            set => this.RaiseAndSetIfChanged(ref _PasteButton_IsEnabled, value);
+        }
+
+        // The path to the copied file or directory.
+        public string? CopiedPath { get; set; }
+
         public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog)
         {
             DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
@@ -44,6 +55,9 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             // Binding to an object that is created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
+
+            // The paste button must be disabled before the first copy.
+            PasteButton_IsEnabled = false;
         }
 
         private async void ExecuteDeleteFile(string path)
@@ -88,7 +102,10 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         private async void ExecuteCopyFile(string path)
         {
+            CopiedPath = path;
 
+            if (!PasteButton_IsEnabled)
+                PasteButton_IsEnabled = true;
         }
 
         private async void ExecutePasteFile(string path)
