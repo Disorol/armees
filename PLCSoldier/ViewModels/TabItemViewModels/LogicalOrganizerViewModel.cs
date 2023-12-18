@@ -25,14 +25,18 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             get => _LogicalOrganizer;
             set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
         }
+
+        // The command for the context menu item.
         public ReactiveCommand<string, Unit>? DeleteFile { get; set; }
 
+        // The variable to which the reference to the object created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
 
         public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog)
         {
             DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
 
+            // Binding to an object that is created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
         }
 
@@ -44,14 +48,15 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             if (interactionResult != null && interactionResult.IsDelete) 
             {
+                // Was it possible to delete the file?
                 bool isDeleted = false;
 
-                if (Directory.Exists(path))
+                if (Directory.Exists(path)) // Deleting a directory.
                 {
                     Directory.Delete(path, true);
                     isDeleted = true;
                 }
-                else if (File.Exists(path))
+                else if (File.Exists(path)) // Deleting a file.
                 {
                     File.Delete(path);
                     isDeleted = true;
@@ -60,11 +65,17 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
                     if (path != LogicalOrganizer[0].PathString)
                     {
+                        // A list of file path strings whose nodes were expanded before deletion.
                         List<string> allExpandedNodes = new List<string>();
+
+                        // Traversing through all nodes and finding all open nodes.
                         NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
+
+                        // Creating a new file tree after deletion.
                         LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
                     }
                     else
+                        // The root folder of the logical organizer has been deleted.
                         LogicalOrganizer = null;
             }
         }
