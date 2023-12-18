@@ -48,8 +48,9 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
                 if (path != LogicalOrganizer[0].PathString)
                 {
-                    List<string> allAncestors = FileWorker.FindAllAncestorFiles(path, LogicalOrganizer[0].PathString);
-                    LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allAncestors) };
+                    List<string> allExpandedNodes = new List<string>();
+                    NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
+                    LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
                 }
                 else
                     LogicalOrganizer = null;
