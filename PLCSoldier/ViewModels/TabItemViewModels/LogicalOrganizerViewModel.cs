@@ -100,27 +100,33 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             }
         }
 
-        private async void ExecuteCopyFile(string path)
+        private async void ExecuteCopyFile(string copyPath)
         {
-            CopiedPath = path;
+            CopiedPath = copyPath;
 
             if (!PasteButton_IsEnabled)
                 PasteButton_IsEnabled = true;
         }
 
-        private async void ExecutePasteFile(string path)
+        private async void ExecutePasteFile(string pastePath)
         {
             if (CopiedPath == null)
                 return;
 
             FileInfo copiedPathInfo = new FileInfo(CopiedPath);
 
-            if (File.GetAttributes(path) == FileAttributes.Directory)
+            FileInfo pastePathInfo = new FileInfo(pastePath);
+
+            if (File.GetAttributes(pastePath) == FileAttributes.Directory)
             {
-                path += "\\" + copiedPathInfo.Name;
+                pastePath += "\\" + copiedPathInfo.Name;
+            }
+            else
+            {
+                pastePath = pastePathInfo.DirectoryName + "\\" + copiedPathInfo.Name;
             }
 
-            File.Copy(CopiedPath, path);
+            File.Copy(CopiedPath, pastePath);
 
         }
 
