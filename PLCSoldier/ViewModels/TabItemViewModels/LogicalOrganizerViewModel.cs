@@ -1,4 +1,5 @@
-﻿using PLCSoldier.Classes;
+﻿using Avalonia.Controls;
+using PLCSoldier.Classes;
 using PLCSoldier.Models;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
 using ReactiveUI;
@@ -117,17 +118,33 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             FileInfo pastePathInfo = new FileInfo(pastePath);
 
-            if (File.GetAttributes(pastePath) == FileAttributes.Directory)
+            if (File.GetAttributes(pastePath) == FileAttributes.Directory) // This is the directory.
             {
+                // If a directory is selected, the name of the copied file is assigned to it.
                 pastePath += "\\" + copiedPathInfo.Name;
             }
-            else
+            else // This is a file.
             {
+                // If a file is selected in the directory, the name of the current file is replaced by the name of the one being copied.
+                // The copied file is saved to the parent folder of the selected file.
                 pastePath = pastePathInfo.DirectoryName + "\\" + copiedPathInfo.Name;
             }
 
-            File.Copy(CopiedPath, pastePath);
+            if (File.GetAttributes(CopiedPath) == FileAttributes.Directory) // This is the directory.
+            {
 
+            }
+            else // This is a file.
+            {
+                if (!copiedPathInfo.Exists)
+                {
+                    File.Copy(CopiedPath, pastePath);
+                }
+                else
+                {
+
+                }
+            }      
         }
 
         private async void ExecuteCutFile(string path)
