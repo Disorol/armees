@@ -282,6 +282,9 @@
   <data name="WarningDeleteBranch" xml:space="preserve">
     <value>Вы точно хотите удалить ветвь переменной</value>
   </data>
+  <data name="WarningDeleteFile" xml:space="preserve">
+    <value>Удаление файла может привести к нарушению целостности проекта. Удалить файл?</value>
+  </data>
   <data name="WarningRestart" xml:space="preserve">
     <value>Программа будет перезапущена</value>
   </data>

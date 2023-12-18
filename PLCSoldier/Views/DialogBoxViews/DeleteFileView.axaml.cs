@@ -12,12 +12,21 @@ public partial class DeleteFileView : Window
     {
         InitializeComponent();
 
-        YesButton.Command = ReactiveCommand.Create(YesExecute);
+        ConfirmationButton.Command = ReactiveCommand.Create(ConfirmDeletingExecute);
+
+        CancelButton.Command = ReactiveCommand.Create(CancelDeletingExecute);
     }
 
-    public void YesExecute()
+    public void ConfirmDeletingExecute()
     {
         DeletingFileResultViewModel result = new DeletingFileResultViewModel() { IsDelete = true };
+
+        Close(result);
+    }
+
+    public void CancelDeletingExecute()
+    {
+        DeletingFileResultViewModel result = new DeletingFileResultViewModel() { IsDelete = false };
 
         Close(result);
     }

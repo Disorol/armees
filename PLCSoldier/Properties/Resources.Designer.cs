@@ -556,6 +556,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Удаление файла может привести к нарушению целостности проекта. Удалить файл?.
+        /// </summary>
+        public static string WarningDeleteFile {
+            get {
+                return ResourceManager.GetString("WarningDeleteFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Программа будет перезапущена.
         /// </summary>
         public static string WarningRestart {

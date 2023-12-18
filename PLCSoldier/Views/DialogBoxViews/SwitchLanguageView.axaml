@@ -14,6 +14,7 @@
   <Panel>
     <StackPanel Margin="0 20 0 0">
       <TextBlock Text="{x:Static resources:Resources.WarningRestart}"
+                 TextWrapping="Wrap"
                  FontSize="{Binding WarningText_FontSize}"
                  Height="40"
                  TextAlignment="Center"

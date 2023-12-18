@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PLCSoldier.Views.DialogBoxViews
 {
-    public partial class SwitchLanguageView : ReactiveWindow<MainWindowViewModel>
+    public partial class SwitchLanguageView : Window
     {
         public SwitchLanguageView()
         {

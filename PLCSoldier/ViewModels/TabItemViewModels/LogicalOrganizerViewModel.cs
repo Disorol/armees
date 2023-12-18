@@ -42,29 +42,31 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             DeletingFileResultViewModel interactionResult = await ShowDeleteFileDialog.Handle(deleteFileViewModel);
 
-
-            bool isDeleted = false;
-
-            if (Directory.Exists(path))
+            if (interactionResult != null && interactionResult.IsDelete) 
             {
-                Directory.Delete(path, true);
-                isDeleted = true;
-            }
-            else if (File.Exists(path))
-            {
-                File.Delete(path);
-                isDeleted = true;
-            }
+                bool isDeleted = false;
 
-            if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
-                if (path != LogicalOrganizer[0].PathString)
+                if (Directory.Exists(path))
                 {
-                    List<string> allExpandedNodes = new List<string>();
-                    NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
-                    LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
+                    Directory.Delete(path, true);
+                    isDeleted = true;
                 }
-                else
-                    LogicalOrganizer = null;
+                else if (File.Exists(path))
+                {
+                    File.Delete(path);
+                    isDeleted = true;
+                }
+
+                if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
+                    if (path != LogicalOrganizer[0].PathString)
+                    {
+                        List<string> allExpandedNodes = new List<string>();
+                        NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
+                        LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
+                    }
+                    else
+                        LogicalOrganizer = null;
+            }
         }
     }
 }

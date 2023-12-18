@@ -282,6 +282,9 @@
   <data name="WarningDeleteBranch" xml:space="preserve">
     <value>Are you sure you want to delete the branch of the variable</value>
   </data>
+  <data name="WarningDeleteFile" xml:space="preserve">
+    <value>Deleting a file can lead to a violation of the integrity of the project. Delete a file?</value>
+  </data>
   <data name="WarningRestart" xml:space="preserve">
     <value>The program will be restarted</value>
   </data>

@@ -12,6 +12,7 @@ using PLCSoldier.Classes;
 
 namespace PLCSoldier.ViewModels.DialogBoxViewModels
 {
+    // The view model for the SwitchLanguageView view.
     public class SwitchLanguageViewModel
     {
         public int WarningText_FontSize { get; set; } = 20;
