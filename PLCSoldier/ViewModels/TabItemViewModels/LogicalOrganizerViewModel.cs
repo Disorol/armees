@@ -110,12 +110,23 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         private async void ExecutePasteFile(string path)
         {
+            if (CopiedPath == null)
+                return;
+
+            FileInfo copiedPathInfo = new FileInfo(CopiedPath);
+
+            if (File.GetAttributes(path) == FileAttributes.Directory)
+            {
+                path += "\\" + copiedPathInfo.Name;
+            }
+
+            File.Copy(CopiedPath, path);
 
         }
 
         private async void ExecuteCutFile(string path)
         {
-
+            return;
         }
     }
 }
