@@ -77,7 +77,7 @@ namespace PLCSoldier.Models
 
                     /*
                     Node node = new Node(null, false);
-
+                    +
                     Subnodes.Add(node);
                     */
                 }

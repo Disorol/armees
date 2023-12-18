@@ -26,8 +26,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
         }
 
-        // The command for the context menu item.
+        // The commands for the context menu item.
         public ReactiveCommand<string, Unit>? DeleteFile { get; set; }
+        public ReactiveCommand<string, Unit>? CopyFile { get; set; }
+        public ReactiveCommand<string, Unit>? PasteFile { get; set; }
+        public ReactiveCommand<string, Unit>? CutFile { get; set; }
 
         // The variable to which the reference to the object created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
@@ -35,6 +38,9 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog)
         {
             DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
+            CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
+            PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
+            CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
 
             // Binding to an object that is created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
@@ -78,6 +84,21 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                         // The root folder of the logical organizer has been deleted.
                         LogicalOrganizer = null;
             }
+        }
+
+        private async void ExecuteCopyFile(string path)
+        {
+
+        }
+
+        private async void ExecutePasteFile(string path)
+        {
+
+        }
+
+        private async void ExecuteCutFile(string path)
+        {
+
         }
     }
 }

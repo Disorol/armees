@@ -141,6 +141,9 @@
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
   <data name="DataType" xml:space="preserve">
     <value>Data type</value>
   </data>

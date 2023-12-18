@@ -19,6 +19,9 @@
           <DockPanel>
             <DockPanel.ContextMenu>
               <ContextMenu>
+                <MenuItem Header="{x:Static resources:Resources.Copy}" Command="{Binding $parent[UserControl].DataContext.CopyFile}" CommandParameter="{Binding PathString}"/>
+                <MenuItem Header="{x:Static resources:Resources.Paste}" Command="{Binding $parent[UserControl].DataContext.PasteFile}" CommandParameter="{Binding PathString}"/>
+                <MenuItem Header="{x:Static resources:Resources.Cut}" Command="{Binding $parent[UserControl].DataContext.CutFile}" CommandParameter="{Binding PathString}"/>
                 <MenuItem Header="{x:Static resources:Resources.Delete}" Command="{Binding $parent[UserControl].DataContext.DeleteFile}" CommandParameter="{Binding PathString}"/>
               </ContextMenu>
             </DockPanel.ContextMenu>
