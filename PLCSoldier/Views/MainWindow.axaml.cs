@@ -19,10 +19,12 @@ namespace PLCSoldier.Views
 
             DataContext = new MainWindowViewModel();
 
-            this.WhenActivated(action => action(ViewModel!.ShowSwitchLanguageDialog.RegisterHandler(DoShowDialogAsync)));
+            this.WhenActivated(action => action(ViewModel!.ShowSwitchLanguageDialog.RegisterHandler(DoShowSwitchLanguageDialogAsync)));
+
+            this.WhenActivated(action => action(ViewModel!.ShowDeleteFileDialog.RegisterHandler(DoShowDeleteFileDialogAsync)));
         }
 
-        private async Task DoShowDialogAsync(InteractionContext<SwitchLanguageViewModel,
+        private async Task DoShowSwitchLanguageDialogAsync(InteractionContext<SwitchLanguageViewModel,
                                         SwitchingLanguageResultViewModel?> interaction)
         {
             SwitchLanguageView dialog = new()
@@ -31,6 +33,18 @@ namespace PLCSoldier.Views
             };
 
             SwitchingLanguageResultViewModel? result = await dialog.ShowDialog<SwitchingLanguageResultViewModel?>(this);
+            interaction.SetOutput(result);
+        }
+
+        private async Task DoShowDeleteFileDialogAsync(InteractionContext<DeleteFileViewModel,
+                                        DeletingFileResultViewModel?> interaction)
+        {
+            DeleteFileView dialog = new()
+            {
+                DataContext = interaction.Input
+            };
+
+            DeletingFileResultViewModel? result = await dialog.ShowDialog<DeletingFileResultViewModel?>(this);
             interaction.SetOutput(result);
         }
 

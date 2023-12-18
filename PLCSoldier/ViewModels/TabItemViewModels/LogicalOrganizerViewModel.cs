@@ -1,5 +1,6 @@
 ﻿using PLCSoldier.Classes;
 using PLCSoldier.Models;
+using PLCSoldier.ViewModels.DialogBoxViewModels;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,15 +25,24 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             get => _LogicalOrganizer;
             set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
         }
-        public ReactiveCommand<string, Unit>? DeleteFile { get; set; } 
+        public ReactiveCommand<string, Unit>? DeleteFile { get; set; }
 
-        public LogicalOrganizerViewModel()
+        public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
+
+        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog)
         {
             DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
+
+            ShowDeleteFileDialog = showDeleteFileDialog;
         }
 
-        private void ExecuteDeleteFile(string path)
+        private async void ExecuteDeleteFile(string path)
         {
+            DeleteFileViewModel deleteFileViewModel = new DeleteFileViewModel();
+
+            DeletingFileResultViewModel interactionResult = await ShowDeleteFileDialog.Handle(deleteFileViewModel);
+
+
             bool isDeleted = false;
 
             if (Directory.Exists(path))

@@ -32,12 +32,13 @@ namespace PLCSoldier.ViewModels
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
         /* 
-            Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> for the language change dialog box.
+            Interaction<...ViewModel, ...ResultViewModel?> for the ...View dialog box.
             
-            SwitchLanguageViewModel - the view model for the view.
-            SwitchingLanguageResultViewModel - the view model for the return.
+            ...ViewModel - the view model for the view.
+            ...ResultViewModel - the view model for the return.
         */
         public Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> ShowSwitchLanguageDialog { get; }
+        public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
 
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
         public ReactiveCommand<Unit, Unit> OpenProject { get; set; }
@@ -46,7 +47,7 @@ namespace PLCSoldier.ViewModels
         public ReactiveCommand<string, Unit> SwitchLanguage { get; set; }
         public ReactiveCommand<Unit, Unit> SetGUISettingsAsDefault { get; set; }
 
-        public bool isDefaultGUISettings { get; set; }
+        public bool IsDefaultGUISettings { get; set; }
 
         // List of content for left upper space TabItems.
         Dictionary<string, TabItemViewModel> leftUpperItems = new Dictionary<string, TabItemViewModel>()
@@ -155,17 +156,17 @@ namespace PLCSoldier.ViewModels
 
         public MainWindowViewModel()
         {
-            isDefaultGUISettings = false;
+            IsDefaultGUISettings = false;
 
-            if (!isDefaultGUISettings)
+            if (!IsDefaultGUISettings)
             {
                 JsonGUISettingsWorker.FileRead();
 
                 if (JsonGUISettingsWorker.GUISettingsModel == null)
-                    isDefaultGUISettings = true;
+                    IsDefaultGUISettings = true;
             }
 
-            if (isDefaultGUISettings)
+            if (IsDefaultGUISettings)
             {
                 ExecuteSetGUISettingsAsDefault();
             }
@@ -192,6 +193,7 @@ namespace PLCSoldier.ViewModels
             }
 
             ShowSwitchLanguageDialog = new Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?>();
+            ShowDeleteFileDialog = new Interaction<DeleteFileViewModel, DeletingFileResultViewModel?>();
 
             // Assigning methods to commands.
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -741,7 +743,7 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel() { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
             }
         }
 
@@ -751,11 +753,11 @@ namespace PLCSoldier.ViewModels
             {
                 SwitchLanguageViewModel switchLanguageViewModel = new SwitchLanguageViewModel();
 
-                SwitchingLanguageResultViewModel result = await ShowSwitchLanguageDialog.Handle(switchLanguageViewModel);
+                SwitchingLanguageResultViewModel interactionResult = await ShowSwitchLanguageDialog.Handle(switchLanguageViewModel);
 
-                if (result != null)
+                if (interactionResult != null)
                 {
-                    if (result.IsReboot)
+                    if (interactionResult.IsReboot)
                     {
                         SaveBeforeClosing.ApplicationLanguage = null;
                         Properties.Resources.Culture = new CultureInfo(language);
