@@ -132,18 +132,61 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             if (File.GetAttributes(CopiedPath) == FileAttributes.Directory) // This is the directory.
             {
-                try
+                if (!Directory.Exists(pastePath))
                 {
-                    FileSystem.CopyDirectory(CopiedPath, pastePath);
-                }
-                catch (InvalidOperationException ex)
-                {
-                    
-                }
-                catch (Exception ex)
-                {
+                    try
+                    {
+                        FileSystem.CopyDirectory(CopiedPath, pastePath);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
 
+                    }
                 }
+                else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
+                {
+                    pastePath = DirectoryNameIterator(pastePath);
+
+                    try
+                    {
+                        FileSystem.CopyDirectory(CopiedPath, pastePath);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+
+                    }
+                }
+                else
+                {
+                    ReplaceFileViewModel replaceFileViewModel = new ReplaceFileViewModel();
+
+                    ReplacingFileResultViewModel interactionResult = await ShowReplaceFileDialog.Handle(replaceFileViewModel);
+
+                    if (interactionResult != null && interactionResult.IsReplace)
+                    {
+                        try
+                        {
+                            FileSystem.CopyDirectory(CopiedPath, pastePath, true);
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        pastePath = DirectoryNameIterator(pastePath);
+
+                        try
+                        {
+                            FileSystem.CopyDirectory(CopiedPath, pastePath);
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+
+                        }
+                    }
+                }              
             }
             else // This is a file.
             {
@@ -203,6 +246,26 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             int copyNumber = 1;
 
             while (pastePathInfo.Exists)
+            {
+                pastePath = pastePathInfo.DirectoryName + "\\" + Path.GetFileNameWithoutExtension(copiedPathInfo.Name) + $" ({copyNumber})" + copiedPathInfo.Extension;
+
+                pastePathInfo = new FileInfo(pastePath);
+
+                copyNumber++;
+            }
+
+            return pastePath;
+        }
+
+        private string DirectoryNameIterator(string pastePath)
+        {
+            FileInfo copiedPathInfo = new FileInfo(CopiedPath);
+
+            FileInfo pastePathInfo = new FileInfo(pastePath);
+
+            int copyNumber = 1;
+
+            while (Directory.Exists(pastePath))
             {
                 pastePath = pastePathInfo.DirectoryName + "\\" + Path.GetFileNameWithoutExtension(copiedPathInfo.Name) + $" ({copyNumber})" + copiedPathInfo.Extension;
 
