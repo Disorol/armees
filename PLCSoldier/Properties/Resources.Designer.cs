@@ -574,6 +574,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на В папке назначения есть файл с таким же именем. Заменить?.
+        /// </summary>
+        public static string WarningReplaceFile {
+            get {
+                return ResourceManager.GetString("WarningReplaceFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Программа будет перезапущена.
         /// </summary>
         public static string WarningRestart {

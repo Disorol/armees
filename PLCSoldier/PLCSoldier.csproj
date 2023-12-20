@@ -33,14 +33,6 @@
 
 
   <ItemGroup>
-    <AvaloniaXaml Remove="Interfaces\**" />
-    <Compile Remove="Interfaces\**" />
-    <EmbeddedResource Remove="Interfaces\**" />
-    <None Remove="Interfaces\**" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <None Remove="Assets\images\icons\warning.ico" />
   </ItemGroup>
 

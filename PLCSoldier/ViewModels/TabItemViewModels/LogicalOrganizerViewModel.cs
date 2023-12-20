@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using PLCSoldier.Classes;
 using PLCSoldier.Models;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
@@ -12,6 +13,8 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.FileIO;
+using System.Reflection.Metadata;
 
 namespace PLCSoldier.ViewModels.TabItemViewModels
 {
@@ -33,8 +36,9 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         public ReactiveCommand<string, Unit>? PasteFile { get; set; }
         public ReactiveCommand<string, Unit>? CutFile { get; set; }
 
-        // The variable to which the reference to the object created in the MainWindowViewModel will be bound.
+        // Variables to which references to objects created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
+        public Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> ShowReplaceFileDialog { get; }
 
         // If the file has not been copied, the paste button should be disabled
         private bool _PasteButton_IsEnabled;
@@ -47,21 +51,22 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // The path to the copied file or directory.
         public string? CopiedPath { get; set; }
 
-        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog)
+        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog)
         {
             DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
             PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
             CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
 
-            // Binding to an object that is created in the MainWindowViewModel.
+            // Bindings to objects that are created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
+            ShowReplaceFileDialog = showReplaceFileDialog;
 
             // The paste button must be disabled before the first copy.
             PasteButton_IsEnabled = false;
         }
 
-        private async void ExecuteDeleteFile(string path)
+        private async void ExecuteDeleteFile(string deletePath)
         {
             DeleteFileViewModel deleteFileViewModel = new DeleteFileViewModel();
 
@@ -72,28 +77,21 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 // Was it possible to delete the file?
                 bool isDeleted = false;
 
-                if (Directory.Exists(path)) // Deleting a directory.
+                if (Directory.Exists(deletePath)) // Deleting a directory.
                 {
-                    Directory.Delete(path, true);
+                    Directory.Delete(deletePath, true);
                     isDeleted = true;
                 }
-                else if (File.Exists(path)) // Deleting a file.
+                else if (File.Exists(deletePath)) // Deleting a file.
                 {
-                    File.Delete(path);
+                    File.Delete(deletePath);
                     isDeleted = true;
                 }
 
                 if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
-                    if (path != LogicalOrganizer[0].PathString)
+                    if (deletePath != LogicalOrganizer[0].PathString)
                     {
-                        // A list of file path strings whose nodes were expanded before deletion.
-                        List<string> allExpandedNodes = new List<string>();
-
-                        // Traversing through all nodes and finding all open nodes.
-                        NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
-
-                        // Creating a new file tree after deletion.
-                        LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
+                        LogicalOrganizerRefresh();
                     }
                     else
                         // The root folder of the logical organizer has been deleted.
@@ -130,21 +128,90 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 pastePath = pastePathInfo.DirectoryName + "\\" + copiedPathInfo.Name;
             }
 
+            pastePathInfo = new FileInfo(pastePath);
+
             if (File.GetAttributes(CopiedPath) == FileAttributes.Directory) // This is the directory.
             {
+                try
+                {
+                    FileSystem.CopyDirectory(CopiedPath, pastePath);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    
+                }
+                catch (Exception ex)
+                {
 
+                }
             }
             else // This is a file.
             {
-                if (!copiedPathInfo.Exists)
+                if (!pastePathInfo.Exists)
                 {
+                    File.Copy(CopiedPath, pastePath);
+                }
+                else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
+                {
+                    pastePath = FileNameIterator(pastePath);
+
                     File.Copy(CopiedPath, pastePath);
                 }
                 else
                 {
+                    ReplaceFileViewModel replaceFileViewModel = new ReplaceFileViewModel();
 
+                    ReplacingFileResultViewModel interactionResult = await ShowReplaceFileDialog.Handle(replaceFileViewModel);
+
+                    if (interactionResult != null && interactionResult.IsReplace)
+                    {
+                        File.Copy(CopiedPath, pastePath, true);
+                    }
+                    else
+                    {
+                        pastePath = FileNameIterator(pastePath);
+
+                        File.Copy(CopiedPath, pastePath);
+                    }
                 }
+            }
+
+            LogicalOrganizerRefresh();
+        }
+
+        private void LogicalOrganizerRefresh()
+        {
+            if (LogicalOrganizer != null)
+            {
+                // A list of file path strings whose nodes were expanded before deletion.
+                List<string> allExpandedNodes = new List<string>();
+
+                // Traversing through all nodes and finding all open nodes.
+                NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
+
+                // Creating a new file tree after deletion.
+                LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
             }      
+        }
+
+        private string FileNameIterator(string pastePath)
+        {
+            FileInfo copiedPathInfo = new FileInfo(CopiedPath);
+
+            FileInfo pastePathInfo = new FileInfo(pastePath);
+
+            int copyNumber = 1;
+
+            while (pastePathInfo.Exists)
+            {
+                pastePath = pastePathInfo.DirectoryName + "\\" + Path.GetFileNameWithoutExtension(copiedPathInfo.Name) + $" ({copyNumber})" + copiedPathInfo.Extension;
+
+                pastePathInfo = new FileInfo(pastePath);
+
+                copyNumber++;
+            }
+
+            return pastePath;
         }
 
         private async void ExecuteCutFile(string path)

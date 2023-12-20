@@ -288,6 +288,9 @@
   <data name="WarningDeleteFile" xml:space="preserve">
     <value>Удаление файла может привести к нарушению целостности проекта. Удалить файл?</value>
   </data>
+  <data name="WarningReplaceFile" xml:space="preserve">
+    <value>В папке назначения есть файл с таким же именем. Заменить?</value>
+  </data>
   <data name="WarningRestart" xml:space="preserve">
     <value>Программа будет перезапущена</value>
   </data>

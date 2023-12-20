@@ -39,6 +39,7 @@ namespace PLCSoldier.ViewModels
         */
         public Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> ShowSwitchLanguageDialog { get; }
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
+        public Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> ShowReplaceFileDialog { get; }
 
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
         public ReactiveCommand<Unit, Unit> OpenProject { get; set; }
@@ -194,6 +195,7 @@ namespace PLCSoldier.ViewModels
 
             ShowSwitchLanguageDialog = new Interaction<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?>();
             ShowDeleteFileDialog = new Interaction<DeleteFileViewModel, DeletingFileResultViewModel?>();
+            ShowReplaceFileDialog = new Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?>();
 
             // Assigning methods to commands.
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -743,7 +745,7 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
             }
         }
 

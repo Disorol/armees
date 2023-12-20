@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resources="clr-namespace:PLCSoldier.Properties"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="150" MaxWidth="400" MaxHeight="150"
+        x:Class="PLCSoldier.ReplaceFileView"
+        WindowStartupLocation="CenterOwner"
+        RequestedThemeVariant="Light"
+        Title="{x:Static resources:Resources.Warning}"
+        Icon="/Assets/images/icons/warning.ico">
+  <Panel>
+    <StackPanel Margin="0 20 0 0">
+      <TextBlock Text="{x:Static resources:Resources.WarningReplaceFile}"
+                 TextWrapping="Wrap"
+                 FontSize="{Binding WarningText_FontSize}"
+                 Height="40"
+                 TextAlignment="Center"
+                 VerticalAlignment="Center"/>
+      <Grid>
+        <Button Name="ConfirmationButton"
+                HorizontalAlignment="Left"
+                Margin="40 20 0 0"
+                Width="{Binding ConfirmationButton_Width}"
+                Height=""
+                HorizontalContentAlignment="Center"
+                FontSize="{Binding ConfirmationButton_FontSize}"
+                Content="{x:Static resources:Resources.Confirm}" />
+
+        <Button Name="CancelButton"
+                HorizontalAlignment="Right"
+                Margin="0 20 40 0"
+                Width="{Binding CancelButton_Width}"
+                Height=""
+                HorizontalContentAlignment="Center"
+                FontSize="{Binding CancelButton_FontSize}"
+                Content="{x:Static resources:Resources.Cancel}" />
+      </Grid>
+    </StackPanel>
+  </Panel>
+</Window>
