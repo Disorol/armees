@@ -34,7 +34,7 @@
                           CommandParameter="{Binding PathString}"/>
                 
                 <MenuItem Header="{x:Static resources:Resources.Delete}" 
-                          Command="{Binding $parent[UserControl].DataContext.DeleteFile}"
+                          Command="{Binding $parent[UserControl].DataContext.DeleteFileAttempt}"
                           CommandParameter="{Binding PathString}" />
               </ContextMenu>
             </DockPanel.ContextMenu>

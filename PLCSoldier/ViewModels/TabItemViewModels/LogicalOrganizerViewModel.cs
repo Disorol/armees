@@ -31,7 +31,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         }
 
         // The commands for the context menu item.
-        public ReactiveCommand<string, Unit>? DeleteFile { get; set; }
+        public ReactiveCommand<string, Unit>? DeleteFileAttempt { get; set; }
         public ReactiveCommand<string, Unit>? CopyFile { get; set; }
         public ReactiveCommand<string, Unit>? PasteFile { get; set; }
         public ReactiveCommand<string, Unit>? CutFile { get; set; }
@@ -56,7 +56,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog)
         {
-            DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
+            DeleteFileAttempt = ReactiveCommand.Create<string>(ExecuteDeleteFileAttempt);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
             PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
             CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
@@ -70,7 +70,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             PasteButton_IsEnabled = false;
         }
 
-        private async void ExecuteDeleteFile(string deletePath)
+        private async void ExecuteDeleteFileAttempt(string deletePath)
         {
             DeleteFileViewModel deleteFileViewModel = new();
 
@@ -78,25 +78,29 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             if (interactionResult != null && interactionResult.IsDelete) 
             {
-                bool isDeleted = FileWorker.DeleteFile(deletePath);
-
-                if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
-                    if (deletePath != LogicalOrganizer[0].PathString)
-                    {
-                        LogicalOrganizerRefresh();
-                    }
-                    else
-                        // The root folder of the logical organizer has been deleted.
-                        LogicalOrganizer = null;
+                DeleteFile(deletePath);
             }
+        }
+
+        private void DeleteFile(string deletePath)
+        {
+            bool isDeleted = FileWorker.DeleteFile(deletePath);
+
+            if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
+                if (deletePath != LogicalOrganizer[0].PathString)
+                {
+                    LogicalOrganizerRefresh();
+                }
+                else
+                    // The root folder of the logical organizer has been deleted.
+                    LogicalOrganizer = null;
         }
 
         private void ExecuteCopyFile(string copyPath)
         {
             CopiedPath = copyPath;
 
-            if (!PasteButton_IsEnabled)
-                PasteButton_IsEnabled = true;
+            PasteButton_IsEnabled = true;
         }
 
         private async void ExecutePasteFile(string pastePath)
@@ -247,6 +251,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             CopiedPath = cutPath;
 
             IsCuted = true;
+
+            PasteButton_IsEnabled = true;
         }
     }
 }
