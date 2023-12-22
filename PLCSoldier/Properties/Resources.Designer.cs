@@ -232,6 +232,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Конечная папка, в которую следует поместить файлы, одновременно является их исходным местоположением..
+        /// </summary>
+        public static string ErrorSameDirectory {
+            get {
+                return ResourceManager.GetString("ErrorSameDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Неизвестная ошибка.
         /// </summary>
         public static string ErrorUnknownError {

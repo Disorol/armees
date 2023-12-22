@@ -40,6 +40,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
         public Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> ShowReplaceFileDialog { get; }
         public Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> ShowFileHierarchyErrorDialog { get; }
+        public Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> ShowSameDirectoryErrorDialog { get; }
 
         // If the file has not been copied, the paste button should be disabled
         private bool _PasteButton_IsEnabled;
@@ -54,7 +55,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // The path to the copied file or directory.
         public string? CopiedPath { get; set; }
 
-        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog)
+        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog, Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> showSameDirectoryErrorDialog)
         {
             DeleteFileAttempt = ReactiveCommand.Create<string>(ExecuteDeleteFileAttempt);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
@@ -65,6 +66,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             ShowDeleteFileDialog = showDeleteFileDialog;
             ShowReplaceFileDialog = showReplaceFileDialog;
             ShowFileHierarchyErrorDialog = showFileHierarchyErrorDialog;
+            ShowSameDirectoryErrorDialog = showSameDirectoryErrorDialog;
 
             // The paste button must be disabled before the first copy.
             PasteButton_IsEnabled = false;
@@ -85,6 +87,12 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         private void DeleteFile(string deletePath)
         {
             bool isDeleted = FileWorker.DeleteFile(deletePath);
+
+            if (isDeleted && deletePath == CopiedPath)
+            {
+                PasteButton_IsEnabled = false;
+                CopiedPath = null;
+            }
 
             if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
                 if (deletePath != LogicalOrganizer[0].PathString)
@@ -126,6 +134,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             pastePathInfo = new FileInfo(pastePath);
 
+            bool isSameDirectory = false;
+
             if (File.GetAttributes(CopiedPath) == FileAttributes.Directory) // This is the directory.
             {
                 if (!Directory.Exists(pastePath))
@@ -143,18 +153,23 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 }
                 else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
                 {
-                    pastePath = FileWorker.GenerateUniqueDirectoryName(CopiedPath, pastePath);
+                    isSameDirectory = true;
 
-                    try
+                    if (!IsCuted)
                     {
-                        FileSystem.CopyDirectory(CopiedPath, pastePath);
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new();
+                        pastePath = FileWorker.GenerateUniqueDirectoryName(CopiedPath, pastePath);
 
-                        await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
-                    }
+                        try
+                        {
+                            FileSystem.CopyDirectory(CopiedPath, pastePath);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new();
+
+                            await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
+                        }
+                    }  
                 }
                 else
                 {
@@ -197,17 +212,17 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 if (!pastePathInfo.Exists)
                 {
                     File.Copy(CopiedPath, pastePath);
-
-                    if (IsCuted)
-                    {
-
-                    }
                 }
                 else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
                 {
-                    pastePath = FileWorker.GenerateUniqueFileName(CopiedPath, pastePath);
+                    isSameDirectory = true;
 
-                    File.Copy(CopiedPath, pastePath);
+                    if (!IsCuted)
+                    {
+                        pastePath = FileWorker.GenerateUniqueFileName(CopiedPath, pastePath);
+
+                        File.Copy(CopiedPath, pastePath);
+                    }     
                 }
                 else
                 {
@@ -226,6 +241,21 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                         File.Copy(CopiedPath, pastePath);
                     }
                 }
+            }
+
+            if (IsCuted && !isSameDirectory)
+            {
+                IsCuted = false;
+                DeleteFile(CopiedPath);
+                CopiedPath = pastePath;
+            }
+            else if (IsCuted && isSameDirectory) 
+            {
+                SameDirectoryErrorViewModel sameDirectoryErrorViewModel = new();
+
+                await ShowSameDirectoryErrorDialog.Handle(sameDirectoryErrorViewModel);
+
+                return;
             }
 
             LogicalOrganizerRefresh();

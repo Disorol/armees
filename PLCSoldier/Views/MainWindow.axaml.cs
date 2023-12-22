@@ -27,6 +27,8 @@ namespace PLCSoldier.Views
             this.WhenActivated(action => action(ViewModel!.ShowReplaceFileDialog.RegisterHandler(DoShowReplaceFileDialogAsync)));
 
             this.WhenActivated(action => action(ViewModel!.ShowFileHierarchyErrorDialog.RegisterHandler(DoShowFileHierarchyErrorDialogAsync)));
+
+            this.WhenActivated(action => action(ViewModel!.ShowSameDirectoryErrorDialog.RegisterHandler(DoShowSameDirectoryErrorDialogAsync)));
         }
 
         private async Task DoShowSwitchLanguageDialogAsync(InteractionContext<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> interaction)
@@ -61,6 +63,7 @@ namespace PLCSoldier.Views
             ReplacingFileResultViewModel? result = await dialog.ShowDialog<ReplacingFileResultViewModel?>(this);
             interaction.SetOutput(result);
         }
+
         private async Task DoShowFileHierarchyErrorDialogAsync(InteractionContext<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> interaction)
         {
             FileHierarchyErrorView dialog = new()
@@ -72,12 +75,23 @@ namespace PLCSoldier.Views
             interaction.SetOutput(result);
         }
 
+        private async Task DoShowSameDirectoryErrorDialogAsync(InteractionContext<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> interaction)
+        {
+            SameDirectoryErrorView dialog = new()
+            {
+                DataContext = interaction.Input
+            };
+
+            SameDirectoryErrorResultViewModel? result = await dialog.ShowDialog<SameDirectoryErrorResultViewModel?>(this);
+            interaction.SetOutput(result);
+        }
+
         override protected void OnClosing(WindowClosingEventArgs e)
         {
             if (SaveBeforeClosing.ApplicationLanguage != null)
                 Properties.Resources.Culture = new CultureInfo(SaveBeforeClosing.ApplicationLanguage);
 
             JsonGUISettingsWorker.SaveNow();
-        }
+        }   
     }
 }

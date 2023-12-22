@@ -1,21 +1,20 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using PLCSoldier.ViewModels.DialogBoxViewModels;
 using ReactiveUI;
 
 namespace PLCSoldier;
 
-public partial class FileHierarchyErrorView : Window
+public partial class SameDirectoryErrorView : Window
 {
-    public FileHierarchyErrorView()
+    public SameDirectoryErrorView()
     {
         InitializeComponent();
 
         SkipButton.Command = ReactiveCommand.Create(SkipExecute);
     }
 
-    public void SkipExecute()
+    private void SkipExecute()
     {
         Close(null);
     }

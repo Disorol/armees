@@ -41,6 +41,7 @@ namespace PLCSoldier.ViewModels
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
         public Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> ShowReplaceFileDialog { get; }
         public Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> ShowFileHierarchyErrorDialog { get; }
+        public Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> ShowSameDirectoryErrorDialog { get; }
 
         public ReactiveCommand<string, Unit> DeleteTabItem { get; set; }
         public ReactiveCommand<Unit, Unit> OpenProject { get; set; }
@@ -198,6 +199,7 @@ namespace PLCSoldier.ViewModels
             ShowDeleteFileDialog = new Interaction<DeleteFileViewModel, DeletingFileResultViewModel?>();
             ShowReplaceFileDialog = new Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?>();
             ShowFileHierarchyErrorDialog = new Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?>();
+            ShowSameDirectoryErrorDialog = new Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?>();
 
             // Assigning methods to commands.
             DeleteTabItem = ReactiveCommand.Create<string>(ExecuteDeleteTabItem);
@@ -747,7 +749,7 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
             }
         }
 
