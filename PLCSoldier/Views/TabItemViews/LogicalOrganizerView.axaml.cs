@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
 using PLCSoldier.Views.DialogBoxViews;

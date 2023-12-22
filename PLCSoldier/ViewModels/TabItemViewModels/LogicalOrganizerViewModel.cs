@@ -49,6 +49,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             set => this.RaiseAndSetIfChanged(ref _PasteButton_IsEnabled, value);
         }
 
+        public bool IsCuted { get; set; } = false;
+
         // The path to the copied file or directory.
         public string? CopiedPath { get; set; }
 
@@ -70,25 +72,13 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         private async void ExecuteDeleteFile(string deletePath)
         {
-            DeleteFileViewModel deleteFileViewModel = new DeleteFileViewModel();
+            DeleteFileViewModel deleteFileViewModel = new();
 
             DeletingFileResultViewModel interactionResult = await ShowDeleteFileDialog.Handle(deleteFileViewModel);
 
             if (interactionResult != null && interactionResult.IsDelete) 
             {
-                // Was it possible to delete the file?
-                bool isDeleted = false;
-
-                if (Directory.Exists(deletePath)) // Deleting a directory.
-                {
-                    Directory.Delete(deletePath, true);
-                    isDeleted = true;
-                }
-                else if (File.Exists(deletePath)) // Deleting a file.
-                {
-                    File.Delete(deletePath);
-                    isDeleted = true;
-                }
+                bool isDeleted = FileWorker.DeleteFile(deletePath);
 
                 if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
                     if (deletePath != LogicalOrganizer[0].PathString)
@@ -114,9 +104,9 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             if (CopiedPath == null)
                 return;
 
-            FileInfo copiedPathInfo = new FileInfo(CopiedPath);
+            FileInfo copiedPathInfo = new(CopiedPath);
 
-            FileInfo pastePathInfo = new FileInfo(pastePath);
+            FileInfo pastePathInfo = new(pastePath);
 
             if (File.GetAttributes(pastePath) == FileAttributes.Directory) // This is the directory.
             {
@@ -142,14 +132,14 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                     }
                     catch (InvalidOperationException)
                     {
-                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
+                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new();
 
                         await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                     }
                 }
                 else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
                 {
-                    pastePath = DirectoryNameIterator(pastePath);
+                    pastePath = FileWorker.GenerateUniqueDirectoryName(CopiedPath, pastePath);
 
                     try
                     {
@@ -157,14 +147,14 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                     }
                     catch (InvalidOperationException)
                     {
-                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
+                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new();
 
                         await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                     }
                 }
                 else
                 {
-                    ReplaceFileViewModel replaceFileViewModel = new ReplaceFileViewModel();
+                    ReplaceFileViewModel replaceFileViewModel = new();
 
                     ReplacingFileResultViewModel interactionResult = await ShowReplaceFileDialog.Handle(replaceFileViewModel);
 
@@ -176,14 +166,14 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                         }
                         catch (InvalidOperationException)
                         {
-                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
+                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new();
 
                             await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                         }
                     }
                     else
                     {
-                        pastePath = DirectoryNameIterator(pastePath);
+                        pastePath = FileWorker.GenerateUniqueDirectoryName(CopiedPath, pastePath);
 
                         try
                         {
@@ -191,7 +181,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                         }
                         catch (InvalidOperationException)
                         {
-                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
+                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new();
 
                             await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                         }
@@ -203,16 +193,21 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 if (!pastePathInfo.Exists)
                 {
                     File.Copy(CopiedPath, pastePath);
+
+                    if (IsCuted)
+                    {
+
+                    }
                 }
                 else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
                 {
-                    pastePath = FileNameIterator(pastePath);
+                    pastePath = FileWorker.GenerateUniqueFileName(CopiedPath, pastePath);
 
                     File.Copy(CopiedPath, pastePath);
                 }
                 else
                 {
-                    ReplaceFileViewModel replaceFileViewModel = new ReplaceFileViewModel();
+                    ReplaceFileViewModel replaceFileViewModel = new();
 
                     ReplacingFileResultViewModel interactionResult = await ShowReplaceFileDialog.Handle(replaceFileViewModel);
 
@@ -222,7 +217,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                     }
                     else
                     {
-                        pastePath = FileNameIterator(pastePath);
+                        pastePath = FileWorker.GenerateUniqueFileName(CopiedPath, pastePath);
 
                         File.Copy(CopiedPath, pastePath);
                     }
@@ -237,7 +232,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             if (LogicalOrganizer != null)
             {
                 // A list of file path strings whose nodes were expanded before deletion.
-                List<string> allExpandedNodes = new List<string>();
+                List<string> allExpandedNodes = new();
 
                 // Traversing through all nodes and finding all open nodes.
                 NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
@@ -247,49 +242,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             }      
         }
 
-        private string FileNameIterator(string pastePath)
+        private void ExecuteCutFile(string cutPath)
         {
-            FileInfo copiedPathInfo = new FileInfo(CopiedPath);
+            CopiedPath = cutPath;
 
-            FileInfo pastePathInfo = new FileInfo(pastePath);
-
-            int copyNumber = 1;
-
-            while (pastePathInfo.Exists)
-            {
-                pastePath = pastePathInfo.DirectoryName + "\\" + Path.GetFileNameWithoutExtension(copiedPathInfo.Name) + $" ({copyNumber})" + copiedPathInfo.Extension;
-
-                pastePathInfo = new FileInfo(pastePath);
-
-                copyNumber++;
-            }
-
-            return pastePath;
-        }
-
-        private string DirectoryNameIterator(string pastePath)
-        {
-            FileInfo copiedPathInfo = new FileInfo(CopiedPath);
-
-            FileInfo pastePathInfo = new FileInfo(pastePath);
-
-            int copyNumber = 1;
-
-            while (Directory.Exists(pastePath))
-            {
-                pastePath = pastePathInfo.DirectoryName + "\\" + Path.GetFileNameWithoutExtension(copiedPathInfo.Name) + $" ({copyNumber})" + copiedPathInfo.Extension;
-
-                pastePathInfo = new FileInfo(pastePath);
-
-                copyNumber++;
-            }
-
-            return pastePath;
-        }
-
-        private async void ExecuteCutFile(string path)
-        {
-            return;
+            IsCuted = true;
         }
     }
 }

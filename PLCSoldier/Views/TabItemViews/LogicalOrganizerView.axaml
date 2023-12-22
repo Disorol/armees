@@ -19,7 +19,8 @@
           <DockPanel>
             <DockPanel.ContextMenu>
               <ContextMenu>
-                <MenuItem Header="{x:Static resources:Resources.Copy}"
+                <MenuItem Name="CopyMenuItem"
+                          Header="{x:Static resources:Resources.Copy}"
                           Command="{Binding $parent[UserControl].DataContext.CopyFile}"
                           CommandParameter="{Binding PathString}"/>
                 
