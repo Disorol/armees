@@ -120,6 +120,9 @@
   <data name="AccessType" xml:space="preserve">
     <value>Access type</value>
   </data>
+  <data name="ActionInterrupted" xml:space="preserve">
+    <value>The action was interrupted</value>
+  </data>
   <data name="Armees" xml:space="preserve">
     <value>Armees</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="ErrorFileHierarchy" xml:space="preserve">
+    <value>The destination folder where the files should be placed is a child of the folder where they are located.</value>
   </data>
   <data name="ErrorIncorrectFormat" xml:space="preserve">
     <value>Incorrect format of the variable name</value>
@@ -230,6 +236,9 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
   </data>
   <data name="SomeText" xml:space="preserve">
     <value>Some text</value>

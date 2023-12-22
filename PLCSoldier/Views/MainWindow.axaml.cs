@@ -24,10 +24,11 @@ namespace PLCSoldier.Views
             this.WhenActivated(action => action(ViewModel!.ShowDeleteFileDialog.RegisterHandler(DoShowDeleteFileDialogAsync)));
 
             this.WhenActivated(action => action(ViewModel!.ShowReplaceFileDialog.RegisterHandler(DoShowReplaceFileDialogAsync)));
+
+            this.WhenActivated(action => action(ViewModel!.ShowFileHierarchyErrorDialog.RegisterHandler(DoShowFileHierarchyErrorDialogAsync)));
         }
 
-        private async Task DoShowSwitchLanguageDialogAsync(InteractionContext<SwitchLanguageViewModel,
-                                        SwitchingLanguageResultViewModel?> interaction)
+        private async Task DoShowSwitchLanguageDialogAsync(InteractionContext<SwitchLanguageViewModel, SwitchingLanguageResultViewModel?> interaction)
         {
             SwitchLanguageView dialog = new()
             {
@@ -38,8 +39,7 @@ namespace PLCSoldier.Views
             interaction.SetOutput(result);
         }
 
-        private async Task DoShowDeleteFileDialogAsync(InteractionContext<DeleteFileViewModel,
-                                        DeletingFileResultViewModel?> interaction)
+        private async Task DoShowDeleteFileDialogAsync(InteractionContext<DeleteFileViewModel, DeletingFileResultViewModel?> interaction)
         {
             DeleteFileView dialog = new()
             {
@@ -50,8 +50,7 @@ namespace PLCSoldier.Views
             interaction.SetOutput(result);
         }
 
-        private async Task DoShowReplaceFileDialogAsync(InteractionContext<ReplaceFileViewModel,
-                                        ReplacingFileResultViewModel?> interaction)
+        private async Task DoShowReplaceFileDialogAsync(InteractionContext<ReplaceFileViewModel, ReplacingFileResultViewModel?> interaction)
         {
             ReplaceFileView dialog = new()
             {
@@ -59,6 +58,16 @@ namespace PLCSoldier.Views
             };
 
             ReplacingFileResultViewModel? result = await dialog.ShowDialog<ReplacingFileResultViewModel?>(this);
+            interaction.SetOutput(result);
+        }
+        private async Task DoShowFileHierarchyErrorDialogAsync(InteractionContext<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> interaction)
+        {
+            FileHierarchyErrorView dialog = new()
+            {
+                DataContext = interaction.Input
+            };
+
+            FileHierarchyErrorResultViewModel? result = await dialog.ShowDialog<FileHierarchyErrorResultViewModel?>(this);
             interaction.SetOutput(result);
         }
 

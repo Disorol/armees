@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resources="clr-namespace:PLCSoldier.Properties"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="140" MaxWidth="400" MaxHeight="140"
+        WindowStartupLocation="CenterOwner"
+        RequestedThemeVariant="Light"
+        x:Class="PLCSoldier.FileHierarchyErrorView"
+        Title="{x:Static resources:Resources.ActionInterrupted}"
+        Icon="/Assets/images/icons/warning.ico">
+  <Panel>
+    <StackPanel Margin="0 20 0 0">
+      <TextBlock Text="{x:Static resources:Resources.ErrorFileHierarchy}"
+                 TextWrapping="Wrap"
+                 FontSize="{Binding ErrorText_FontSize}"
+                 Margin="10 0 10 0"
+                 Height="70"
+                 TextAlignment="Left"
+                 VerticalAlignment="Center"/>
+      <Grid>
+        <Button Name="SkipButton"
+                HorizontalAlignment="Right"
+                Margin="0 0 20 0"
+                Width="{Binding SkipButton_Width}"
+                HorizontalContentAlignment="Center"
+                FontSize="{Binding SkipButton_FontSize}"
+                Content="{x:Static resources:Resources.Skip}" />
+      </Grid>
+    </StackPanel>
+  </Panel>
+</Window>

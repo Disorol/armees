@@ -22,7 +22,6 @@
                 HorizontalAlignment="Left"
                 Margin="40 20 0 0"
                 Width="{Binding ConfirmationButton_Width}"
-                Height=""
                 HorizontalContentAlignment="Center"
                 FontSize="{Binding ConfirmationButton_FontSize}"
                 Content="{x:Static resources:Resources.Confirm}" />
@@ -31,7 +30,6 @@
                 HorizontalAlignment="Right"
                 Margin="0 20 40 0"
                 Width="{Binding CancelButton_Width}"
-                Height=""
                 HorizontalContentAlignment="Center"
                 FontSize="{Binding CancelButton_FontSize}"
                 Content="{x:Static resources:Resources.Cancel}" />

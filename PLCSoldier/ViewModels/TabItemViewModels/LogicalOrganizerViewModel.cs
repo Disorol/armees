@@ -39,6 +39,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // Variables to which references to objects created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
         public Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> ShowReplaceFileDialog { get; }
+        public Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> ShowFileHierarchyErrorDialog { get; }
 
         // If the file has not been copied, the paste button should be disabled
         private bool _PasteButton_IsEnabled;
@@ -51,7 +52,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // The path to the copied file or directory.
         public string? CopiedPath { get; set; }
 
-        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog)
+        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog)
         {
             DeleteFile = ReactiveCommand.Create<string>(ExecuteDeleteFile);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
@@ -61,6 +62,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             // Bindings to objects that are created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
             ShowReplaceFileDialog = showReplaceFileDialog;
+            ShowFileHierarchyErrorDialog = showFileHierarchyErrorDialog;
 
             // The paste button must be disabled before the first copy.
             PasteButton_IsEnabled = false;
@@ -138,9 +140,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                     {
                         FileSystem.CopyDirectory(CopiedPath, pastePath);
                     }
-                    catch (InvalidOperationException ex)
+                    catch (InvalidOperationException)
                     {
+                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
 
+                        await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                     }
                 }
                 else if (pastePathInfo.DirectoryName == copiedPathInfo.DirectoryName)
@@ -151,9 +155,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                     {
                         FileSystem.CopyDirectory(CopiedPath, pastePath);
                     }
-                    catch (InvalidOperationException ex)
+                    catch (InvalidOperationException)
                     {
+                        FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
 
+                        await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                     }
                 }
                 else
@@ -168,9 +174,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                         {
                             FileSystem.CopyDirectory(CopiedPath, pastePath, true);
                         }
-                        catch (InvalidOperationException ex)
+                        catch (InvalidOperationException)
                         {
+                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
 
+                            await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                         }
                     }
                     else
@@ -181,9 +189,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                         {
                             FileSystem.CopyDirectory(CopiedPath, pastePath);
                         }
-                        catch (InvalidOperationException ex)
+                        catch (InvalidOperationException)
                         {
+                            FileHierarchyErrorViewModel fileHierarchyErrorViewModel = new FileHierarchyErrorViewModel();
 
+                            await ShowFileHierarchyErrorDialog.Handle(fileHierarchyErrorViewModel);
                         }
                     }
                 }              

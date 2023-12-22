@@ -70,6 +70,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Действие прервано.
+        /// </summary>
+        public static string ActionInterrupted {
+            get {
+                return ResourceManager.GetString("ActionInterrupted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Армеец.
         /// </summary>
         public static string Armees {
@@ -192,6 +201,15 @@ namespace PLCSoldier.Properties {
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Конечная папка, в которую следует поместить файлы, является дочерней для папки, в которой они находятся..
+        /// </summary>
+        public static string ErrorFileHierarchy {
+            get {
+                return ResourceManager.GetString("ErrorFileHierarchy", resourceCulture);
             }
         }
         
@@ -399,6 +417,15 @@ namespace PLCSoldier.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пропустить.
+        /// </summary>
+        public static string Skip {
+            get {
+                return ResourceManager.GetString("Skip", resourceCulture);
             }
         }
         
