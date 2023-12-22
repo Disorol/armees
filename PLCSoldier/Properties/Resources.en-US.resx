@@ -301,7 +301,7 @@
     <value>There is a file with the same name in the destination folder. Replace it?</value>
   </data>
   <data name="WarningRestart" xml:space="preserve">
-    <value>The program will be restarted</value>
+    <value>The language will be changed after restarting the program. Restart it?</value>
   </data>
   <data name="WarningSelectVariable" xml:space="preserve">
     <value>Select the variable to delete</value>

@@ -3,14 +3,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resources="clr-namespace:PLCSoldier.Properties"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="140" MaxWidth="400" MaxHeight="140"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="130" MaxWidth="400" MaxHeight="130"
         WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
         x:Class="PLCSoldier.FileHierarchyErrorView"
         Title="{x:Static resources:Resources.ActionInterrupted}"
         Icon="/Assets/images/icons/warning.ico">
   <Panel>
-    <StackPanel Margin="0 20 0 0">
+    <StackPanel Margin="0 10 0 0">
       <TextBlock Text="{x:Static resources:Resources.ErrorFileHierarchy}"
                  TextWrapping="Wrap"
                  FontSize="{Binding ErrorText_FontSize}"

@@ -301,7 +301,7 @@
     <value>В папке назначения есть файл с таким же именем. Заменить?</value>
   </data>
   <data name="WarningRestart" xml:space="preserve">
-    <value>Программа будет перезапущена</value>
+    <value>Язык будет изменен после перезапуска программы. Перезапустить?</value>
   </data>
   <data name="WarningSelectVariable" xml:space="preserve">
     <value>Выделите удаляемую переменную</value>
