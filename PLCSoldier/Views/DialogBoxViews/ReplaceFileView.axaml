@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resources="clr-namespace:PLCSoldier.Properties"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="150" MaxWidth="400" MaxHeight="150"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="130" MaxWidth="400" MaxHeight="130"
         x:Class="PLCSoldier.ReplaceFileView"
         WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"

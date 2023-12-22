@@ -99,7 +99,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             }
         }
 
-        private async void ExecuteCopyFile(string copyPath)
+        private void ExecuteCopyFile(string copyPath)
         {
             CopiedPath = copyPath;
 
