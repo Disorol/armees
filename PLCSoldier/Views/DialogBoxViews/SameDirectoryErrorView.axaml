@@ -8,7 +8,7 @@
         RequestedThemeVariant="Light"
         x:Class="PLCSoldier.SameDirectoryErrorView"
         Title="{x:Static resources:Resources.ActionInterrupted}"
-        Icon="/Assets/images/icons/warning.ico">
+        Icon="/Assets/images/icons/cancel.ico">
   <Panel>
     <StackPanel Margin="0 10 0 0">
       <TextBlock Text="{x:Static resources:Resources.ErrorSameDirectory}"

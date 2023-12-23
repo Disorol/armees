@@ -33,6 +33,7 @@
 
 
   <ItemGroup>
+    <None Remove="Assets\images\icons\cancel.ico" />
     <None Remove="Assets\images\icons\warning.ico" />
   </ItemGroup>
 
