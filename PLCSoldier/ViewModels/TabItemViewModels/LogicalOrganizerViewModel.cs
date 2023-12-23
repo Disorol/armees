@@ -106,6 +106,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         private void ExecuteCopyFile(string copyPath)
         {
+            if (IsCuted) IsCuted = false;
+
             CopiedPath = copyPath;
 
             PasteButton_IsEnabled = true;
@@ -246,8 +248,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             if (IsCuted && !isSameDirectory)
             {
                 IsCuted = false;
-                DeleteFile(CopiedPath);
+
+                string cutedPath = CopiedPath;
                 CopiedPath = pastePath;
+
+                DeleteFile(cutedPath);
             }
             else if (IsCuted && isSameDirectory) 
             {
