@@ -38,10 +38,15 @@
   <ItemGroup>
     <None Remove="Assets\images\Icons8_flat_folder.svg.png" />
     <None Remove="Assets\images\icons\cancel.ico" />
+    <None Remove="Assets\images\icons\debug.svg" />
+    <None Remove="Assets\images\icons\delete-file.svg" />
     <None Remove="Assets\images\icons\forward.svg" />
     <None Remove="Assets\images\icons\new-file.svg" />
+    <None Remove="Assets\images\icons\pause.svg" />
     <None Remove="Assets\images\icons\return.svg" />
     <None Remove="Assets\images\icons\save.svg" />
+    <None Remove="Assets\images\icons\start.svg" />
+    <None Remove="Assets\images\icons\stop.svg" />
     <None Remove="Assets\images\icons\warning.ico" />
   </ItemGroup>
 
