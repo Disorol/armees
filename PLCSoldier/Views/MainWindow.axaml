@@ -88,35 +88,38 @@
         <MenuItem Header="{x:Static resources:Resources.Help}"></MenuItem>
       </Menu>
     </Grid>
-
     <!-- Tools -->
     <Grid Grid.Row="1">
-        <Menu Height="33" VerticalAlignment="Bottom">
+      <Menu Height="33" VerticalAlignment="Bottom">
           <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip1}">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="28" Height="28" Source="/Assets/images/icons/txt.png" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/return.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
           <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip2}">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="28" Height="28" Source="/Assets/images/icons/dock.png" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/return.svg}" >
+                  <Image.RenderTransform>
+                    <ScaleTransform ScaleX="-1" />
+                  </Image.RenderTransform>
+                </Image>
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
           <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip3}">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="28" Height="28" Source="/Assets/images/icons/unknown-file.png" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/save.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
           <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip4}">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="28" Height="28" Source="/Assets/images/icons/txt.png" />
+                <Image Width="28" Height="28" Source="{SvgImage /Assets/images/icons/new-file.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
