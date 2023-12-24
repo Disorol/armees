@@ -17,9 +17,9 @@ namespace PLCSoldier.Classes
         // Dictionary of extensions and paths to icons.
         private static Dictionary<string, Avalonia.Media.Imaging.Bitmap> Icons = new Dictionary<string, Avalonia.Media.Imaging.Bitmap>()
         {
-            {".txt", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/images/icons/txt.png")))},
-            {".dock", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/images/icons/dock.png")))},
-            {"unknown file", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/images/icons/unknown-file.png")))},
+            {".txt", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/txt.png")))},
+            {".dock", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/dock.png")))},
+            {"unknown file", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/unknown-file.png")))},
         };
 
         // Getting an icon by path.

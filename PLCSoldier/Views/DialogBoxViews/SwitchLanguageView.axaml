@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
         Title="{x:Static resources:Resources.Warning}"
-        Icon="/Assets/images/icons/warning.ico"
+        Icon="/Assets/Images/Icons/WindowIcons/warning.ico"
         x:DataType="vm:SwitchLanguageViewModel">
   <Panel>
     <StackPanel Margin="0 10 0 0">

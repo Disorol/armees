@@ -31,7 +31,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         }
 
         // The commands for the context menu item.
-        public ReactiveCommand<string, Unit>? DeleteFileAttempt { get; set; }
+        public ReactiveCommand<string, Unit>? TryDeleteFile { get; set; }
         public ReactiveCommand<string, Unit>? CopyFile { get; set; }
         public ReactiveCommand<string, Unit>? PasteFile { get; set; }
         public ReactiveCommand<string, Unit>? CutFile { get; set; }
@@ -57,7 +57,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
         public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog, Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> showSameDirectoryErrorDialog)
         {
-            DeleteFileAttempt = ReactiveCommand.Create<string>(ExecuteDeleteFileAttempt);
+            TryDeleteFile = ReactiveCommand.Create<string>(ExecuteTryDeleteFile);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
             PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
             CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
@@ -72,7 +72,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             PasteButton_IsEnabled = false;
         }
 
-        private async void ExecuteDeleteFileAttempt(string deletePath)
+        private async void ExecuteTryDeleteFile(string deletePath)
         {
             DeleteFileViewModel deleteFileViewModel = new();
 
@@ -91,6 +91,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             if (isDeleted && deletePath == CopiedPath)
             {
                 PasteButton_IsEnabled = false;
+                IsCuted = false;
                 CopiedPath = null;
             }
 

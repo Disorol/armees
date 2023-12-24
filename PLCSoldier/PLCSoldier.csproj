@@ -31,23 +31,24 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Svg" Version="3.4.6" />
     <PackageReference Include="Svg.Skia" Version="1.0.0.9" />
-    <AvaloniaResource Include="Assets\images\icons\**" />
+    <AvaloniaResource Include="Assets\Images\Icons\**" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <None Remove="Assets\images\Icons8_flat_folder.svg.png" />
-    <None Remove="Assets\images\icons\cancel.ico" />
-    <None Remove="Assets\images\icons\debug.svg" />
-    <None Remove="Assets\images\icons\delete-file.svg" />
-    <None Remove="Assets\images\icons\forward.svg" />
-    <None Remove="Assets\images\icons\new-file.svg" />
-    <None Remove="Assets\images\icons\pause.svg" />
-    <None Remove="Assets\images\icons\return.svg" />
-    <None Remove="Assets\images\icons\save.svg" />
-    <None Remove="Assets\images\icons\start.svg" />
-    <None Remove="Assets\images\icons\stop.svg" />
-    <None Remove="Assets\images\icons\warning.ico" />
+    <None Remove="Assets\Images\Icons8_flat_folder.svg.png" />
+    <None Remove="Assets\Images\Icons\cancel.ico" />
+    <None Remove="Assets\Images\Icons\debug.svg" />
+    <None Remove="Assets\Images\Icons\forward.svg" />
+    <None Remove="Assets\Images\Icons\new-file.svg" />
+    <None Remove="Assets\Images\Icons\open-file.svg" />
+    <None Remove="Assets\Images\Icons\pause.svg" />
+    <None Remove="Assets\Images\Icons\restart.svg" />
+    <None Remove="Assets\Images\Icons\return.svg" />
+    <None Remove="Assets\Images\Icons\save.svg" />
+    <None Remove="Assets\Images\Icons\start.svg" />
+    <None Remove="Assets\Images\Icons\stop.svg" />
+    <None Remove="Assets\Images\Icons\warning.ico" />
   </ItemGroup>
 
 

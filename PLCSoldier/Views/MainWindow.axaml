@@ -9,7 +9,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PLCSoldier.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/Images/Icons/WindowIcons/avalonia-logo.ico"
         RequestedThemeVariant="Light"
         WindowStartupLocation="CenterScreen"
         Title="{x:Static resources:Resources.Armees}">
@@ -91,17 +91,17 @@
     <!-- Tools -->
     <Grid Grid.Row="1">
       <Menu Height="33" VerticalAlignment="Bottom">
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip1}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip1}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
                 <StackPanel>
-                  <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/return.svg}"/>
+                  <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/return.svg}"/>
                 </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip2}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip2}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/return.svg}" >
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/return.svg}" >
                   <Image.RenderTransform>
                     <ScaleTransform ScaleX="-1" />
                   </Image.RenderTransform>
@@ -109,52 +109,66 @@
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip3}">
+        <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip9}" BorderThickness="0 1 1 0" BorderBrush="Black">
+          <MenuItem.Header>
+            <StackPanel>
+              <Image Width="21" Height="21" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/save.svg}" Margin="0 0 0 0"/>
+            </StackPanel>
+          </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip9}" BorderThickness="0 1 1 0" BorderBrush="Black">
+          <MenuItem.Header>
+            <StackPanel>
+              <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/save-all.svg}" />
+            </StackPanel>
+          </MenuItem.Header>
+        </MenuItem>
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip3}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="22" Height="22" Source="{SvgImage /Assets/images/icons/save.svg}" />
+                <Image Width="22" Height="22" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/new-file.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip4}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip4}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/new-file.svg}" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/open-file.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip5}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip5}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/delete-file.svg}" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/start.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip6}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip6}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/start.svg}" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/pause.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip7}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip7}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/pause.svg}" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/stop.svg}" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip8}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip8}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/stop.svg}" />
+                <Image Width="29" Height="29" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/restart.svg}" Margin="0 0 0 2" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>
-          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip9}">
+          <MenuItem Width="33" ToolTip.Tip="{x:Static resources:Resources.Tooltip9}" BorderThickness="0 1 1 0" BorderBrush="Black">
             <MenuItem.Header>
               <StackPanel>
-                <Image Width="24" Height="24" Source="{SvgImage /Assets/images/icons/debug.svg}" />
+                <Image Width="24" Height="24" Source="{SvgImage /Assets/Images/Icons/ToolsMenuIcons/debug.svg}" Margin="0 1 0 0" />
               </StackPanel>
             </MenuItem.Header>
           </MenuItem>

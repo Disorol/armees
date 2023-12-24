@@ -19,8 +19,7 @@
           <DockPanel>
             <DockPanel.ContextMenu>
               <ContextMenu>
-                <MenuItem Name="CopyMenuItem"
-                          Header="{x:Static resources:Resources.Copy}"
+                <MenuItem Header="{x:Static resources:Resources.Copy}"
                           Command="{Binding $parent[UserControl].DataContext.CopyFile}"
                           CommandParameter="{Binding PathString}"/>
                 
@@ -34,7 +33,7 @@
                           CommandParameter="{Binding PathString}"/>
                 
                 <MenuItem Header="{x:Static resources:Resources.Delete}" 
-                          Command="{Binding $parent[UserControl].DataContext.DeleteFileAttempt}"
+                          Command="{Binding $parent[UserControl].DataContext.TryDeleteFile}"
                           CommandParameter="{Binding PathString}" />
               </ContextMenu>
             </DockPanel.ContextMenu>

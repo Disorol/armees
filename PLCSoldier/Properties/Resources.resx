@@ -222,6 +222,9 @@
   <data name="Property" xml:space="preserve">
     <value>Свойства</value>
   </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
   <data name="Russian" xml:space="preserve">
     <value>Русский</value>
   </data>
