@@ -150,6 +150,9 @@
   <data name="DataType" xml:space="preserve">
     <value>Тип данных</value>
   </data>
+  <data name="Debug" xml:space="preserve">
+    <value>Отладка</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
@@ -210,8 +213,14 @@
   <data name="LogicalOrganizer" xml:space="preserve">
     <value>Логический органайзер</value>
   </data>
+  <data name="NewFile" xml:space="preserve">
+    <value>Новый файл</value>
+  </data>
   <data name="NewProject" xml:space="preserve">
     <value>Новый проект</value>
+  </data>
+  <data name="OpenFile" xml:space="preserve">
+    <value>Открыть файл</value>
   </data>
   <data name="OpenProject" xml:space="preserve">
     <value>Открыть проект</value>
@@ -219,17 +228,29 @@
   <data name="Paste" xml:space="preserve">
     <value>Вставить</value>
   </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Приостановить</value>
+  </data>
   <data name="Property" xml:space="preserve">
     <value>Свойства</value>
   </data>
   <data name="Rename" xml:space="preserve">
     <value>Переименовать</value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Перезапустить</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Вернуть</value>
+  </data>
   <data name="Russian" xml:space="preserve">
     <value>Русский</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Сохранять</value>
+    <value>Сохранить</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Сохранить все</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск</value>
@@ -249,38 +270,20 @@
   <data name="SomeText" xml:space="preserve">
     <value>Какой-то текст</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Запуск</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Остановить</value>
+  </data>
   <data name="Style" xml:space="preserve">
     <value>Стиль</value>
   </data>
+  <data name="ToCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
   <data name="Tools" xml:space="preserve">
     <value>Инструменты</value>
-  </data>
-  <data name="Tooltip1" xml:space="preserve">
-    <value>Подсказка 1</value>
-  </data>
-  <data name="Tooltip2" xml:space="preserve">
-    <value>Подсказка 2</value>
-  </data>
-  <data name="Tooltip3" xml:space="preserve">
-    <value>Подсказка 3</value>
-  </data>
-  <data name="Tooltip4" xml:space="preserve">
-    <value>Подсказка 4</value>
-  </data>
-  <data name="Tooltip5" xml:space="preserve">
-    <value>Подсказка 5</value>
-  </data>
-  <data name="Tooltip6" xml:space="preserve">
-    <value>Подсказка 6</value>
-  </data>
-  <data name="Tooltip7" xml:space="preserve">
-    <value>Подсказка 7</value>
-  </data>
-  <data name="Tooltip8" xml:space="preserve">
-    <value>Подсказка 8</value>
-  </data>
-  <data name="Tooltip9" xml:space="preserve">
-    <value>Подсказка 9</value>
   </data>
   <data name="Value" xml:space="preserve">
     <value>Значение</value>

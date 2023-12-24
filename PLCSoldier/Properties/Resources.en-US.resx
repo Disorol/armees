@@ -150,6 +150,9 @@
   <data name="DataType" xml:space="preserve">
     <value>Data type</value>
   </data>
+  <data name="Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -210,8 +213,14 @@
   <data name="LogicalOrganizer" xml:space="preserve">
     <value>Logical organizer</value>
   </data>
+  <data name="NewFile" xml:space="preserve">
+    <value>New file</value>
+  </data>
   <data name="NewProject" xml:space="preserve">
     <value>New project</value>
+  </data>
+  <data name="OpenFile" xml:space="preserve">
+    <value>Open file</value>
   </data>
   <data name="OpenProject" xml:space="preserve">
     <value>Open project</value>
@@ -219,17 +228,29 @@
   <data name="Paste" xml:space="preserve">
     <value>Paste</value>
   </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
   <data name="Property" xml:space="preserve">
     <value>Property</value>
   </data>
   <data name="Rename" xml:space="preserve">
     <value>Rename</value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
   <data name="Russian" xml:space="preserve">
     <value>Russian</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Save all</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -249,38 +270,20 @@
   <data name="SomeText" xml:space="preserve">
     <value>Some text</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
   <data name="Style" xml:space="preserve">
     <value>Style</value>
   </data>
+  <data name="ToCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Tools" xml:space="preserve">
     <value>Tools</value>
-  </data>
-  <data name="Tooltip1" xml:space="preserve">
-    <value>Tooltip 1</value>
-  </data>
-  <data name="Tooltip2" xml:space="preserve">
-    <value>Tooltip 2</value>
-  </data>
-  <data name="Tooltip3" xml:space="preserve">
-    <value>Tooltip 3</value>
-  </data>
-  <data name="Tooltip4" xml:space="preserve">
-    <value>Tooltip 4</value>
-  </data>
-  <data name="Tooltip5" xml:space="preserve">
-    <value>Tooltip 5</value>
-  </data>
-  <data name="Tooltip6" xml:space="preserve">
-    <value>Tooltip 6</value>
-  </data>
-  <data name="Tooltip7" xml:space="preserve">
-    <value>Tooltip 7</value>
-  </data>
-  <data name="Tooltip8" xml:space="preserve">
-    <value>Tooltip 8</value>
-  </data>
-  <data name="Tooltip9" xml:space="preserve">
-    <value>Tooltip 9</value>
   </data>
   <data name="Value" xml:space="preserve">
     <value>Value</value>
