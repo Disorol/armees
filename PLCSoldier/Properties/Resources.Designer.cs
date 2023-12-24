@@ -142,6 +142,15 @@ namespace PLCSoldier.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Копировать полный путь.
+        /// </summary>
+        public static string CopyFullPath {
+            get {
+                return ResourceManager.GetString("CopyFullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Вырезать.
         /// </summary>
         public static string Cut {

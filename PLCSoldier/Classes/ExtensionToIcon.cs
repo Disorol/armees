@@ -18,7 +18,7 @@ namespace PLCSoldier.Classes
         private static Dictionary<string, Avalonia.Media.Imaging.Bitmap> Icons = new Dictionary<string, Avalonia.Media.Imaging.Bitmap>()
         {
             {".txt", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/txt.png")))},
-            {".dock", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/dock.png")))},
+            {".dock", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/directory.png")))},
             {"unknown file", new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(new Uri("avares://PLCSoldier/Assets/Images/Icons/ExtensionIcons/unknown-file.png")))},
         };
 

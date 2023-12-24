@@ -35,6 +35,12 @@
                 <MenuItem Header="{x:Static resources:Resources.Delete}" 
                           Command="{Binding $parent[UserControl].DataContext.TryDeleteFile}"
                           CommandParameter="{Binding PathString}" />
+                
+                <Separator />
+                
+                <MenuItem Header="{x:Static resources:Resources.CopyFullPath}"
+                          Command="{Binding $parent[UserControl].DataContext.CopyPath}"
+                          CommandParameter="{Binding PathString}" />
               </ContextMenu>
             </DockPanel.ContextMenu>
             <Image Width="10" Height="10" Source="{Binding Icon}" />

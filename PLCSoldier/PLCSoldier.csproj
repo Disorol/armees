@@ -31,6 +31,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Svg" Version="3.4.6" />
     <PackageReference Include="Svg.Skia" Version="1.0.0.9" />
+    <PackageReference Include="TextCopy" Version="6.2.1" />
     <AvaloniaResource Include="Assets\Images\Icons\**" />
   </ItemGroup>
 

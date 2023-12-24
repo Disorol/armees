@@ -35,6 +35,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         public ReactiveCommand<string, Unit>? CopyFile { get; set; }
         public ReactiveCommand<string, Unit>? PasteFile { get; set; }
         public ReactiveCommand<string, Unit>? CutFile { get; set; }
+        public ReactiveCommand<string, Unit>? CopyPath { get; set; }
 
         // Variables to which references to objects created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
@@ -61,6 +62,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
             PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
             CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
+            CopyPath = ReactiveCommand.Create<string>(ExecuteCopyPath);
 
             // Bindings to objects that are created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
@@ -289,6 +291,15 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             IsCuted = true;
 
             PasteButton_IsEnabled = true;
+        }
+
+        private void ExecuteCopyPath(string copyPath)
+        {
+            TextCopy.ClipboardService.SetText(copyPath);
+
+            CopiedPath = null;
+            IsCuted = false;
+            PasteButton_IsEnabled = false;
         }
     }
 }

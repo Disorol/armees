@@ -144,6 +144,9 @@
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
+  <data name="CopyFullPath" xml:space="preserve">
+    <value>Copy the full path</value>
+  </data>
   <data name="Cut" xml:space="preserve">
     <value>Cut</value>
   </data>
