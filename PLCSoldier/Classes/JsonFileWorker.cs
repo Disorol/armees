@@ -16,7 +16,7 @@ namespace PLCSoldier.Classes
         private static SemaphoreSlim _typesFileSemaphore = new SemaphoreSlim(1,1);
         private static SemaphoreSlim _userFilePathSemaphore = new SemaphoreSlim(1,1);
 
-        private static string _valuesPath = "appData/values.json";
+        public static string ValuesPath = "appData/values.json";
         private static string _typesPath = "appData/types.json";
         private static string _userTypesPath = "appData/userTypes.json";
 
@@ -56,7 +56,7 @@ namespace PLCSoldier.Classes
             {
                 _valuesFileSemaphore.Wait();
 
-                using (FileStream fs = new FileStream(_valuesPath, FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(ValuesPath, FileMode.OpenOrCreate))
                 {
                     if (fs.Length > 0)
                     {
@@ -81,7 +81,7 @@ namespace PLCSoldier.Classes
             {
                 await _valuesFileSemaphore.WaitAsync(10000);
 
-                using (FileStream fs = new FileStream(_valuesPath, FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(ValuesPath, FileMode.OpenOrCreate))
                 {
                     if (fs.Length > 0)
                     {
@@ -107,7 +107,7 @@ namespace PLCSoldier.Classes
                 {
                     await _valuesFileSemaphore.WaitAsync(10000);
 
-                    using (FileStream fileStream = new FileStream(_valuesPath, FileMode.Create, FileAccess.Write, FileShare.None))
+                    using (FileStream fileStream = new FileStream(ValuesPath, FileMode.Create, FileAccess.Write, FileShare.None))
                     {
                         await JsonSerializer.SerializeAsync(fileStream, dataValues.GetDTOs());
                     }

@@ -1,20 +1,17 @@
-﻿using Avalonia.Controls;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using HanumanInstitute.MvvmDialogs;
+using HanumanInstitute.MvvmDialogs.Avalonia;
+using Microsoft.VisualBasic.FileIO;
 using PLCSoldier.Classes;
 using PLCSoldier.Models;
 using PLCSoldier.ViewModels.DialogBoxViewModels;
 using ReactiveUI;
+using Splat;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic.FileIO;
-using System.Reflection.Metadata;
 
 namespace PLCSoldier.ViewModels.TabItemViewModels
 {
@@ -30,12 +27,16 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
         }
 
+        private Dictionary<string, TabItemViewModel> CentralItems;
+        private ObservableCollection<TabItemViewModel> CentralContent;
+
         // The commands for the context menu item.
         public ReactiveCommand<string, Unit>? TryDeleteFile { get; set; }
         public ReactiveCommand<string, Unit>? CopyFile { get; set; }
         public ReactiveCommand<string, Unit>? PasteFile { get; set; }
         public ReactiveCommand<string, Unit>? CutFile { get; set; }
         public ReactiveCommand<string, Unit>? CopyPath { get; set; }
+        public ReactiveCommand<string, Unit>? OpenFile { get; set; }
 
         // Variables to which references to objects created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
@@ -56,13 +57,19 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // The path to the copied file or directory.
         public string? CopiedPath { get; set; }
 
-        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog, Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> showSameDirectoryErrorDialog)
+        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, 
+                                         Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, 
+                                         Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog, 
+                                         Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> showSameDirectoryErrorDialog,
+                                         Dictionary<string, TabItemViewModel> centralItems,
+                                         ObservableCollection<TabItemViewModel> centralContent)
         {
             TryDeleteFile = ReactiveCommand.Create<string>(ExecuteTryDeleteFile);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
             PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
             CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
             CopyPath = ReactiveCommand.Create<string>(ExecuteCopyPath);
+            OpenFile = ReactiveCommand.Create<string>(ExecuteOpenFile);
 
             // Bindings to objects that are created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
@@ -72,6 +79,9 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             // The paste button must be disabled before the first copy.
             PasteButton_IsEnabled = false;
+
+            CentralItems = centralItems;
+            CentralContent = centralContent;
         }
 
         private async void ExecuteTryDeleteFile(string deletePath)
@@ -300,6 +310,19 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             CopiedPath = null;
             IsCuted = false;
             PasteButton_IsEnabled = false;
+        }
+
+        private void ExecuteOpenFile(string openPath)
+        {
+            FileInfo openPathInfo = new(openPath);
+
+            if (openPathInfo.Extension == ".json") 
+            {
+                JsonFileWorker.ValuesPath = openPath;
+                CentralItems["Value editor"].Content = new ValueEditorViewModel((IDialogService)new DialogService(new DialogManager(viewLocator: new ViewLocator(), dialogFactory: new DialogFactory().AddMessageBox()), viewModelFactory: x => Locator.Current.GetService(x)));
+                CentralContent.Clear();
+                CentralContent.Add(CentralItems["Value editor"]);
+            }
         }
     }
 }

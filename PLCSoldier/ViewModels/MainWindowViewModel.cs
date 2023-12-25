@@ -68,7 +68,7 @@ namespace PLCSoldier.ViewModels
         Dictionary<string, TabItemViewModel> centralItems = new Dictionary<string, TabItemViewModel>()
         {
             {"Workspace", new TabItemViewModel(){IdentificationName = "Workspace", Header = Properties.Resources.Workspace, isCloseButtonVisible = true, Content = new WorkspaceViewModel() { SomeText = Properties.Resources.SomeText } }},
-            {"Value editor", new TabItemViewModel(){IdentificationName = "Value editor", Header = Properties.Resources.ValueEditor, isCloseButtonVisible = true, Content = new ValueEditorViewModel((IDialogService)new DialogService(new DialogManager(viewLocator: new ViewLocator(), dialogFactory: new DialogFactory().AddMessageBox()), viewModelFactory: x => Locator.Current.GetService(x)) ) { } } },
+            {"Value editor", new TabItemViewModel(){IdentificationName = "Value editor", Header = Properties.Resources.ValueEditor, isCloseButtonVisible = true, Content = new ValueEditorViewModel((IDialogService)new DialogService(new DialogManager(viewLocator: new ViewLocator(), dialogFactory: new DialogFactory().AddMessageBox()), viewModelFactory: x => Locator.Current.GetService(x)) ) } },
         };
 
         // List of content for far right space TabItems.
@@ -749,7 +749,7 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
             }
         }
 

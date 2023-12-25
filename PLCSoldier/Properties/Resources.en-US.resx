@@ -222,6 +222,9 @@
   <data name="NewProject" xml:space="preserve">
     <value>New project</value>
   </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Open file</value>
   </data>

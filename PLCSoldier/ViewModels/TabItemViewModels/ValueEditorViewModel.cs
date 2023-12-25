@@ -95,7 +95,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
         _dataValueFactory = new SafeDataValueFactory(new NotificationValidationErrorHandler(_notificationService));
         _dialogService = dialogService;
 
-        //List<DataValueDTO> dataValuesDTOs = JsonFileWorker.GetValuesJson();
+        List<DataValueDTO> dataValuesDTOs = JsonFileWorker.GetValuesJson();
         Types = new ObservableCollection<DataType>(JsonFileWorker.GetTypes());
         _dataValues = new ObservableCollection<DataValue>();
 
@@ -193,7 +193,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                 }),
             }
         };
-     
+    
         ResetNewVar();
     }
 

@@ -21,8 +21,8 @@ namespace PLCSoldier.Classes
         {
             return JsonFileWorker.GetTypes();
         }
-        public static IReadOnlyList<DataValueDTO> All => _all ??= GetValueTypes().ToList();
-        public static IReadOnlyList<string> Titles => _titles ??= GetDataTypes().Select(x=>x.Title).ToList();
+        public static IReadOnlyList<DataValueDTO> All => GetValueTypes().ToList();
+        public static IReadOnlyList<string> Titles => GetDataTypes().Select(x=>x.Title).ToList();
         public static IEnumerable<string> AccessTypes => _accessTypes ??= Array.ConvertAll(Enum.GetValues<EAccessType>(), type => type.ToString());
         public static IEnumerable<string> DataTypes => _dataTypes ??= new string[] { "BOOL", "INT", "DINT", "REAL" };
         public static IEnumerable<string> DisplayStyles => _displayStyles ??= Array.ConvertAll(Enum.GetValues<EDisplayStyle>(), type => type.ToString());
