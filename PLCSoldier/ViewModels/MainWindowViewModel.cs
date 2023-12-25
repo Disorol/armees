@@ -738,11 +738,11 @@ namespace PLCSoldier.ViewModels
             }
         }
 
-        [Obsolete]
         private async void ExecuteOpenProject()
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filters.Add(new FileDialogFilter() { Extensions = new List<string>() { "arm" } });
+            dialog.AllowMultiple = false;
             Window? mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow : null;
 
             string[]? result = await dialog.ShowAsync(mainWindow);
