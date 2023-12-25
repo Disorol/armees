@@ -741,15 +741,15 @@ namespace PLCSoldier.ViewModels
         [Obsolete]
         private async void ExecuteOpenProject()
         {
-            OpenFolderDialog dialog = new OpenFolderDialog();
-
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filters.Add(new FileDialogFilter() { Extensions = new List<string>() { "arm" } });
             Window? mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow : null;
 
-            string? result = await dialog.ShowAsync(mainWindow);
+            string[]? result = await dialog.ShowAsync(mainWindow);
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result, true) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = new ObservableCollection<Node> { new Node(null, true) } };
             }
         }
 

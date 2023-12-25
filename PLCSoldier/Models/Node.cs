@@ -28,7 +28,7 @@ namespace PLCSoldier.Models
         public string? PathString { get; set; }
 
         // The path to the icon. Maybe Null for empty folders.
-        public Avalonia.Media.Imaging.Bitmap? Icon { get; set; }
+        public Bitmap? Icon { get; set; }
 
         // Is the TreeView branch open?
         public bool IsExpanded { get; set; } = false;
