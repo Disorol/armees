@@ -321,7 +321,7 @@ namespace PLCSoldier.Classes
         private async Task SaveChanges()
         {
             if (SourceCollection != null)
-                await JsonFileWorker.Recreate(SourceCollection.ToList());
+                await ObservableCollection.Recreate(SourceCollection.ToList());
         }
     }
 }

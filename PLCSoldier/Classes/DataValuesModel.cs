@@ -15,11 +15,11 @@ namespace PLCSoldier.Classes
 
         private static List<DataValueDTO> GetValueTypes()
         {
-            return JsonFileWorker.GetValuesJson();
+            return ObservableCollection.GetValuesJson();
         }
         private static List<DataType> GetDataTypes()
         {
-            return JsonFileWorker.GetTypes();
+            return ObservableCollection.GetTypes();
         }
         public static IReadOnlyList<DataValueDTO> All => GetValueTypes().ToList();
         public static IReadOnlyList<string> Titles => GetDataTypes().Select(x=>x.Title).ToList();

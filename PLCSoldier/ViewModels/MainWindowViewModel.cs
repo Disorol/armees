@@ -749,7 +749,7 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = new ObservableCollection<Node> { new Node(null, true) } };
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result[0]) } };
             }
         }
 

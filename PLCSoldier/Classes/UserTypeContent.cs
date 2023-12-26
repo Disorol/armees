@@ -26,7 +26,7 @@ namespace PLCSoldier.Classes
         public static async Task<List<UserTypeContent>> GetValueUserTypes(int id)
         {
             List<UserTypeContent> valueTypes = new List<UserTypeContent>();
-            valueTypes = await JsonFileWorker.GetTypesContentAsync();
+            valueTypes = await ObservableCollection.GetTypesContentAsync();
             return valueTypes.Where(x => x.TypeContentId == id).ToList();
         }
     }

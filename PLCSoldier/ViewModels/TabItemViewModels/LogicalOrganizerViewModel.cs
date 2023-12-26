@@ -318,7 +318,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             if (openPathInfo.Extension == ".json") 
             {
-                JsonFileWorker.ValuesPath = openPath;
+                ObservableCollection.ValuesPath = openPath;
                 CentralItems["Value editor"].Content = new ValueEditorViewModel((IDialogService)new DialogService(new DialogManager(viewLocator: new ViewLocator(), dialogFactory: new DialogFactory().AddMessageBox()), viewModelFactory: x => Locator.Current.GetService(x)));
                 CentralContent.Clear();
                 CentralContent.Add(CentralItems["Value editor"]);

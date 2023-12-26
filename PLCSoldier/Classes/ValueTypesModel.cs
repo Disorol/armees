@@ -14,7 +14,7 @@ namespace PLCSoldier.Classes
 
         private static List<DataType> GetValueTypes()
         {
-            return JsonFileWorker.GetTypes();
+            return ObservableCollection.GetTypes();
         }
         public static IReadOnlyList<DataType> All => _all ??= GetValueTypes().ToList();
         public static IReadOnlyList<string> Titles => _titles ??= All.Select(x => x.Title).ToList();

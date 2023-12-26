@@ -95,8 +95,8 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
         _dataValueFactory = new SafeDataValueFactory(new NotificationValidationErrorHandler(_notificationService));
         _dialogService = dialogService;
 
-        List<DataValueDTO> dataValuesDTOs = JsonFileWorker.GetValuesJson();
-        Types = new ObservableCollection<DataType>(JsonFileWorker.GetTypes());
+        List<DataValueDTO> dataValuesDTOs = ObservableCollection.GetValuesJson();
+        Types = new ObservableCollection<DataType>(ObservableCollection.GetTypes());
         _dataValues = new ObservableCollection<DataValue>();
 
         _dataValuesCollectionView = new ObservableCollectionView<DataValue>(_dataValues);
@@ -211,7 +211,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
     {
         AddDataValueFromDTOToMainList(DataValueToAdd);        
 
-        await JsonFileWorker.Recreate(_dataValues.ToList());
+        await ObservableCollection.Recreate(_dataValues.ToList());
 
         ResetNewVar();
     }
@@ -271,7 +271,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
 
             _dataValuesCollectionView.Insert(index++, clonedVar);
         }
-        await JsonFileWorker.Recreate(_dataValues.ToList());
+        await ObservableCollection.Recreate(_dataValues.ToList());
     }
 
     public void CopyDataValue(DataValue var)
@@ -299,7 +299,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                 {
                     _dataValuesCollectionView.Remove(selection);
                     selection = null;
-                    await JsonFileWorker.Recreate(_dataValues.ToList());
+                    await ObservableCollection.Recreate(_dataValues.ToList());
                 }
             }
             else
@@ -315,7 +315,7 @@ public partial class ValueEditorViewModel : ViewModelBase, INotifyPropertyChange
                     {
                         _dataValuesCollectionView.Remove(dataValue);
                         selection = null;
-                        await JsonFileWorker.Recreate(_dataValues.ToList());
+                        await ObservableCollection.Recreate(_dataValues.ToList());
                     }
                 }
             }

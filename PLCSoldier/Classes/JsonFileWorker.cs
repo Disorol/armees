@@ -10,7 +10,7 @@ using PLCSoldier.Utils;
 
 namespace PLCSoldier.Classes
 {
-    internal class JsonFileWorker
+    internal class ObservableCollection
     {
         private static SemaphoreSlim _valuesFileSemaphore = new SemaphoreSlim(1,1);
         private static SemaphoreSlim _typesFileSemaphore = new SemaphoreSlim(1,1);
