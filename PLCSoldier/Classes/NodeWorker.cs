@@ -14,9 +14,9 @@ namespace PLCSoldier.Classes
         {
             foreach (Node node in nodes)
             {
-                if (node.IsExpanded == true && node.PathString != null)
+                if (node.IsExpanded == true && node.Path != null)
                 {
-                    result.Add(node.PathString);
+                    result.Add(node.Path);
                 }
 
                 if (node.Subnodes != null && node.Subnodes.Count > 0)

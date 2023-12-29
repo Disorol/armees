@@ -740,7 +740,7 @@ namespace PLCSoldier.ViewModels
 
         private async void ExecuteOpenProject()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+            OpenFileDialog dialog = new();
             dialog.Filters.Add(new FileDialogFilter() { Extensions = new List<string>() { "arm" } });
             dialog.AllowMultiple = false;
             Window? mainWindow = Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop ? desktop.MainWindow : null;
@@ -749,7 +749,9 @@ namespace PLCSoldier.ViewModels
 
             if (result != null)
             {
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = new ObservableCollection<Node> { new Node(result[0]) } };
+                ObservableCollection<Node> nodes = ArmFileWorker.GetNodes(result[0]);
+                
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = nodes };
             }
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using PLCSoldier.Classes;
@@ -19,8 +20,17 @@ namespace PLCSoldier.Models
         public string? Path { get; set; }
 
         [JsonIgnore]
+        public Avalonia.Media.Imaging.Bitmap? Icon { get; set; }
+
+        [JsonIgnore]
         public bool IsExpanded { get; set; } = false;
 
-        public Node() { }
+        [JsonIgnore]
+        public ContextMenu? ContextMenu { get; set; }
+
+        public Node() 
+        { 
+            ContextMenu = new ContextMenu();
+        }
     }
 }

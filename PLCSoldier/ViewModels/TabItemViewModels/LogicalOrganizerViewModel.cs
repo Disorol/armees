@@ -107,8 +107,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 CopiedPath = null;
             }
 
-            if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].PathString != null)
-                if (deletePath != LogicalOrganizer[0].PathString)
+            if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].Path != null)
+                if (deletePath != LogicalOrganizer[0].Path)
                 {
                     LogicalOrganizerRefresh();
                 }
@@ -290,7 +290,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 NodeWorker.FindAllExpandedNodes(LogicalOrganizer, allExpandedNodes);
 
                 // Creating a new file tree after deletion.
-                LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].PathString, true, allExpandedNodes) };
+                //LogicalOrganizer = new ObservableCollection<Node>() { new Node(LogicalOrganizer[0].Path, true, allExpandedNodes) };
             }      
         }
 
