@@ -217,7 +217,7 @@
                 <Style Selector="TabItem">
                   <Setter Property="HeaderTemplate">
                     <Setter.Value>
-                      <DataTemplate >
+                      <DataTemplate>
                         <DockPanel>
                           <Button IsVisible="{Binding isCloseButtonVisible}" DockPanel.Dock="Right" Command="{Binding $parent[Window].DataContext.DeleteTabItem}" CommandParameter="{Binding IdentificationName}">
                             <Button.Styles>

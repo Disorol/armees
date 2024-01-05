@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using CommunityToolkit.Mvvm.Input;
 using PLCSoldier.Classes;
+using ReactiveUI;
 
 namespace PLCSoldier.Models
 {
@@ -26,11 +28,11 @@ namespace PLCSoldier.Models
         public bool IsExpanded { get; set; } = false;
 
         [JsonIgnore]
-        public ContextMenu? ContextMenu { get; set; }
+        public ObservableCollection<MenuItem> ContextMenu { get; set; }
 
         public Node() 
-        { 
-            ContextMenu = new ContextMenu();
+        {
+            ContextMenu = new ObservableCollection<MenuItem> { new MenuItem { Header = "Copy" }, new MenuItem { Header = "Paste" } };
         }
     }
 }

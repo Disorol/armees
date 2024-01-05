@@ -754,7 +754,6 @@ namespace PLCSoldier.ViewModels
             if (result != null && result.Length > 0)
             {
                 ObservableCollection<Node> nodes = ArmFileWorker.GetNodes(result[0]);
-                
                 leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = nodes };
             }
         }

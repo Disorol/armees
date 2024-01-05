@@ -18,7 +18,13 @@
         <TreeDataTemplate ItemsSource="{Binding Subnodes}">
           <DockPanel>
             <DockPanel.ContextMenu>
-              <ContextMenu ItemsSource="" />
+              <ContextMenu ItemsSource="{Binding ContextMenu}">
+                <ContextMenu.ItemTemplate>
+                  <DataTemplate>
+                    <MenuItem Header="{Binding Header}" />
+                  </DataTemplate>
+                </ContextMenu.ItemTemplate>
+              </ContextMenu>
             </DockPanel.ContextMenu>
             <Image Width="10" Height="10" Source="{Binding Icon}" />
             <TextBlock Text=" " />
