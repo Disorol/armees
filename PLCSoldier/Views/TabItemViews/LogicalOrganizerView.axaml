@@ -22,7 +22,7 @@
             </DockPanel.ContextMenu>
             <Image Width="10" Height="10" Source="{Binding Icon}" />
             <TextBlock Text=" " />
-            <TextBlock Text="{Binding NodeTitle}" />
+            <TextBlock Text="{Binding Title}" />
           </DockPanel>
         </TreeDataTemplate>
       </TreeView.ItemTemplate>

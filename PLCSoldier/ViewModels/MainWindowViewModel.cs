@@ -740,6 +740,10 @@ namespace PLCSoldier.ViewModels
 
         private async void ExecuteOpenProject()
         {
+            //ObservableCollection<Node> nodes1 = new ObservableCollection<Node> { new Node() { Title = "Title1", Path = "None", Subnodes = new ObservableCollection<Node>() { new Node() { Title = "ttt", Subnodes = null, Path = "111" } } } };
+
+            //ArmFileWorker.WriteNodes("C:/Users/T/Desktop/Проект/project.arm", nodes1);
+
             OpenFileDialog dialog = new();
             dialog.Filters.Add(new FileDialogFilter() { Extensions = new List<string>() { "arm" } });
             dialog.AllowMultiple = false;

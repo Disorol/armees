@@ -20,6 +20,11 @@ namespace PLCSoldier.Classes
             return JsonSerializer.Deserialize<ObservableCollection<Node>>(readText, GetSerializerSettings());
         }
 
+        public static void WriteNodes(string path, ObservableCollection<Node> nodes)
+        {
+            File.WriteAllText(path, JsonSerializer.Serialize(nodes, GetSerializerSettings()));
+        }
+
         private static JsonSerializerOptions GetSerializerSettings()
         {
             return new JsonSerializerOptions
