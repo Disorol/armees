@@ -754,6 +754,7 @@ namespace PLCSoldier.ViewModels
             if (result != null && result.Length > 0)
             {
                 ObservableCollection<Node> nodes = ArmFileWorker.GetNodes(result[0]);
+                nodes[0].Subnodes.Add(new Node { Subnodes = null, ContextMenu = new ObservableCollection<MenuItem> { new MenuItem { Header = "Открыть" } }, Title = "Редактор переменных" });
                 leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = nodes };
             }
         }
