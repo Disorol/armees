@@ -747,7 +747,7 @@ namespace PLCSoldier.ViewModels
 
             string[]? result = await dialog.ShowAsync(mainWindow);
 
-            if (result != null)
+            if (result != null && result.Length > 0)
             {
                 ObservableCollection<Node> nodes = ArmFileWorker.GetNodes(result[0]);
                 
