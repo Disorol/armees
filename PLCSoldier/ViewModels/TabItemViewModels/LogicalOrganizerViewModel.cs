@@ -20,8 +20,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
     */
     public class LogicalOrganizerViewModel : ViewModelBase
     {
-        private ObservableCollection<Node>? _LogicalOrganizer;
-        public ObservableCollection<Node>? LogicalOrganizer
+        private ObservableCollection<Node> _LogicalOrganizer;
+        public ObservableCollection<Node> LogicalOrganizer
         {
             get => _LogicalOrganizer;
             set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
@@ -79,7 +79,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
 
             Node.SetCommands(nodes, new Dictionary<string, LogicalOrganizerCommand> { {"Copy", new LogicalOrganizerCommand { Command = CopyFile, CommandParameter = "not null" }},
                                                                                       {"Paste", new LogicalOrganizerCommand { Command = PasteFile, CommandParameter = "not null" }},
-                                                                                      {"Open", new LogicalOrganizerCommand { Command = TryDeleteFile, CommandParameter = "not null" }}, });
+                                                                                      {"Delete", new LogicalOrganizerCommand { Command = TryDeleteFile, CommandParameter = "not null" }},
+                                                                                      {"Open", new LogicalOrganizerCommand { Command = CopyFile, CommandParameter = "not null" }}, });
 
             LogicalOrganizer = nodes;
         }
@@ -100,21 +101,18 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         {
             bool isDeleted = FileWorker.DeleteFile(deletePath);
 
+            if (isDeleted)
+            {
+                Node.DeleteNodeByPath(LogicalOrganizer, deletePath);
+                ArmFileWorker.WriteNodes(LogicalOrganizer);
+            }
+
             if (isDeleted && deletePath == CopiedPath)
             {
                 PasteButton_IsEnabled = false;
                 IsCuted = false;
                 CopiedPath = null;
             }
-
-            if (isDeleted && LogicalOrganizer != null && LogicalOrganizer[0].Path != null)
-                if (deletePath != LogicalOrganizer[0].Path)
-                {
-                    LogicalOrganizerRefresh();
-                }
-                else
-                    // The root folder of the logical organizer has been deleted.
-                    LogicalOrganizer = null;
         }
 
         private void ExecuteCopyFile(string copyPath)

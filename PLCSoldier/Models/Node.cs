@@ -33,7 +33,7 @@ namespace PLCSoldier.Models
 
         public Node() 
         {
-            ContextMenu = new ObservableCollection<MenuItem> { new MenuItem { Header = "Copy", Name = "Copy" }, new MenuItem { Header = "Paste", Name = "Paste" } };
+            ContextMenu = new ObservableCollection<MenuItem> { new MenuItem { Header = "Copy", Name = "Copy" }, new MenuItem { Header = "Paste", Name = "Paste" }, new MenuItem { Header = "Delete", Name = "Delete" } };
         }
 
         // Command assignment method for all Nodes
@@ -70,6 +70,32 @@ namespace PLCSoldier.Models
                 {
                     // Their processing.
                     SetCommands(node.Subnodes, commands);
+                }
+            }
+        }
+
+        // Finding and deleting a Node by path.
+        public static void DeleteNodeByPath(ObservableCollection<Node> nodes, string deletePath)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Path != deletePath)
+                {
+                    if (node.Subnodes != null && node.Subnodes.Count > 0)
+                    {
+                        DeleteNodeByPath(node.Subnodes, deletePath);
+                    }
+                }
+                else
+                {
+                    nodes.Remove(node);
+
+                    if (nodes.Count == 0)
+                    {
+                        nodes = null;
+                    }
+
+                    return;
                 }
             }
         }

@@ -13,16 +13,22 @@ namespace PLCSoldier.Classes
 {
     public static class ArmFileWorker
     {
-        public static ObservableCollection<Node> GetNodes(string path)
+        public static string? ArmFilePath { get; set; }
+
+        public static ObservableCollection<Node>? GetNodes()
         {
-            string readText = File.ReadAllText(path);
+            if (ArmFilePath == null) return null;
+
+            string readText = File.ReadAllText(ArmFilePath);
 
             return JsonSerializer.Deserialize<ObservableCollection<Node>>(readText, GetSerializerSettings());
         }
 
-        public static void WriteNodes(string path, ObservableCollection<Node> nodes)
+        public static void WriteNodes(ObservableCollection<Node> nodes)
         {
-            File.WriteAllText(path, JsonSerializer.Serialize(nodes, GetSerializerSettings()));
+            if (ArmFilePath == null) return;
+
+            File.WriteAllText(ArmFilePath, JsonSerializer.Serialize(nodes, GetSerializerSettings()));
         }
 
         private static JsonSerializerOptions GetSerializerSettings()
