@@ -55,7 +55,7 @@ namespace PLCSoldier.Models
                             // Command assignment.
                             menuItem.Command = commands[menuItem.Name].Command;
 
-                            // Checking for the presence of a command input parameter.
+                            // Checking the existence of an input parameter.
                             if (commands[menuItem.Name].CommandParameter != null)
                             {
                                 // Assignment of an input parameter.
