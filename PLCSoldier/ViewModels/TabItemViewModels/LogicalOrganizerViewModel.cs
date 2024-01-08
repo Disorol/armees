@@ -27,8 +27,8 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             set => this.RaiseAndSetIfChanged(ref _LogicalOrganizer, value);
         }
 
-        private Dictionary<string, TabItemViewModel> CentralItems;
-        private ObservableCollection<TabItemViewModel> CentralContent;
+        //private Dictionary<string, TabItemViewModel> CentralItems;
+        //private ObservableCollection<TabItemViewModel> CentralContent;
 
         // The commands for the context menu item.
         public ReactiveCommand<string, Unit>? TryDeleteFile { get; set; }
@@ -36,7 +36,6 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         public ReactiveCommand<string, Unit>? PasteFile { get; set; }
         public ReactiveCommand<string, Unit>? CutFile { get; set; }
         public ReactiveCommand<string, Unit>? CopyPath { get; set; }
-        public ReactiveCommand<string, Unit>? OpenFile { get; set; }
 
         // Variables to which references to objects created in the MainWindowViewModel will be bound.
         public Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> ShowDeleteFileDialog { get; }
@@ -57,19 +56,17 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
         // The path to the copied file or directory.
         public string? CopiedPath { get; set; }
 
-        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog, 
-                                         Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog, 
-                                         Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog, 
+        public LogicalOrganizerViewModel(Interaction<DeleteFileViewModel, DeletingFileResultViewModel?> showDeleteFileDialog,
+                                         Interaction<ReplaceFileViewModel, ReplacingFileResultViewModel?> showReplaceFileDialog,
+                                         Interaction<FileHierarchyErrorViewModel, FileHierarchyErrorResultViewModel?> showFileHierarchyErrorDialog,
                                          Interaction<SameDirectoryErrorViewModel, SameDirectoryErrorResultViewModel?> showSameDirectoryErrorDialog,
-                                         Dictionary<string, TabItemViewModel> centralItems,
-                                         ObservableCollection<TabItemViewModel> centralContent)
+                                         ObservableCollection<Node> nodes)
         {
             TryDeleteFile = ReactiveCommand.Create<string>(ExecuteTryDeleteFile);
             CopyFile = ReactiveCommand.Create<string>(ExecuteCopyFile);
             PasteFile = ReactiveCommand.Create<string>(ExecutePasteFile);
             CutFile = ReactiveCommand.Create<string>(ExecuteCutFile);
             CopyPath = ReactiveCommand.Create<string>(ExecuteCopyPath);
-            OpenFile = ReactiveCommand.Create<string>(ExecuteOpenFile);
 
             // Bindings to objects that are created in the MainWindowViewModel.
             ShowDeleteFileDialog = showDeleteFileDialog;
@@ -80,8 +77,11 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             // The paste button must be disabled before the first copy.
             PasteButton_IsEnabled = false;
 
-            CentralItems = centralItems;
-            CentralContent = centralContent;
+            Node.SetCommands(nodes, new Dictionary<string, LogicalOrganizerCommand> { {"Copy", new LogicalOrganizerCommand { Command = CopyFile, CommandParameter = "not null" }},
+                                                                                      {"Paste", new LogicalOrganizerCommand { Command = PasteFile, CommandParameter = "not null" }},
+                                                                                      {"Open", new LogicalOrganizerCommand { Command = TryDeleteFile, CommandParameter = "not null" }}, });
+
+            LogicalOrganizer = nodes;
         }
 
         private async void ExecuteTryDeleteFile(string deletePath)
@@ -312,6 +312,7 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
             PasteButton_IsEnabled = false;
         }
 
+        /*
         private void ExecuteOpenFile(string openPath)
         {
             FileInfo openPathInfo = new(openPath);
@@ -323,6 +324,6 @@ namespace PLCSoldier.ViewModels.TabItemViewModels
                 CentralContent.Clear();
                 CentralContent.Add(CentralItems["Value editor"]);
             }
-        }
+        }*/
     }
 }

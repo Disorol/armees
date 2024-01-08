@@ -740,7 +740,7 @@ namespace PLCSoldier.ViewModels
 
         private async void ExecuteOpenProject()
         {
-            //ObservableCollection<Node> nodes1 = new ObservableCollection<Node> { new Node() { Title = "Title1", Path = "None", Subnodes = new ObservableCollection<Node>() { new Node() { Title = "ttt", Subnodes = null, Path = "111" } } } };
+            //ObservableCollection<Node> nodes1 = new ObservableCollection<Node> { new Node() { Title = "Title1", Path = "None", Subnodes = new ObservableCollection<Node>() { new Node() { Title = "ttt.st", Subnodes = null, Path = "111" } } } };
 
             //ArmFileWorker.WriteNodes("C:/Users/T/Desktop/Проект/project.arm", nodes1);
 
@@ -754,8 +754,8 @@ namespace PLCSoldier.ViewModels
             if (result != null && result.Length > 0)
             {
                 ObservableCollection<Node> nodes = ArmFileWorker.GetNodes(result[0]);
-                nodes[0].Subnodes.Add(new Node { Subnodes = null, ContextMenu = new ObservableCollection<MenuItem> { new MenuItem { Header = "Открыть" } }, Title = "Редактор переменных" });
-                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, centralItems, CentralContent) { LogicalOrganizer = nodes };
+                nodes[0].Subnodes.Add(new Node { Subnodes = null, ContextMenu = new ObservableCollection<MenuItem> { new MenuItem { Header = "Open", Name = "Open" } }, Title = "Редактор переменных" });
+                leftUpperItems["Logical organizer"].Content = new LogicalOrganizerViewModel(ShowDeleteFileDialog, ShowReplaceFileDialog, ShowFileHierarchyErrorDialog, ShowSameDirectoryErrorDialog, nodes);
             }
         }
 
